@@ -8,6 +8,8 @@ export default function Page() {
                 <Image
                 src="/hoodCat.png"
                 alt="サイトのロゴ"
+                fill
+                style={{objectFit: 'contain'}}
                 className="h-5/6 rounded-full"
                 />
                 <h1>mk-mokumoku</h1>
