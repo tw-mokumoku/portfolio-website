@@ -14,7 +14,7 @@ export default function Page() {
                 />
                 <h1>mk-mokumoku</h1>
             </Link>
-            <ul className="flex flex-row items-center gap-10">
+            <ul className="flex flex-row items-center gap-10 collapse md:visible">
                 <li>Work</li>
                 <li>Benefits</li>
                 <li>Process</li>
