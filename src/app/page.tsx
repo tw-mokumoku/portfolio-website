@@ -29,7 +29,6 @@ export default function Home() {
           <Marquee
           speed={20}
           autoFill={true}
-          pauseOnHover={true}
           gradient={true}
           gradientWidth={500}
           gradientColor="#0a0a0a"
