@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useWindowSize } from "react-use";
 
 export default function Home() {
-  const {width, height} = useWindowSize();
+  const {width} = useWindowSize();
   return (
     <div className="home top-0">
       <div className="flex h-screen flex items-center justify-center">
