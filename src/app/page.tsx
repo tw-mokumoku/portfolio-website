@@ -1,7 +1,10 @@
+'use client'
 import Marquee from "react-fast-marquee";
 import Image from 'next/image'
+import { useWindowSize } from "react-use";
 
 export default function Home() {
+  const {width, height} = useWindowSize();
   return (
     <div className="home top-0">
       <div className="flex h-screen flex items-center justify-center">
@@ -30,7 +33,7 @@ export default function Home() {
           speed={20}
           autoFill={true}
           gradient={true}
-          gradientWidth={500}
+          gradientWidth={width>=640?width>=1024?500:350:200}
           gradientColor="#09090b"
           >
             <div className="h-15 mx-4">
