@@ -15,17 +15,17 @@ export default function Page() {
                 <h1>mk-mokumoku</h1>
             </Link>
             <ul className="flex flex-row items-center gap-10 collapse md:visible">
-                <li>Work</li>
-                <li>Benefits</li>
-                <li>Process</li>
-                <li>About</li>
+                <li>プロフィール</li>
+                <li>お仕事</li>
+                <li>スキル</li>
+                <li>プロジェクト</li>
             </ul>
             <Link
                 href="/"
                 className="absolute right-0 mr-8"
                 style={{ textShadow: "0 0 10px #fff" }}
             >
-            Project request　&gt;
+            お問い合わせ　&gt;
             </Link>
             
         </header>
