@@ -31,9 +31,9 @@ export default function Home() {
           autoFill={true}
           gradient={true}
           gradientWidth={500}
-          gradientColor="#0a0a0a"
+          gradientColor="#000000"
           >
-            <div className="h-15 mx-5">
+            <div className="h-15 mx-4">
               <Image
               src="/react_logo.svg"
               alt="React Logo"
@@ -41,42 +41,50 @@ export default function Home() {
               style={{objectFit: 'contain'}}
               />
             </div>
-            <div className="h-22 mx-5">
+            <div className="h-22 mx-4">
               <Image
               src="/next_logo.svg"
-              alt="React Logo"
+              alt="Next Logo"
               fill
               style={{objectFit: 'contain'}}
               />
             </div>
-            <div className="h-10 mx-5">
+            <div className="h-10 mx-4">
               <Image
               src="/git_logo.svg"
-              alt="React Logo"
+              alt="Git Logo"
               fill
               style={{objectFit: 'contain'}}
               />
             </div>
-            <div className="h-23 mx-5">
+            <div className="h-23 mx-4">
               <Image
               src="/vercel_logo.svg"
-              alt="React Logo"
+              alt="Vercel Logo"
               fill
               style={{objectFit: 'contain'}}
               />
             </div>
-            <div className="h-5 mx-5">
+            <div className="h-5 mx-4">
               <Image
               src="/tailwind_logo.svg"
-              alt="React Logo"
+              alt="Tailwindcss Logo"
               fill
               style={{objectFit: 'contain'}}
               />
-             </div>
-             <div className="h-13 mx-5">
+            </div>
+            <div className="h-13 mx-4">
              <Image
               src="/heroku_logo.svg"
-              alt="React Logo"
+              alt="Heroku Logo"
+              fill
+              style={{objectFit: 'contain'}}
+              />
+            </div>
+            <div className="h-12 mx-4">
+             <Image
+              src="/neon_logo.png"
+              alt="Neon Logo"
               fill
               style={{objectFit: 'contain'}}
               />
