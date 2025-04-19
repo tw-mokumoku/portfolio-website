@@ -31,7 +31,7 @@ export default function Home() {
           autoFill={true}
           gradient={true}
           gradientWidth={500}
-          gradientColor="#000000"
+          gradientColor="#09090b"
           >
             <div className="h-15 mx-4">
               <Image
