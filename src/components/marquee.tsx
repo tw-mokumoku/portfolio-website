@@ -3,16 +3,22 @@
 import Marquee from "react-fast-marquee";
 import Image from 'next/image'
 import { useWindowSize } from "react-use";
+import { useEffect, useState } from "react";
 
 export function TechLogoMarquee(){
     const {width} = useWindowSize();
+    const [gradientWidth, setGradientWidth] = useState<number>(200);
+
+    useEffect(()=>{
+      setGradientWidth( width >= 640 ? width >= 1024 ? 500 : 350 : 200 );
+    }, []);
 
     return (
         <Marquee
         speed={20}
         autoFill={true}
         gradient={true}
-        gradientWidth={width>=640?width>=1024?500:350:200}
+        gradientWidth={gradientWidth}
         gradientColor="#09090b"
         >
           <div className="h-15 mx-4">
