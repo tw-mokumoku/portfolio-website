@@ -28,8 +28,8 @@ export function SkillIcon(
     );
     
     
-    const handleMouseMove = (e:any) =>{
-        const rect = e.target.getBoundingClientRect();
+    const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) =>{
+        const rect = e.currentTarget.getBoundingClientRect();
         
         const width = rect.width;
         const height = rect.height;

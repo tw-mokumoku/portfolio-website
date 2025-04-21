@@ -1,7 +1,5 @@
 import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
-import { Button } from "@/components/ui/button";
-import { SkillIcon } from "@/components/animation/skill-icon";
 import { SkillCards } from "@/components/skill-cards";
 
 export default function Home() {
