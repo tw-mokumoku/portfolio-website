@@ -4,7 +4,11 @@ import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 
 
 
-export function SkillIcon({src, alt, bg}:{src:string, alt:string, bg:string}){
+export function SkillIcon(
+    {src, alt, iconClass, name}
+    :
+    {src:string, alt:string, iconClass:string, name:string}
+){
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     
@@ -73,7 +77,7 @@ export function SkillIcon({src, alt, bg}:{src:string, alt:string, bg:string}){
         whileTap = "whileSkillIconTap"
         >
             <motion.div
-            className="h-full flex items-center justify-center outline rounded-xl"
+            className="h-full flex flex-col items-center justify-center gap-1 outline rounded-xl"
             variants={frameVariants}
             style={{
                 rotateX,
@@ -83,14 +87,14 @@ export function SkillIcon({src, alt, bg}:{src:string, alt:string, bg:string}){
             >
                 <motion.div
                 style={{
-                    background: bg, opacity: 0
+                    background: "linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)", opacity: 0
                 }}
                 className="h-full w-full absolute rounded-xl"
                 variants={frameOpacity}
                 />
                 <motion.div
-                className="h-2/4"
                 variants={iconVariants}
+                className={iconClass}
                 style={{
                     transformStyle: "preserve-3d"
                 }}
@@ -100,10 +104,16 @@ export function SkillIcon({src, alt, bg}:{src:string, alt:string, bg:string}){
                     alt={alt}
                     fill
                     style={{
-                        transformStyle: "preserve-3d"
+                        transformStyle: "preserve-3d",
                     }}
                     />
                 </motion.div>
+                <motion.p
+                variants={iconVariants}
+                style={{
+                    transformStyle: "preserve-3d"
+                }}                
+                >{name}</motion.p>
             </motion.div>
         </motion.button>
     );
