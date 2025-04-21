@@ -2,6 +2,7 @@ import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
 import { Button } from "@/components/ui/button";
 import { SkillIcon } from "@/components/animation/skill-icon";
+import { SkillCards } from "@/components/skill-cards";
 
 export default function Home() {
   return (
@@ -17,48 +18,7 @@ export default function Home() {
       </div>
       <div className="flex items-center justify-center flex-col">
         <SentenceComponent4 />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pb-60">
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-          <SkillIcon
-          src="/icons8-nextjs.svg"
-          alt="Nextjs Icon"
-          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
-           />
-        </div>
+        <SkillCards />
       </div>
     </>
   );
