@@ -16,7 +16,7 @@ export default function Home() {
           <TechIconButtons />
         </div>
       </div>
-      <div className="flex items-center justify-center flex-col">
+      <div id="anchor_one" className="flex items-center justify-center flex-col pt-35 -mt-50">
         <SentenceComponent4 />
         <SkillCards />
       </div>
