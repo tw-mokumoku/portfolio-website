@@ -11,7 +11,7 @@ export function TechLogoMarquee(){
 
     useEffect(()=>{
       setGradientWidth( width >= 640 ? width >= 1024 ? 500 : 350 : 200 );
-    }, []);
+    }, [width]);
 
     return (
         <Marquee
