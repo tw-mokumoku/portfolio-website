@@ -77,7 +77,7 @@ export function SkillIcon(
         whileTap = "whileSkillIconTap"
         >
             <motion.div
-            className="h-full flex flex-col items-center justify-center gap-1 outline rounded-xl"
+            className="h-full flex flex-col items-center justify-center gap-1 outline rounded-xl hover:outline-white hover:outline-2"
             variants={frameVariants}
             style={{
                 rotateX,
