@@ -1,7 +1,7 @@
 import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { SkillIcon } from "@/components/animation/skill-icon";
 
 export default function Home() {
   return (
@@ -21,55 +21,48 @@ export default function Home() {
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
           <SkillIcon
           src="/icons8-nextjs.svg"
           alt="Nextjs Icon"
+          bg="linear-gradient(45deg, #3a3c47 0%, #6b7077 100%)"
            />
         </div>
       </div>
     </>
   );
 }
-
-function SkillIcon({src, alt}:{src:string, alt:string}){
-  return (
-    <div className="flex items-center justify-center outline rounded-xl h-25 2xl:h-40 w-40 2xl:w-64">
-      <div className="h-3/4">
-        <Image
-        src={src}
-        alt={alt}
-        fill
-        />
-      </div>
-    </div>
-  );
-}
-
 function SentenceComponent1(){
   return (
     <h2 className="text-white align-center text-xs sm:text-base mb-10 select-none ">
