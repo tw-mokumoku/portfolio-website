@@ -5,7 +5,7 @@ import { IoMail } from "react-icons/io5";
 
 export function TechIconButtons(){
     return (
-        <div className="flex justify-center gap-8">
+      <div className="flex justify-center gap-8">
         <Button variant="outline" size="icon">
           <Link href="https://github.com/tw-mokumoku">
             <FaGithub />
