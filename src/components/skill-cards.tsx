@@ -41,7 +41,7 @@ export function SkillCards(){
             iconClass="h-2/5 m-4"
             />
             <SkillIcon
-            name="Vercel.js"
+            name="Vercel"
             alt="Vercel Logo"
             src="/vercel-logo.png"
             iconClass="h-1/3 m-4"
