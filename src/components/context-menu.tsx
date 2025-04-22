@@ -34,13 +34,6 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion";
 
-  
-import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger,
-  } from "@/components/ui/hover-card";
-
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -226,7 +219,7 @@ export function JobContextMenu(){
                     <DialogHeader>
                         <DialogTitle>職務経歴</DialogTitle>
                         <DialogDescription>
-                            Make changes to your profile here. Click save when you're done.
+                            この度は、私の職務経歴にご関心をお寄せいただき、誠にありがとうございます。最新の職務経験から順に記載しておりますので、ご参照ください。
                         </DialogDescription>
                     </DialogHeader>
                     <Accordion type="single" collapsible className="w-full">
