@@ -16,14 +16,21 @@ import {
 
 
 import {
-Dialog,
-DialogContent,
-DialogDescription,
-DialogFooter,
-DialogHeader,
-DialogTitle,
-DialogTrigger,
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
 } from "@/components/ui/dialog";
+
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/accordion";
 
 import { Button } from "@/components/ui/button";
 
@@ -49,60 +56,62 @@ export function JobContextMenu(){
                     <ContextMenuShortcut>⌘R</ContextMenuShortcut>
                     </ContextMenuItem>
                     <ContextMenuSub>
-                    <ContextMenuSubTrigger inset>アルバイト</ContextMenuSubTrigger>
-                    <ContextMenuSubContent className="w-72">
-                        <ContextMenuItem>
-                        2021-10 株式会社エディオン　退社
-                        <ContextMenuShortcut>⇩⌘Z</ContextMenuShortcut>
-                        </ContextMenuItem>
-                        <ContextMenuItem>
-                        2021-05 株式会社エディオン　入社
-                        </ContextMenuItem>
-                        <ContextMenuItem>
-                        2020-03 株式会社フォーシーズ　退社
-                        </ContextMenuItem>
-                        <ContextMenuItem>
-                        2019-08 株式会社フォーシーズ　入社
-                        </ContextMenuItem>
-                        <ContextMenuItem>
-                        2019-03 株式会社プレナス　退社
-                        <ContextMenuShortcut>⌘A</ContextMenuShortcut>
-                        </ContextMenuItem>
-                        <ContextMenuItem>
-                        2018-04 株式会社プレナス　入社
-                        <ContextMenuShortcut>⌘Q</ContextMenuShortcut>
-                        </ContextMenuItem>
-                        <ContextMenuSeparator />
-                        <ContextMenuLabel>↑ クリックして確認</ContextMenuLabel>
-                    </ContextMenuSubContent>
-                    </ContextMenuSub>
+                        <ContextMenuSubTrigger inset>正社員</ContextMenuSubTrigger>
+                        <ContextMenuSubContent className="w-134">
+                            <ContextMenuItem>
+                            2025-04 コンピュータ・ユニオン ― 電算労コンピュータ関連労働組合　現在所属中
+                            <ContextMenuShortcut>⌘D</ContextMenuShortcut>
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2025-03 株式会社STAIR　退社
+                            <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                                2025-03 株式会社STAIR　入社
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2023-05 株式会社プライオリティーコンサルティング　退社
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2022-01 株式会社プライオリティーコンサルティング　入社
+                            </ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuLabel>↑ クリックして確認</ContextMenuLabel>
+                        </ContextMenuSubContent>
+                    </ContextMenuSub>            
                     <ContextMenuSeparator />
                     <ContextMenuCheckboxItem checked disabled>
                     ブックマークバーを表示
                     <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
                     </ContextMenuCheckboxItem>
                     <ContextMenuSub>
-                    <ContextMenuSubTrigger inset>正社員</ContextMenuSubTrigger>
-                    <ContextMenuSubContent className="w-134">
-                        <ContextMenuItem>
-                        2025-04 コンピュータ・ユニオン ― 電算労コンピュータ関連労働組合　現在所属中
-                        <ContextMenuShortcut>⌘D</ContextMenuShortcut>
-                        </ContextMenuItem>
-                        <ContextMenuItem>
-                        2025-03 株式会社STAIR　入社
-                        <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
-                        </ContextMenuItem>
-                        <ContextMenuItem>2025-03 株式会社STAIR　入社</ContextMenuItem>
-                        <ContextMenuItem>
-                        2023-05 株式会社プライオリティーコンサルティング　退社
-                        </ContextMenuItem>
-                        <ContextMenuItem>
-                        2022-01 株式会社プライオリティーコンサルティング　入社
-                        </ContextMenuItem>
-                        <ContextMenuSeparator />
-                        <ContextMenuLabel>↑ クリックして確認</ContextMenuLabel>
-                    </ContextMenuSubContent>
-                    </ContextMenuSub>            
+                        <ContextMenuSubTrigger inset>アルバイト</ContextMenuSubTrigger>
+                        <ContextMenuSubContent className="w-72">
+                            <ContextMenuItem>
+                            2021-10 株式会社エディオン　退社
+                            <ContextMenuShortcut>⇩⌘Z</ContextMenuShortcut>
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2021-05 株式会社エディオン　入社
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2020-03 株式会社フォーシーズ　退社
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2019-08 株式会社フォーシーズ　入社
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2019-03 株式会社プレナス　退社
+                            <ContextMenuShortcut>⌘A</ContextMenuShortcut>
+                            </ContextMenuItem>
+                            <ContextMenuItem>
+                            2018-04 株式会社プレナス　入社
+                            <ContextMenuShortcut>⌘Q</ContextMenuShortcut>
+                            </ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuLabel>↑ クリックして確認</ContextMenuLabel>
+                        </ContextMenuSubContent>
+                    </ContextMenuSub>
                     <ContextMenuRadioGroup value="pedro">
                     <ContextMenuSeparator />
                     <ContextMenuRadioItem value="pedro" disabled>
@@ -131,8 +140,44 @@ export function JobContextMenu(){
                         Make changes to your profile here. Click save when you're done.
                     </DialogDescription>
                     </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                    </div>
+                        <Accordion type="single" collapsible className="w-full">
+                            <AccordionItem value="item-1">
+                                <AccordionTrigger>コンピュータ・ユニオン ― 電算労コンピュータ関連労働組合</AccordionTrigger>
+                                <AccordionContent>
+                                所属期間：現在所属中
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-2">
+                                <AccordionTrigger>株式会社STAIR</AccordionTrigger>
+                                <AccordionContent>
+                                所属期間：2025年03月 - 2025年03月
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-3">
+                                <AccordionTrigger>株式会社プライオリティーコンサルティング</AccordionTrigger>
+                                <AccordionContent>
+                                所属期間：2022年01月 - 2023年05月
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-4">
+                                <AccordionTrigger>株式会社エディオン</AccordionTrigger>
+                                <AccordionContent>
+                                所属期間：2021年05月 - 2021年10月
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-5">
+                                <AccordionTrigger>株式会社フォーシーズ</AccordionTrigger>
+                                <AccordionContent>
+                                所属期間：2019年08月 - 2020年03月
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="item-6">
+                                <AccordionTrigger>株式会社プレナス</AccordionTrigger>
+                                <AccordionContent>
+                                所属期間：2018年04月 - 2019年03月
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
                     <DialogFooter>
                     </DialogFooter>
                 </DialogContent>
