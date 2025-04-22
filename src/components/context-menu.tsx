@@ -17,7 +17,7 @@ import {
 export function JobContextMenu(){
     return (
         <ContextMenu>
-          <ContextMenuTrigger className="flex h-[300px] w-[600px] items-center justify-center rounded-md border border-dashed text-md border-2">
+          <ContextMenuTrigger className="flex h-[150px] w-[300px] md:h-[300px] md:w-[600px] items-center justify-center rounded-md border border-dashed text-md border-2">
             ここを右クリック
           </ContextMenuTrigger>
           <ContextMenuContent className="w-64">
