@@ -19,8 +19,8 @@ export default function Page() {
             </Link>
             <ul className="flex flex-row items-center gap-10 collapse md:visible">
                 <li>プロフィール</li>
-                <li>お仕事</li>
-                <li><Link href="#anchor_one">スキル</Link></li>
+                <li><Link href="#anchor_job">お仕事</Link></li>
+                <li><Link href="#anchor_skill">スキル</Link></li>
                 <li>プロジェクト</li>
             </ul>
             <Link

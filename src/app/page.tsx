@@ -1,3 +1,4 @@
+import { JobContextMenu } from "@/components/context-menu";
 import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
@@ -14,9 +15,13 @@ export default function Home() {
           <TechIconButtons />
         </div>
       </div>
-      <div id="anchor_one" className="flex items-center justify-center flex-col pt-35 -mt-50">
+      <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-50">
         <SentenceComponent4 />
         <SkillCards />
+      </div>
+      <div id="anchor_job" className="flex items-center justify-center flex-col pt-35 -mt-50 pb-60">
+        <SentenceComponent5 />
+        <JobContextMenu />
       </div>
     </>
   );
@@ -58,6 +63,14 @@ function SentenceComponent4(){
   return (
     <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
       スキル &amp; 経験
+    </h2>
+  );
+}
+
+function SentenceComponent5(){
+  return (
+    <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
+      お仕事
     </h2>
   );
 }
