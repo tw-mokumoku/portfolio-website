@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Page() {
     return (
         <header
-        className="sticky top-0 relative flex flex-row items-center justify-center h-18 gap-4 z-999"
+        className="sticky top-0 flex flex-row items-center justify-center h-18 gap-4 z-999"
         style={{ WebkitBackdropFilter: "blur(2px)", backdropFilter: "blur(2px)" }}
         >
             <Link href="/" className="absolute left-0 flex flex-row items-center h-3/5 gap-5 ml-4">

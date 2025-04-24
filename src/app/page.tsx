@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <div className="flex items-center justify-center h-screen top-0">
-        <div className="text-lg lg: text-center w-[90%] md:w-[70%] lg:w-[80%] xl:w-[55%] mb-[150px] sm:mt-16 mt-32">
+        <div className="text-lg lg: text-center w-[90%] md:w-[70%] lg:w-[80%] xl:w-[55%] mb-[150px] mt-16">
           <SentenceComponent1 />
           <SentenceComponent2 />
           <SentenceComponent3 />
@@ -15,14 +15,14 @@ export default function Home() {
           <TechIconButtons />
         </div>
       </div>
-      <div id="anchor_greet" className="h-screen flex items-center justify-center flex-col">
+      <div id="anchor_greet" className="h-screen flex items-center justify-center flex-col -mt-65 sm:mt-20">
         <SentenceComponent6 />
       </div>
-      <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 mt-50">
+      <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-15 sm:mt-80">
         <SentenceComponent4 />
         <SkillCards />
       </div>
-      <div id="anchor_job" className="flex items-center justify-center flex-col pt-35 -mt-50 pb-60">
+      <div id="anchor_job" className="flex items-center justify-center flex-col pt-35 -mt-50 pb-60 sm:mt-0">
         <SentenceComponent5 />
         <JobContextMenu />
       </div>
