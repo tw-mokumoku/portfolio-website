@@ -1,0 +1,13 @@
+.MuiDialog-container > div{
+    background-color: unset;
+    color: unset;
+    border-radius: unset;
+    box-shadow: unset;
+    margin: unset;
+    overflow-y: unset;
+    max-width: unset;
+    max-height: unset;
+}
+.MuiBackdrop-root{
+    background-color: rgba(0, 0, 0, 0.9) !important;
+}

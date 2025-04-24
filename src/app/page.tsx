@@ -3,7 +3,6 @@ import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
 
-
 export default function Home() {
   return (
     <>
@@ -71,7 +70,8 @@ function SentenceComponent6(){
         渡邊琢資（mk-mokumoku）と申します。
       </p><br />
       <p>
-        プログラミングに興味を持ち4年、ゲーム制作からWeb開発へ。子供の頃からの組み立て好きが高じ、PCの世界へ情熱を注いできました。
+        プログラミングに興味を持ち4年、ゲーム制作からWeb開発へ。<br/>
+        子供の頃からの組み立て好きが高じ、PCの世界へ情熱を注いできました。
       </p>
       <p>
         独力でのWebサービス立ち上げ経験も活かし、見た目だけでなく使いやすいUIの創造を大切にしています。
