@@ -3,6 +3,7 @@ import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
 
+
 export default function Home() {
   return (
     <>

@@ -56,8 +56,15 @@ export function JobContextMenu(){
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>コンピュータ・ユニオン ― 電算労コンピュータ関連労働組合</DialogTitle>
-                        <DialogDescription>
-                            所属期間：現在所属中
+                        <DialogDescription className="text-white">
+                            <br />
+                            所属期間：現在所属中<br />
+                            雇用形態：契約社員・派遣社員(案件に準ずる)<br />
+                            <br />
+                            〇詳細<br />
+                            この度、エンジニア主体で運営されているコンピュータ・ユニオンという組合に所属するに至りました。<br />
+                            組合経由で案件を受注し、労働者供給契約、又は労働者派遣契約にて供給先・派遣先にて労働を行います。<br />
+                            現在、組合の営業担当者と相談し案件受注に向けて動いている次第です。
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
@@ -69,8 +76,18 @@ export function JobContextMenu(){
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>株式会社STAIR</DialogTitle>
-                        <DialogDescription>
-                            所属期間：2025年03月 - 2025年03月
+                        <DialogDescription className="text-white">
+                            <br />
+                            所属期間：1か月未満（2025年03月 - 2025年03月）<br />
+                            雇用形態：正社員<br />
+                            <br />
+                            〇業務内容<br />
+                            ・街頭営業<br />
+                            ・テレアポ業務<br />
+                            ・既存顧客連絡業務<br />
+                            <br />
+                            〇詳細<br />
+                            投資用不動産の営業マンとして駅チカの一人世帯向けワンルームマンションの営業を行っておりました。
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
@@ -82,8 +99,22 @@ export function JobContextMenu(){
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>株式会社プライオリティーコンサルティング</DialogTitle>
-                        <DialogDescription>
-                            所属期間：2022年01月 - 2023年05月
+                        <DialogDescription className="text-white">
+                            <br />
+                            所属期間：1年半（2022年01月 - 2023年05月）<br />
+                            客先常駐先：防衛省内部部局整備計画局情報推進課<br />
+                            雇用形態：正社員<br />
+                            <br />
+                            〇業務内容<br />
+                            ・システム運用管理<br />
+                            ・サービスデスク<br />
+                            ・障害管理<br />
+                            ・セキュリティ監視業務<br />
+                            <br />
+                            〇詳細<br />
+                            防衛省職員からのIT関連のお問い合わせの二次受けエンジニアとして、マニュアル化されていない未解決な問題を解決する業務を行っておりました。<br/>
+                            所属期間中のインシデント対応数累計は1000件以上です。<br/>
+                            システムとサーバー構成の理解に勤め、障害やセキュリティリスク等インシデントの根本的な解決に尽力しました。
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
@@ -95,8 +126,17 @@ export function JobContextMenu(){
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>株式会社エディオン</DialogTitle>
-                        <DialogDescription>
-                            所属期間：2021年05月 - 2021年10月
+                        <DialogDescription className="text-white">
+                            <br />
+                            所属期間：5か月（2021年05月 - 2021年10月）<br />
+                            雇用形態：アルバイト<br />
+                            <br />
+                            〇業務内容<br />
+                            ・家電量販店「エディオン」の店舗スタッフ<br />
+                            ・レジ業務<br />
+                            ・商品説明業務<br />
+                            ・清掃業務<br />
+                            ・品出し業務<br />
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
@@ -108,8 +148,15 @@ export function JobContextMenu(){
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>株式会社フォーシーズ</DialogTitle>
-                        <DialogDescription>
-                            所属期間：2019年08月 - 2020年03月
+                        <DialogDescription className="text-white">
+                            <br />
+                            所属期間：7か月（2019年08月 - 2020年03月）<br />
+                            雇用形態：アルバイト<br />
+                            <br />
+                            〇業務内容<br />
+                            ・宅配ピザチェーン「ピザーラ」のキッチンスタッフ<br />
+                            ・ピザ作成業務<br />
+                            ・清掃業務<br />
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
@@ -121,8 +168,17 @@ export function JobContextMenu(){
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>株式会社プレナス</DialogTitle>
-                        <DialogDescription>
-                            所属期間：2018年04月 - 2019年03月
+                        <DialogDescription className="text-white">
+                            <br />
+                            所属期間：11か月（2018年04月 - 2019年03月）<br />
+                            雇用形態：アルバイト<br />
+                            <br />
+                            〇業務内容<br />
+                            ・持ち帰り弁当チェーン「ほっともっと」の厨房・レジスタッフ<br />
+                            ・レジ業務<br />
+                            ・商品説明業務<br />
+                            ・清掃業務<br />
+                            ・品出し業務<br />
                         </DialogDescription>
                     </DialogHeader>
                 </DialogContent>
@@ -226,37 +282,87 @@ export function JobContextMenu(){
                         <AccordionItem value="item-1">
                             <AccordionTrigger>コンピュータ・ユニオン ― 電算労コンピュータ関連労働組合</AccordionTrigger>
                             <AccordionContent>
-                            所属期間：現在所属中
+                            所属期間：現在所属中<br />
+                            雇用形態：契約社員・派遣社員(案件に準ずる)<br />
+                            <br />
+                            〇詳細<br />
+                            この度、エンジニア主体で運営されているコンピュータ・ユニオンという組合に所属するに至りました。<br />
+                            組合経由で案件を受注し、労働者供給契約、又は労働者派遣契約にて供給先・派遣先にて労働を行います。<br />
+                            現在、組合の営業担当者と相談し案件受注に向けて動いている次第です。
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-2">
                             <AccordionTrigger>株式会社STAIR</AccordionTrigger>
                             <AccordionContent>
-                            所属期間：2025年03月 - 2025年03月
+                            所属期間：1か月未満（2025年03月 - 2025年03月）<br />
+                            雇用形態：正社員<br />
+                            <br />
+                            〇業務内容<br />
+                            ・街頭営業<br />
+                            ・テレアポ業務<br />
+                            ・既存顧客連絡業務<br />
+                            <br />
+                            〇詳細<br />
+                            投資用不動産の営業マンとして駅チカの一人世帯向けワンルームマンションの営業を行っておりました。
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
                             <AccordionTrigger>株式会社プライオリティーコンサルティング</AccordionTrigger>
                             <AccordionContent>
-                            所属期間：2022年01月 - 2023年05月
+                            所属期間：1年半（2022年01月 - 2023年05月）<br />
+                            客先常駐先：防衛省内部部局整備計画局情報推進課<br />
+                            雇用形態：正社員<br />
+                            <br />
+                            〇業務内容<br />
+                            ・システム運用管理<br />
+                            ・サービスデスク<br />
+                            ・障害管理<br />
+                            ・セキュリティ監視業務<br />
+                            <br />
+                            〇詳細<br />
+                            防衛省職員からのIT関連のお問い合わせの二次受けエンジニアとして、マニュアル化されていない未解決な問題を解決する業務を行っておりました。<br/>
+                            所属期間中のインシデント対応数累計は1000件以上です。<br/>
+                            システムとサーバー構成の理解に勤め、障害やセキュリティリスク等インシデントの根本的な解決に尽力しました。
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-4">
                             <AccordionTrigger>株式会社エディオン</AccordionTrigger>
                             <AccordionContent>
-                            所属期間：2021年05月 - 2021年10月
+                            所属期間：5か月（2021年05月 - 2021年10月）<br />
+                            雇用形態：アルバイト<br />
+                            <br />
+                            〇業務内容<br />
+                            ・家電量販店「エディオン」の店舗スタッフ<br />
+                            ・レジ業務<br />
+                            ・商品説明業務<br />
+                            ・清掃業務<br />
+                            ・品出し業務<br />
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-5">
                             <AccordionTrigger>株式会社フォーシーズ</AccordionTrigger>
                             <AccordionContent>
-                            所属期間：2019年08月 - 2020年03月
+                            所属期間：7か月（2019年08月 - 2020年03月）<br />
+                            雇用形態：アルバイト<br />
+                            <br />
+                            〇業務内容<br />
+                            ・宅配ピザチェーン「ピザーラ」のキッチンスタッフ<br />
+                            ・ピザ作成業務<br />
+                            ・清掃業務<br />
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-6">
                             <AccordionTrigger>株式会社プレナス</AccordionTrigger>
                             <AccordionContent>
-                            所属期間：2018年04月 - 2019年03月
+                            所属期間：11か月（2018年04月 - 2019年03月）<br />
+                            雇用形態：アルバイト<br />
+                            <br />
+                            〇業務内容<br />
+                            ・持ち帰り弁当チェーン「ほっともっと」の厨房・レジスタッフ<br />
+                            ・レジ業務<br />
+                            ・商品説明業務<br />
+                            ・清掃業務<br />
+                            ・品出し業務<br />
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
