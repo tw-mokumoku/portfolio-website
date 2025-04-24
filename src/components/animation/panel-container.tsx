@@ -1,5 +1,5 @@
 'use client'
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { ReactNode } from "react";
 
 
@@ -9,45 +9,6 @@ export function TransparentContainer(
     :
     {children: ReactNode}
 ){
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    
-    const mouseXSpring = useSpring(x, { stiffness: 200, damping: 30 }); // スプリングの調整
-    const mouseYSpring = useSpring(y, { stiffness: 200, damping: 30 }); // スプリングの調整
-    
-    const rotateX = useTransform(
-        mouseYSpring,
-        [0.5, -0.5],
-        ["0.5deg", "-0.5deg"]
-    );
-    
-    const rotateY = useTransform(
-        mouseXSpring, // 水平方向の動きを使用
-        [0.5, -0.5],
-        ["-0.5deg", "0.5deg"] // 符号を修正
-    );
-    
-    
-    const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) =>{
-        const rect = e.currentTarget.getBoundingClientRect();
-        
-        const width = rect.width;
-        const height = rect.height;
-        
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-        
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
 
     const transparentFilter = {
         whileSkillIconHover: { opacity: 0 },
@@ -67,8 +28,6 @@ export function TransparentContainer(
         <motion.button
         className="w-200"
         whileHover = "whileSkillIconHover"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave} // マウスリーブ時の処理を追加
         whileTap = "whileSkillIconTap"
         >
             <motion.div
