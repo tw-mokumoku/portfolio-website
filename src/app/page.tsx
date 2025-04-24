@@ -15,7 +15,10 @@ export default function Home() {
           <TechIconButtons />
         </div>
       </div>
-      <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-50">
+      <div id="anchor_greet" className="h-screen flex items-center justify-center flex-col">
+        <SentenceComponent6 />
+      </div>
+      <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 mt-50">
         <SentenceComponent4 />
         <SkillCards />
       </div>
@@ -53,9 +56,44 @@ function SentenceComponent2(){
 
 function SentenceComponent3(){
   return (
-    <p className="text-xs md:text-xs  text-center text-gray-400 tracking-widest  font-semibold uppercase mt-16">
+    <p className="text-xs md:text-xs  text-center text-gray-400 tracking-widest  font-semibold mt-16">
     スクロールでスキル &amp; 経験を確認
     </p>
+  );
+}
+
+function SentenceComponent6(){
+  return (
+    <>
+    <div className="hidden md:block text-xs lg:text-sm text-center text-white tracking-widest">
+      <p>
+        渡邊琢資（mk-mokumoku）と申します。
+      </p><br />
+      <p>
+        プログラミングに興味を持ち4年、ゲーム制作からWeb開発へ。子供の頃からの組み立て好きが高じ、PCの世界へ情熱を注いできました。
+      </p>
+      <p>
+        独力でのWebサービス立ち上げ経験も活かし、見た目だけでなく使いやすいUIの創造を大切にしています。
+      </p>
+    </div>
+    
+    <div className="block md:hidden text-xs text-center text-white tracking-widest">
+      <p>
+        渡邊琢資（mk-mokumoku）と申します。
+      </p>
+      <br />
+      <p>
+        プログラミングに興味を持ち4年、ゲーム制作からWeb開発へ。
+      </p>
+      <p>
+        子供の頃からの組み立て好きが高じ、PCの世界へ情熱を注いできました。
+      </p>
+      <p>
+        独力でのWebサービス立ち上げ経験も活かし、<br />
+        見た目だけでなく使いやすいUIの創造を大切にしています。
+      </p>
+    </div>
+    </>
   );
 }
 
