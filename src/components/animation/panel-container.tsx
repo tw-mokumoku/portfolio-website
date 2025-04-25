@@ -25,8 +25,9 @@ export function TransparentContainer(
     }
 
     return (
+        <>
         <motion.button
-        className="w-200"
+        className="hidden sm:block  w-200"
         whileHover = "whileSkillIconHover"
         whileTap = "whileSkillIconTap"
         >
@@ -51,7 +52,7 @@ export function TransparentContainer(
                 }}
                 variants={transparentFilter}
                 >
-                    <p className="text-9xl z-4 text-gray-900 font-bold">Hover</p>
+                    <p className="text-5xl sm:text-9xl z-4 text-gray-900 font-bold">Hover</p>
                 </motion.div>
                 <motion.div
                 style={{
@@ -64,5 +65,6 @@ export function TransparentContainer(
                 </motion.div>
             </motion.div>
         </motion.button>
+        </>
     );
 }
