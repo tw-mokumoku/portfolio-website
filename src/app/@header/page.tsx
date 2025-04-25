@@ -28,7 +28,7 @@ export default function Page() {
             style={{ backgroundColor: "unset !important", margin: "unset !important", overflowY: "unset" }}
             >
                 <TransparentContainer>
-                <p className='text-left text-lg'>
+                <p className='text-left text-xs sm:text-lg'>
                     初めまして、私のポートフォリオサイトをご覧いただきありがとうございます。<br />
                     <br />
                     渡邊琢資と申します。<br />
@@ -47,7 +47,7 @@ export default function Page() {
                 {/*
                 */}
             </Dialog>
-            <Link href="/" className="absolute left-0 flex flex-row items-center h-3/5 gap-5 ml-4">
+            <Link href="/" className="absolute left-0 flex flex-row items-center h-4/9 lg:h-3/5 gap-3 lg:gap-5 ml-4 text-sm lg:text-base">
                 <Image
                 src="/hoodCat.png"
                 alt="サイトのロゴ"
@@ -57,7 +57,7 @@ export default function Page() {
                 />
                 <h1>mk-mokumoku</h1>
             </Link>
-            <ul className="flex flex-row items-center gap-10 collapse md:visible">
+            <ul className="flex flex-row items-center gap-6 lg:gap-10 collapse md:visible text-sm lg:text-base">
                 <li className='cursor-pointer' onClick={handleClickOpen}>プロフィール</li>
                 <li><Link href="#anchor_greet">ご挨拶</Link></li>
                 <li><Link href="#anchor_skill">スキル</Link></li>
@@ -66,7 +66,7 @@ export default function Page() {
             </ul>
             <Link
                 href="/"
-                className="absolute right-0 mr-8"
+                className="absolute right-0 mr-8 text-sm lg:text-base"
                 style={{ textShadow: "0 0 10px #fff" }}
             >
             お問い合わせ　&gt;
