@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from 'next/server'
 import { match } from '@formatjs/intl-localematcher';
-import Negotiator, { Headers } from 'negotiator'
+import Negotiator from 'negotiator'
  
 
 // supported locales in app
-let locales = ['en', 'ja'];
+const locales = ['en', 'ja'];
 // default locale in app
-let defaultLocale = 'ja';
+const defaultLocale = 'ja';
 
 const getLocale = (request:NextRequest):string => {
-    let headers = {'accept-language': request.headers.get('accept-language') ?? undefined};
-    let languages = new Negotiator({headers}).languages();
+    const headers = {'accept-language': request.headers.get('accept-language') ?? undefined};
+    const languages = new Negotiator({headers}).languages();
     return match(languages, locales, defaultLocale) // -> 'en-US'
 }
 

@@ -3,7 +3,7 @@ import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <div className="flex items-center justify-center h-screen top-0">
