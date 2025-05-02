@@ -25,7 +25,7 @@ export default async function Page({params}:{params:LangPromise}) {
       </div>
       <div id="anchor_job" className="flex items-center justify-center flex-col pt-35 -mt-50 pb-60 sm:mt-0">
         <SentenceComponent5 params={params} />
-        <JobContextMenu params={params} />
+        <JobContextMenu />
       </div>
     </>
   );
