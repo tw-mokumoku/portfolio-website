@@ -2,40 +2,39 @@ import { JobContextMenu } from "@/components/context-menu";
 import { TechIconButtons } from "@/components/icon-buttons";
 import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
+import { dict, LangPromise } from "@/dictionaries/dictionaries";
 
-export default function Page() {
+export default async function Page({params}:{params:LangPromise}) {
   return (
     <>
       <div className="flex items-center justify-center h-screen top-0">
         <div className="text-lg lg: text-center w-[90%] md:w-[70%] lg:w-[80%] xl:w-[55%] mb-[150px] mt-16">
-          <SentenceComponent1 />
+          <SentenceComponent1 params={params}/>
           <SentenceComponent2 />
-          <SentenceComponent3 />
+          <SentenceComponent3 params={params}/>
           <TechLogoMarquee />
           <TechIconButtons />
         </div>
       </div>
       <div id="anchor_greet" className="h-screen flex items-center justify-center flex-col -mt-65 sm:mt-20">
-        <SentenceComponent6 />
+        <SentenceComponent6 params={params} />
       </div>
       <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-15 sm:mt-80">
-        <SentenceComponent4 />
+        <SentenceComponent4 params={params} />
         <SkillCards />
       </div>
       <div id="anchor_job" className="flex items-center justify-center flex-col pt-35 -mt-50 pb-60 sm:mt-0">
-        <SentenceComponent5 />
-        <JobContextMenu />
+        <SentenceComponent5 params={params} />
+        <JobContextMenu params={params} />
       </div>
     </>
   );
 }
-function SentenceComponent1(){
+
+async function SentenceComponent1({params}:{params:LangPromise}){
   return (
     <h2 className="text-white align-center text-xs sm:text-base mb-10 select-none ">
-    <span className="text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-blue-600">
-      ポートフォリオ
-    </span>
-    をご確認いただきありがとうございます 
+      {(await dict(params)).root.openingSection.greet}
   </h2>
   );  
 }
@@ -54,62 +53,65 @@ function SentenceComponent2(){
   );
 }
 
-function SentenceComponent3(){
+async function SentenceComponent3({params}:{params:LangPromise}){
   return (
     <p className="text-xs md:text-xs  text-center text-gray-400 tracking-widest  font-semibold mt-16">
-    スクロールでスキル &amp; 経験を確認
+      {(await dict(params)).root.openingSection.scrollCheck}
     </p>
   );
 }
 
-function SentenceComponent6(){
+async function SentenceComponent6({params}:{params:LangPromise}){
+  const d = await dict(params);
   return (
     <>
     <div className="hidden md:block text-xs lg:text-sm text-center text-white tracking-widest">
       <p>
-        渡邊琢資（mk-mokumoku）と申します。
+        {d.root.introSection.indroduce}
       </p><br />
       <p>
-        プログラミングに興味を持ち4年、ゲーム制作からWeb開発へ。<br/>
-        子供の頃からの組み立て好きが高じ、PCの世界へ情熱を注いできました。
+        {d.root.introSection.game2WebDev}<br/>
+        {d.root.introSection.blocks2bytes}
       </p>
       <p>
-        独力でのWebサービス立ち上げ経験も活かし、見た目だけでなく使いやすいUIの創造を大切にしています。
+        {d.root.introSection.selfLaunchExp}
+        <br />
+        {d.root.introSection.userFRIENDLY}
       </p>
     </div>
     
     <div className="block md:hidden text-xs text-center text-white tracking-widest">
       <p>
-        渡邊琢資（mk-mokumoku）と申します。
-      </p>
-      <br />
+        {d.root.introSection.indroduce}
+      </p><br />
       <p>
-        プログラミングに興味を持ち4年、ゲーム制作からWeb開発へ。
-      </p>
-      <p>
-        子供の頃からの組み立て好きが高じ、PCの世界へ情熱を注いできました。
+        {d.root.introSection.game2WebDev}
       </p>
       <p>
-        独力でのWebサービス立ち上げ経験も活かし、<br />
-        見た目だけでなく使いやすいUIの創造を大切にしています。
+        {d.root.introSection.blocks2bytes}
+      </p>
+      <p>
+        {d.root.introSection.selfLaunchExp}
+        <br />
+        {d.root.introSection.userFRIENDLY}
       </p>
     </div>
     </>
   );
 }
 
-function SentenceComponent4(){
+async function SentenceComponent4({params}:{params:LangPromise}){
   return (
     <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
-      スキル &amp; 経験
+      {(await dict(params)).root.skillSection.skillsEXPERIENCE}
     </h2>
   );
 }
 
-function SentenceComponent5(){
+async function SentenceComponent5({params}:{params:LangPromise}){
   return (
     <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
-      お仕事
+      {(await dict(params)).root.workSection.work}
     </h2>
   );
 }

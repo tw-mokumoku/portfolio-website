@@ -1,0 +1,104 @@
+{
+    "root":{
+        "openingSection":{
+            "greet": "Thank you for reviewing my portfolio.",
+            "scrollCheck": "Scroll to discover Skills & Experience"
+        },
+        "introSection":{
+            "indroduce": "My name is Takuji Watanabe (mk-mokumoku).",
+            "game2WebDev": "Interested in programming for 4 years, from game development to web development.",
+            "blocks2bytes": "my childhood love of assembling things sparked a passion for the world of PCs.",
+            "selfLaunchExp": "Leveraging experience in independently launching web services.",
+            "userFRIENDLY": "Prioritizing the creation of user-friendly UIs, not just aesthetics."
+        },
+        "skillSection":{
+            "skillsEXPERIENCE": "Skills & Experience"
+        },
+        "workSection":{
+            "work": "Work",
+            "format":{
+                "affiliationTIME": "Affiliation period",
+                "clientSITE": "Client's site (where I am stationed).",
+                "employmentTYPE": "Employment type",
+                "fullTIME": "Permanent employee",
+                "partTIME": "Part-time job",
+                "jobDETAILS": "Job description",
+                "moreINFO": "Details"
+            },
+            "contextMenu":{
+                "rightCLICKhere": "Right-click here",
+                "goBACK": "Go back",
+                "goFORWARD": "Go forward",
+                "reloadPAGE": "Reload page",
+                "clickCHECK": "Click to confirm",
+                "showBOOKMARK": "Show bookmarks bar",
+                "hoverCHECK": "Hover to check",
+                "openREADER": "Open in reading mode",
+                "viewSOURCE": "View page source",
+                "inspectELEM": "Inspect element"
+            },
+            "dialog": {
+                "tapHERE": "Tap here",
+                "jobHISTORY": "Professional experience",
+                "thanksINTEREST": "Thank you for your interest in my work history. Please see below for my latest professional experience listed in reverse chronological order."
+            },
+            "fullTime": {
+                "unionINFO":{
+                    "name": "Computer Union - Computer-related labor union",
+                    "period": "Currently affiliated",
+                    "employmentTYPE": "Contract employee/temporary staff (dependent on the project)",
+                    "moreINFO1": "I have recently joined the Computer Union, a union operated primarily by engineers.",
+                    "moreINFO2": "Through the union, I undertake projects and work at client companies under labor supply or temporary staffing agreements.",
+                    "moreINFO3": "Currently in discussions with the union's sales representative to secure projects."
+                },
+                "stairINC":{
+                    "name": "STAIR, Inc.",
+                    "period": "Less than 1 month (March 2025 - March 2025)",
+                    "jobDETAILS1": "Street sales",
+                    "jobDETAILS2": "Telemarketing (cold calling)",
+                    "jobDETAILS3": "Existing client communication tasks",
+                    "moreINFO1": "As a real estate salesperson for investment properties, I sold studio apartments near train stations targeting single-person households."
+                },
+                "priorityCONSULT":{
+                    "name": "Priority Consulting Co., Ltd.",
+                    "period": "1 and a half years (January 2022 - May 2023)",
+                    "clientSITE": "Ministry of Defense, Bureau of Equipment Planning, Information Systems Division",
+                    "jobDETAILS1": "System operation and management",
+                    "jobDETAILS2": "Service desk",
+                    "jobDETAILS3": "Incident management",
+                    "jobDETAILS4": "Security monitoring tasks",
+                    "moreINFO1": "As a tier-2 support engineer for IT-related inquiries from Ministry of Defense personnel, I resolved undocumented and unresolved issues.",
+                    "moreINFO2": "Handled over 1000 incidents during my tenure.",
+                    "moreINFO3": "Committed to understanding system and server configurations and resolving the root causes of incidents such as failures and security risks."
+                }
+            },
+            "partTime": {
+                "edionCORP":{
+                    "name": "Edion Corporation",
+                    "period": "5 months (May 2021 - October 2021)",
+                    "jobDETAILS1": "Retail staff at the Edion electronics store",
+                    "jobDETAILS2": "Cash register operations",
+                    "jobDETAILS3": "Product information duties",
+                    "jobDETAILS4": "Cleaning duties",
+                    "jobDETAILS5": "Stocking shelves"
+                },
+                "fourseesCO":{
+                    "name": "Four Seeds Co., Ltd",
+                    "period": "7 months (August 2019 - March 2020)",
+                    "jobDETAILS1": " Pizza-La, a delivery pizza chain, kitchen staff",
+                    "jobDETAILS2": "Pizza making duties",
+                    "jobDETAILS3": "Cleaning tasks"
+                },
+                "plenusCORP":{
+                    "name": "Plenus Co., Ltd",
+                    "period": "11 months (April 2018 - March 2019).",
+                    "jobDETAILS1": "Kitchen and cash register staff at the Hotto Motto take-out bento chain",
+                    "jobDETAILS2": "Cash register duties",
+                    "jobDETAILS3": "Product description duties",
+                    "jobDETAILS4": "Cleaning work",
+                    "jobDETAILS5": "Stocking work"
+                }
+            }
+        }
+    }
+}

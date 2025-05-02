@@ -1,0 +1,105 @@
+{
+    "root":{
+        "openingSection":{
+            "greet": "ポートフォリオをご確認いただきありがとうございます",
+            "scrollCheck": "スクロールでスキル & 経験を確認"
+        },
+        "introSection":{
+            "indroduce": "渡邊琢資（mk-mokumoku）と申します。",
+            "game2WebDev": "プログラミングに興味を持ち4年、ゲーム制作からWeb開発へ。",
+            "blocks2bytes": "子供の頃からの組み立て好きが高じ、PCの世界へ情熱を注いできました。",
+            "selfLaunchExp": "独力でのWebサービス立ち上げ経験も活かし、見た目だけでなく使いやすいUIの創造を大切にしています。",
+            "userFRIENDLY": "見た目だけでなく使いやすいUIの創造を大切にしています。"
+        },
+        "skillSection":{
+            "skillsEXPERIENCE": "スキル & 経験"
+        },
+        "workSection":{
+            "work": "お仕事",
+            "format":{
+                "affiliationTIME": "所属期間",
+                "clientSITE": "客先常駐先",
+                "employmentTYPE": "雇用形態",
+                "fullTIME": "正社員",
+                "partTIME": "アルバイト",
+                "jobDETAILS": "業務内容",
+                "moreINFO": "詳細"
+            },
+            "contextMenu":{
+                "rightCLICKhere": "ここを右クリック",
+                "goBACK": "戻る",
+                "goFORWARD": "進む",
+                "reloadPAGE": "再読み込み",
+                "clickCHECK": "クリックして確認",
+                "showBOOKMARK": "ブックマークバーを表示",
+                "hoverCHECK": "マウスを当てて確認",
+                "openREADER": "リーディングモードで開く",
+                "viewSOURCE": "ページのソースを表示",
+                "inspectELEM": "検証"
+            },
+            "dialog": {
+                "tapHERE": "ここをタップ",
+                "jobHISTORY": "職務経歴",
+                "thanksINTEREST": "この度は、私の職務経歴にご関心をお寄せいただき、誠にありがとうございます。最新の職務経験から順に記載しておりますので、ご参照ください。"
+            },
+            "fullTime": {
+                "unionINFO":{
+                    "name": "コンピュータ・ユニオン ― 電算労コンピュータ関連労働組合",
+                    "period": "現在所属中",
+                    "employmentTYPE": "契約社員・派遣社員(案件に準ずる)",
+                    "moreINFO1": "この度、エンジニア主体で運営されているコンピュータ・ユニオンという組合に所属するに至りました。",
+                    "moreINFO2": "組合経由で案件を受注し、労働者供給契約、又は労働者派遣契約にて供給先・派遣先にて労働を行います。",
+                    "moreINFO3": "現在、組合の営業担当者と相談し案件受注に向けて動いている次第です。"
+                },
+                "stairINC":{
+                    "name": "株式会社STAIR",
+                    "period": "1か月未満（2025年03月 - 2025年03月）",
+                    "jobDETAILS1": "街頭営業",
+                    "jobDETAILS2": "テレアポ業務",
+                    "jobDETAILS3": "既存顧客連絡業務",
+                    "moreINFO1": "投資用不動産の営業マンとして駅チカの一人世帯向けワンルームマンションの営業を行っておりました。"
+                },
+                "priorityCONSULT":{
+                    "name": "株式会社プライオリティーコンサルティング",
+                    "period": "1年半（2022年01月 - 2023年05月）",
+                    "clientSITE": "防衛省内部部局整備計画局情報推進課",
+                    "jobDETAILS1": "システム運用管理",
+                    "jobDETAILS2": "サービスデスク",
+                    "jobDETAILS3": "障害管理",
+                    "jobDETAILS4": "セキュリティ監視業務",
+                    "moreINFO1": "防衛省職員からのIT関連のお問い合わせの二次受けエンジニアとして、マニュアル化されていない未解決な問題を解決する業務を行っておりました。",
+                    "moreINFO2": "所属期間中のインシデント対応数累計は1000件以上です。",
+                    "moreINFO3": "システムとサーバー構成の理解に勤め、障害やセキュリティリスク等インシデントの根本的な解決に尽力しました。"
+                }
+            },
+            "partTime": {
+                "edionCORP":{
+                    "name": "株式会社エディオン",
+                    "period": "5か月（2021年05月 - 2021年10月）",
+                    "jobDETAILS1": "家電量販店「エディオン」の店舗スタッフ",
+                    "jobDETAILS2": "レジ業務",
+                    "jobDETAILS3": "商品説明業務",
+                    "jobDETAILS4": "清掃業務",
+                    "jobDETAILS5": "品出し業務"
+                },
+                "fourseesCO":{
+                    "name": "株式会社フォーシーズ",
+                    "period": "7か月（2019年08月 - 2020年03月）",
+                    "jobDETAILS1": "宅配ピザチェーン「ピザーラ」のキッチンスタッフ",
+                    "jobDETAILS2": "ピザ作成業務",
+                    "jobDETAILS3": "清掃業務"
+                },
+                "plenusCORP":{
+                    "name": "株式会社プレナス",
+                    "period": "11か月（2018年04月 - 2019年03月）",
+                    "jobDETAILS1": "持ち帰り弁当チェーン「ほっともっと」の厨房・レジスタッフ",
+                    "jobDETAILS2": "レジ業務",
+                    "jobDETAILS3": "商品説明業務",
+                    "jobDETAILS4": "清掃業務",
+                    "jobDETAILS5": "品出し業務"
+                }
+
+            }
+        }
+    }
+}
