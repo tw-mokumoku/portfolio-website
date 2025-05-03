@@ -15,3 +15,4 @@ const langs = ['en', 'ja'];
 export const langFilter = (lang: langsType) => langs.includes(lang) ? lang : 'en';
 
 export const dict = async (params: LangPromise) => await getDictionary(langFilter((await params).lang));
+

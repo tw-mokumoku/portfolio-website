@@ -30,9 +30,8 @@
                 "goBACK": "Go back",
                 "goFORWARD": "Go forward",
                 "reloadPAGE": "Reload page",
-                "clickCHECK": "Click to confirm",
+                "clickCHECK": "Click for details",
                 "showBOOKMARK": "Show bookmarks bar",
-                "hoverCHECK": "Hover to check",
                 "openREADER": "Open in reading mode",
                 "viewSOURCE": "View page source",
                 "inspectELEM": "Inspect element"
