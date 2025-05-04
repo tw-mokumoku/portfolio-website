@@ -1,4 +1,27 @@
 {
+    "header":{
+        "left":{
+            "name": "mk-mokumoku"
+        },
+        "center":{
+            "profile": "Profile",
+            "greet": "Greetings",
+            "skill": "Skills & Experience",
+            "job": "Work"
+        },
+        "right":{
+            "contact": "Contact"
+        },
+        "profileDialog":{
+            "welcomePAGE": "Thank you for visiting my portfolio site. It's a pleasure to have you here.",
+            "name": "My name is Takushi Watanabe.",
+            "githubMOKUMOKU": "I'm active on GitHub under the name mk-mokumoku.",
+            "webdev4yrs": "Four years have passed since I became interested in programming, went to a game development vocational school, and started my career as a programmer. Initially, I was absorbed in game development, then moved on to software development and app development. Eventually, I found my place in the world of web development, where the beauty of the front-end coexists with the complexity of the back-end.",
+            "compulsion2BUILD": "Since childhood, I've had a strong urge to build things. As I grew, that urge turned towards the world of computers. For the past four years, I've immersed myself in making the light of the screen in front of me the only thing moving, sometimes freezing my daily life. As a result, my life log might only record the trails of moving light, like a long-exposure shot of a night scene. I've been captivated by the infinite possibilities born from my fingertips, so passionate about computers that I even forget the flow of real time.",
+            "yearsHOST1half": "Above all, the experience of hosting a web service, which I started with the desire to launch a business during a year and a half of job searching, greatly accelerated my growth. From basic website construction to back-end API development, database design for data storage, SEO measures to reach a wider audience, and even monetization methods to sustain the service, launching a web service single-handedly required a wide range of knowledge and practical skills.",
+            "cleanINTERFACE": "Currently, what I value most is creating clean and carefully crafted interfaces that are not only visually appealing but also stress-free and highly operable. I believe that user-friendly design is the foundation of a website."
+        }
+    },    
     "root":{
         "openingSection":{
             "greet": "Thank you for reviewing my portfolio.",

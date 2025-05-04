@@ -1,7 +1,7 @@
 import { JobContextMenu } from "@/components/context-menu";
 import { TechIconButtons } from "@/components/icon-buttons";
-import { IPageDict } from "@/components/interface/pageDict";
-import { IIntroSection, IOpeningSection, ISkillSection, IWorkSection } from "@/components/interface/sectionDict";
+import { IPageDict } from "@/interface/pageDict";
+import { IIntroSection, IOpeningSection, ISkillSection, IWorkSection } from "@/interface/sectionDict";
 import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
 import { dict, LangPromise } from "@/dictionaries/dictionaries";
