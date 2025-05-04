@@ -35,8 +35,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { DialogWrapper } from "./dialogWrapper";
-import { IWorkSection } from "./interface/sectionDict";
-import { IContextMenu, IDialog, IFormat } from "./interface/workSectionDict";
+import { IWorkSection } from "../interface/sectionDict";
+import { IContextMenu, IDialog, IFormat } from "../interface/workSectionDict";
 
 export function JobContextMenu({workSection}:{workSection: IWorkSection}){
     const [isJob1Open, setIsJob1Open] = useState(false);
