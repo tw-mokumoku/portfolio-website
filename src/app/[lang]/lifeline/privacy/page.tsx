@@ -1,5 +1,4 @@
-import { IPageDict } from "@/interface/pageDict";
-import { dict, langFilter, LangPromise } from "@/dictionaries/dictionaries";
+import { langFilter, LangPromise } from "@/dictionaries/dictionaries";
 
 export default async function Page({params}:{params:LangPromise}) {
   const lang = langFilter((await params).lang);
@@ -68,7 +67,7 @@ function EnPrivacyPolicy(){
       <strong>Lifeline</strong>
       <p> ～Your Time, Your Tasks, Your Control～</p>
       <br />
-      <p>This privacy policy applies to the Lifeline app (hereby referred to as "Application") for mobile devices that was created by Takushi Watanabe (hereby referred to as "Service Provider") as a Freemium service. This service is intended for use "AS IS".</p>
+      <p>This privacy policy applies to the Lifeline app (hereby referred to as &rdquo;Application&rdquo;) for mobile devices that was created by Takushi Watanabe (hereby referred to as &rdquo;Service Provider&rdquo;) as a Freemium service. This service is intended for use &rdquo;AS IS&rdquo;.</p>
       <br />
       <strong>What information does the Application obtain and how is it used?</strong>
       <p>The Application does not obtain any information when you download and use it. Registration is not required to use the Application.</p>
@@ -90,7 +89,7 @@ function EnPrivacyPolicy(){
       encourages all children to never submit any personally
       identifiable information through the Application and/or Services.
       The Service Provider encourage parents and legal guardians to monitor 
-      their children's Internet usage and to help enforce this Policy by instructing 
+      their children&apos;s Internet usage and to help enforce this Policy by instructing 
       their children never to provide personally identifiable information through the Application and/or Services without their permission. If you have reason to believe that a child 
       has provided personally identifiable information to the Service Provider through the Application and/or Services, 
       please contact the Service Provider (takushi.watanabe.work@gmail.com) so that they will be able to take the necessary actions. 
