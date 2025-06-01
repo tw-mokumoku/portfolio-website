@@ -21,6 +21,22 @@ export function TechLogoMarquee(){
         gradientWidth={gradientWidth}
         gradientColor="#09090b"
         >
+          <div className="h-13 mx-4">
+            <Image
+            src="/expo_logo.png"
+            alt="Expo Logo"
+            fill
+            style={{objectFit: 'contain', filter: "brightness(0) invert(1)" }}
+            />
+          </div>
+          <div className="h-13 mx-4">
+            <Image
+            src="/react_native_logo.png"
+            alt="React Native Logo"
+            fill
+            style={{objectFit: 'contain', filter: "brightness(0) invert(1)" }}
+            />
+          </div>
           <div className="h-15 mx-4">
             <Image
             src="/react_logo.svg"

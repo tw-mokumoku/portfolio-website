@@ -87,8 +87,6 @@ async function SentenceComponent6({introSection}:{introSection:IIntroSection}){
       </p>
       <p>
         {introSection.selfLaunchExp}
-        <br />
-        {introSection.userFRIENDLY}
       </p>
     </div>
     
@@ -104,8 +102,6 @@ async function SentenceComponent6({introSection}:{introSection:IIntroSection}){
       </p>
       <p>
         {introSection.selfLaunchExp}
-        <br />
-        {introSection.userFRIENDLY}
       </p>
     </div>
     </>

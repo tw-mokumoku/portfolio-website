@@ -5,6 +5,36 @@ export function SkillCards(){
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pb-60">
             <SkillIcon
+            name="Cursor"
+            alt="Cursor Logo"
+            src="/cursor-logo.png"
+            iconClass="h-2/5 m-3"
+            />
+            <SkillIcon
+            name="Expo"
+            alt="Expo Logo"
+            src="/eas-logo.png"
+            iconClass="h-1/2"
+            />
+            <SkillIcon
+            name="EAS"
+            alt="EAS Logo"
+            src="/eas-logo.png"
+            iconClass="h-1/2"
+            />
+            <SkillIcon
+            name="Redux"
+            alt="Redux Logo"
+            src="/redux-logo.png"
+            iconClass="h-1/3 m-4"
+            />
+            <SkillIcon
+            name="React Native"
+            alt="React Logo"
+            src="/React-logo.svg"
+            iconClass="h-1/3 m-4"
+            />
+            <SkillIcon
             name="Next.js"
             alt="Nextjs Logo"
             src="/nextjs-logo.svg"
@@ -243,6 +273,42 @@ export function SkillCards(){
             alt="Framer Motion Logo"
             src="/framermotion-logo.svg"
             iconClass="h-1/3 m-2"
+            />
+            <SkillIcon
+            name="Tailwind CSS"
+            alt="Tailwind CSS Logo"
+            src="/tailwind-logo.png"
+            iconClass="h-1/2 m-1"
+            />
+            <SkillIcon
+            name="React Navigation"
+            alt="React Navigation Logo"
+            src="/react-navigation-logo.png"
+            iconClass="h-1/2"
+            />
+            <SkillIcon
+            name="React Native Paper"
+            alt="React Native Paper Logo"
+            src="/react-native-paper-logo.jpg"
+            iconClass="h-1/3 m-4"
+            />
+            <SkillIcon
+            name="Google Play Console"
+            alt="Google Play Console Logo"
+            src="/google-play-console-logo.png"
+            iconClass="h-1/3 m-4"
+            />
+            <SkillIcon
+            name="RevenueCat"
+            alt="RevenueCat Logo"
+            src="/revenuecat-logo.png"
+            iconClass="h-1/3 m-4"
+            />
+            <SkillIcon
+            name="ESLint"
+            alt="ESLint Logo"
+            src="/eslint-logo.png"
+            iconClass="h-2/5 m-3"
             />
         </div>
     );
