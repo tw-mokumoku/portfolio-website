@@ -5,11 +5,13 @@ import { IIntroSection, IOpeningSection, ISkillSection, IWorkSection } from "@/i
 import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
 import { dict, LangPromise } from "@/dictionaries/dictionaries";
+import Link from "next/link";
 
 export default async function Page({params}:{params:LangPromise}) {
   const page:IPageDict = await dict(params);
   return (
     <>
+      {/* オープニングセクション - 画面中央に配置されたメインコンテンツ */}
       <div className="flex items-center justify-center h-screen top-0">
         <div className="text-lg lg: text-center w-[90%] md:w-[70%] lg:w-[80%] xl:w-[55%] mb-[150px] mt-16">
           <SentenceComponent1 openingSection={page.root.openingSection}/>
@@ -19,17 +21,41 @@ export default async function Page({params}:{params:LangPromise}) {
           <TechIconButtons />
         </div>
       </div>
+
+      {/* 挨拶セクション - 自己紹介文を表示 */}
       <div id="anchor_greet" className="h-screen flex items-center justify-center flex-col -mt-65 sm:mt-20">
         <SentenceComponent6 introSection={page.root.introSection} />
       </div>
+
+      {/* ハイライトセクション - プロジェクトのハイライトを表示 */}
+      <div className="flex items-center justify-center flex-col mt-10">
+        <HighlightComponent />
+      </div>
+
+      {/* スキルセクション - スキルカードと説明を表示 */}
       <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-15 sm:mt-80">
         <SentenceComponent4 skillSection={page.root.skillSection} />
         <SkillCards />
       </div>
+
+      {/* 職歴セクション - 職歴コンテキストメニューと説明を表示 */}
       <div id="anchor_job" className="flex items-center justify-center flex-col pt-35 -mt-50 pb-60 sm:mt-0">
         <SentenceComponent5 workSection={page.root.workSection} />
         <JobContextMenu workSection={page.root.workSection}/>
       </div>
+    </>
+  );
+}
+
+function HighlightComponent(){
+  return (
+    <>
+      <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
+        ハイライト
+      </h2>
+      <Link className="w-200 flex justify-center items-center outline rounded-sm p-2" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
+        <img src="/lifeline_featureGraphics.png" alt="Highlight" className="w-full h-full object-cover" />
+      </Link>
     </>
   );
 }
