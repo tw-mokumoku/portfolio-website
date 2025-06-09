@@ -23,17 +23,17 @@ export default async function Page({params}:{params:LangPromise}) {
       </div>
 
       {/* 挨拶セクション - 自己紹介文を表示 */}
-      <div id="anchor_greet" className="h-screen flex items-center justify-center flex-col -mt-65 sm:mt-20">
+      <div id="anchor_greet" className="h-screen flex items-center justify-center flex-col -mt-65 sm:mt-20 mx-12">
         <SentenceComponent6 introSection={page.root.introSection} />
       </div>
 
       {/* ハイライトセクション - プロジェクトのハイライトを表示 */}
-      <div className="flex items-center justify-center flex-col mt-10">
+      <div className="h-screen flex items-center justify-center flex-col mt-15 sm:mt-20">
         <HighlightComponent />
       </div>
 
       {/* スキルセクション - スキルカードと説明を表示 */}
-      <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-15 sm:mt-80">
+      <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-50 sm:mt-0">
         <SentenceComponent4 skillSection={page.root.skillSection} />
         <SkillCards />
       </div>
@@ -53,8 +53,8 @@ function HighlightComponent(){
       <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
         ハイライト
       </h2>
-      <Link className="w-200 flex justify-center items-center outline rounded-sm p-2" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
-        <img src="/lifeline_featureGraphics.png" alt="Highlight" className="w-full h-full object-cover" />
+      <Link className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
+        <img src="/lifeline_featureGraphics.png" alt="Highlight" className="h-full object-cover" />
       </Link>
     </>
   );
