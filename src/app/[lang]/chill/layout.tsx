@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 const vt323 = VT323({
   weight: "400",
   variable: "--font-vt323",
+  subsets: ["latin"],
 });
 export const metadata: Metadata = {
   title: "Mokumoku-WebPortfolio",
