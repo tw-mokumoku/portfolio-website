@@ -32,8 +32,8 @@ export function middleware(request:NextRequest) {
        pathname.endsWith(".gif") ||
        pathname.endsWith(".webp") ||
        pathname.endsWith(".mp3") ||
-       pathname.endsWith("chill")
-
+       pathname.endsWith("chill") ||
+       pathname.endsWith("privacy")
     ) {
         return NextResponse.next();
     }
