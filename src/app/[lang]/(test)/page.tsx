@@ -9,6 +9,14 @@ import Link from "next/link";
 import { SecretConversion } from "@/components/secretConversion";
 import Image from "next/image";
 
+// 静的エクスポート用のgenerateStaticParams関数
+export async function generateStaticParams() {
+  return [
+    { lang: 'en' },
+    { lang: 'ja' }
+  ];
+}
+
 export default async function Page({params}:{params:LangPromise}) {
   const page:IPageDict = await dict(params);
 //  const lang:string = (await params).lang;
