@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export default async function Page({params}:{params:LangPromise}) {
   const page:IPageDict = await dict(params);
-//  const lang:string = (await params).lang;
+  const lang:string = (await params).lang;
   return (
     <>
       {/* オープニングセクション - 画面中央に配置されたメインコンテンツ */}
@@ -39,16 +39,12 @@ export default async function Page({params}:{params:LangPromise}) {
       </div>
 
       {/* ハイライトセクション - プロジェクトのハイライトを表示 */}
-      {/*
       { lang === 'ja' ?
-      */}
         <div className="h-screen flex items-center justify-center flex-col mt-15 sm:mt-20">
         <HighlightComponent />
       </div>
-      {/*
       :<></>
       }
-      */}
 
       {/* スキルセクション - スキルカードと説明を表示 */}
       <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-50 sm:mt-0">
