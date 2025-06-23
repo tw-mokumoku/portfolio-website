@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { VT323 } from "next/font/google";
-import "../globals.css";
+import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const vt323 = VT323({
