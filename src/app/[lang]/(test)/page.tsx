@@ -6,6 +6,7 @@ import { TechLogoMarquee } from "@/components/marquee";
 import { SkillCards } from "@/components/skill-cards";
 import { dict, LangPromise } from "@/dictionaries/dictionaries";
 import Link from "next/link";
+import { SecretConversion } from "@/components/secretConversion";
 
 export default async function Page({params}:{params:LangPromise}) {
   const page:IPageDict = await dict(params);
@@ -87,9 +88,7 @@ function SentenceComponent2(){
   return (
     <h1 className="text-white text-5xl sm:text-6xl xs:text-8xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight md:text-7xl lg:text-8xl select-none">
       mk
-      <span className="text-gray-800">
-        -
-      </span>
+      <SecretConversion />
       <span className="text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-blue-600">
         mokumoku
       </span>
