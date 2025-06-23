@@ -3,7 +3,7 @@ import { SkillIcon } from "./animation/skill-icon";
 
 export function SkillCards(){
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pb-60">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pb-60 relative">
             <SkillIcon
             name="Cursor"
             alt="Cursor Logo"

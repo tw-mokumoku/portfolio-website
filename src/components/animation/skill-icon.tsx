@@ -94,7 +94,7 @@ export function SkillIcon(
                 />
                 <motion.div
                 variants={iconVariants}
-                className={iconClass}
+                className={`${iconClass} relative`}
                 style={{
                     transformStyle: "preserve-3d"
                 }}
@@ -103,6 +103,7 @@ export function SkillIcon(
                     src={src}
                     alt={alt}
                     fill
+                    sizes="10vw"
                     style={{
                         transformStyle: "preserve-3d",
                     }}

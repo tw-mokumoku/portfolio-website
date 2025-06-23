@@ -8,17 +8,18 @@ export function TechIconButtons(){
     return (
       <div className="flex justify-center gap-8">
         <Button variant="outline" size="icon">
-          <Link href="https://qiita.com/mk-mokumoku">
+          <Link href="https://qiita.com/mk-mokumoku" className="relative">
             <Image
               src="/qiita_logo.png"
               alt="Qiita Logo"
               fill
+              sizes="10vw"
               style={{ padding: 9, filter: "brightness(0) invert(1)" }}
             />
           </Link>
         </Button>
         <Button variant="outline" size="icon">
-          <Link href="https://github.com/tw-mokumoku">
+          <Link href="https://github.com/tw-mokumoku" className="relative">
             <FaGithub />
           </Link>
         </Button>
@@ -28,12 +29,12 @@ export function TechIconButtons(){
           </Link>
         </Button>
         <Button variant="outline" size="icon">
-          <Link href="https://discord.gg/BF6z7Dw9">
+          <Link href="https://discord.gg/BF6z7Dw9" className="relative">
             <FaDiscord />
           </Link>
         </Button>
         <Button variant="outline" size="icon">
-          <Link href="mailto:takushi.watanabe.work@gmail.com">
+          <Link href="mailto:takushi.watanabe.work@gmail.com" className="relative">
             <IoMail />
           </Link>
         </Button>

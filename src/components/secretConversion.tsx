@@ -1,6 +1,6 @@
 'use client'
 
-import { useMeasure, useWindowSize } from "react-use";
+import { useMeasure } from "react-use";
 import { motion } from "motion/react";
 import Link from "next/link";
 

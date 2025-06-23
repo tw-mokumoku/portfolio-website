@@ -30,7 +30,9 @@ export function middleware(request:NextRequest) {
        pathname.endsWith(".jpeg") ||
        pathname.endsWith(".png") ||
        pathname.endsWith(".gif") ||
-       pathname.endsWith(".webp")
+       pathname.endsWith(".webp") ||
+       pathname.endsWith(".mp3")
+
     ) {
         return NextResponse.next();
     }

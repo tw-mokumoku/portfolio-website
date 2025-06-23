@@ -7,11 +7,11 @@ import { SkillCards } from "@/components/skill-cards";
 import { dict, LangPromise } from "@/dictionaries/dictionaries";
 import Link from "next/link";
 import { SecretConversion } from "@/components/secretConversion";
+import Image from "next/image";
 
 export default async function Page({params}:{params:LangPromise}) {
   const page:IPageDict = await dict(params);
   const lang:string = (await params).lang;
-
   return (
     <>
       {/* オープニングセクション - 画面中央に配置されたメインコンテンツ */}
@@ -60,7 +60,7 @@ function HighlightComponent(){
         ハイライト
       </h2>
       <Link className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
-        <img src="/lifeline_featureGraphics.png" alt="Highlight" className="h-full object-cover" />
+        <Image src="/lifeline_featureGraphics.png" alt="Highlight" className="h-full object-cover" />
       </Link>
     </>
   );
