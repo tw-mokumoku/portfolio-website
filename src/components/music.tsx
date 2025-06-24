@@ -1,72 +1,43 @@
 'use client'
 import { TypeAnimation } from "react-type-animation";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAudioPlayer } from "react-use-audio-player"
-import _ from 'lodash';
 import Image from "next/image";
-import { musicsObj, musicCategories, MusicCategory } from '@/dictionaries/musicsDict';
 import { useDispatch, useSelector } from "react-redux";
-import { setMusicIndex, setMusicCategoryIndex } from "@/services/musicSlice";
+import { setNextMusicCategoryIndex, setNextMusicIndex, setPreviousMusicCategoryIndex, shuffleMusics } from "@/services/musicSlice";
 
 
 export function LeftMusicUI(){
     const { load, togglePlayPause, isPlaying } = useAudioPlayer();
-//    const [musicIndex, setMusicIndex] = useState<number>(0);
-//    const [musicCategoryIndex, setMusicCategoryIndex] = useState<number>(0);
-    const [ musics, setMusics ] = useState(musicsObj);
-    const [ musicName, setMusicName ] = useState('');
     const dispatch = useDispatch();
-    const musicIndex = useSelector((state: { musicController: { musicIndex: number } }) => state.musicController.musicIndex);
-    const musicCategoryIndex = useSelector((state: { musicController: { musicCategoryIndex: number } }) => state.musicController.musicCategoryIndex);
+    const {
+        musicCategoryIndex,
+        musicName,
+        musicSrc
+    } = useSelector((state: {
+        musicController: {
+            musicCategoryIndex: number,
+            musicName: string,
+            musicSrc: string
+        }
+    }) => state.musicController);
 
-
-    const handleStart = (mCategoryIndex?:number, mIndex?: number) => {
-        load(musics[(mCategoryIndex ? musicCategories[mCategoryIndex] : musicCategories[musicCategoryIndex]) as MusicCategory][mIndex ? mIndex : musicIndex].src, {
+    const startMusic = () =>{
+        load(musicSrc, {
             initialVolume: 0.75,
             autoplay: true,
             onend: onEndMusic
         });
-        setMusicName(musics[(mCategoryIndex ? musicCategories[mCategoryIndex] : musicCategories[musicCategoryIndex]) as MusicCategory][mIndex ? mIndex : musicIndex].name);
     }
+
     const onEndMusic = () => {
-        let _mIndex = 0
-        if (musicIndex < musics[musicCategories[musicCategoryIndex] as MusicCategory].length - 1) {
-            _mIndex = musicIndex + 1
-        } else {
-            _mIndex = 0
-            dispatch(setMusicIndex(0));
-//            setMusicIndex(0);
-        }
-        setMusicIndex(_mIndex);
-        handleStart(undefined, _mIndex);
-    }
-
-    const onShuffle = () => {
-        musics[musicCategories[musicCategoryIndex] as MusicCategory] = _.shuffle(musics[musicCategories[musicCategoryIndex] as MusicCategory]);
-        setMusics(musics);
-        handleStart();
-    }
-
-    const onNextCategory = () =>{
-        if (musicCategoryIndex === musicCategories.length - 1) {
-            dispatch(setMusicCategoryIndex(0));
-        } else {
-            dispatch(setMusicCategoryIndex(musicCategoryIndex + 1));
-        }
-    }
-
-    const onPreviousCategory = () =>{
-        if (musicCategoryIndex === 0) {
-            dispatch(setMusicCategoryIndex(musicCategories.length - 1));
-        } else {
-            dispatch(setMusicCategoryIndex(musicCategoryIndex - 1));
-        }
+        dispatch(setNextMusicIndex());
+        startMusic();
     }
 
     const shuffleMusic = () => {
-        musics[musicCategories[musicCategoryIndex] as MusicCategory] = _.shuffle(musics[musicCategories[musicCategoryIndex] as MusicCategory]);
-        setMusics(musics);
-        handleStart();
+        dispatch(shuffleMusics());
+        startMusic();
     }
 
     useEffect(()=>{
@@ -88,9 +59,9 @@ export function LeftMusicUI(){
                     :
                     <Image src='/play.svg' alt="play" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={togglePlayPause} />
                 }
-                <Image src='/shuffle.svg' alt="shuffle" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={onShuffle} />
-                <Image src='/previous.svg' alt="previous" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={onPreviousCategory} />
-                <Image src='/forward.svg' alt="forward" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={onNextCategory} />
+                <Image src='/shuffle.svg' alt="shuffle" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={shuffleMusic} />
+                <Image src='/previous.svg' alt="previous" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={() => dispatch(setPreviousMusicCategoryIndex())} />
+                <Image src='/forward.svg' alt="forward" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={() => dispatch(setNextMusicCategoryIndex())} />
             </div>
             <div className="flex">
                 { isPlaying ?

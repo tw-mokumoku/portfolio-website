@@ -6,6 +6,8 @@ export const musicCategories = [
     "chill_beat"
 ];
 
+export type musicsObjType = typeof musicsObj;
+
 export const musicsObj = {
     "nocturnal_reveries": [
         {
