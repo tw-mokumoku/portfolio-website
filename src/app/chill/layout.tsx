@@ -23,15 +23,15 @@ export default function RootLayout({
       <body
         className={`${vt323.variable} antialiased`}
         suppressHydrationWarning
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
         >
-          {children}
-        </ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+            >
+            {children}
+          </ThemeProvider>
       </body>
     </html>
   );

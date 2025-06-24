@@ -63,8 +63,8 @@ function LeftHeader({left}:{left:ILeft}){
             src="/hoodCat.png"
             alt="サイトのロゴ"
             fill
-            sizes="10vw"
-            style={{objectFit: 'contain'}}
+            sizes="5vw"
+            style={{objectFit: 'contain', width: "" }}
             className="h-5/6 rounded-full"
             />
             <h1>{left.name}</h1>

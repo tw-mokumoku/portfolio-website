@@ -4,6 +4,8 @@ import { TypeAnimation } from "react-type-animation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { LeftMusicUI } from "@/components/music";
+import { Provider } from 'react-redux';
+import { store } from '@/services/store';
 
 export default function Page() {
     const [startChill, setStartChill] = useState(true);
@@ -13,6 +15,7 @@ export default function Page() {
     }, [startChill]);
 
     return (
+        <Provider store={store}>
         <div id="container" className="cursor-pointer">
             {startChill ?
                 <div id="pressable-screen" className="pointer" onClick={() => setStartChill(false)} />
@@ -24,6 +27,7 @@ export default function Page() {
                     style={{ position: "absolute", width: "100vw", height: "100vh", top: "0px", left: "0px" }}
                 >
                     <Image
+//                        src="/doraemon.gif"
                         src="/cyber_city.gif"
                         alt=""
                         fill
@@ -42,6 +46,7 @@ export default function Page() {
                 <MainScreen />
             }
         </div>
+        </Provider>
     )
 }
 

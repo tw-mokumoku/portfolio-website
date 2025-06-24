@@ -4,84 +4,20 @@ import { useState, useEffect } from "react";
 import { useAudioPlayer } from "react-use-audio-player"
 import _ from 'lodash';
 import Image from "next/image";
+import { musicsObj, musicCategories, MusicCategory } from '@/dictionaries/musicsDict';
+import { useDispatch, useSelector } from "react-redux";
+import { setMusicIndex, setMusicCategoryIndex } from "@/services/musicSlice";
 
 
 export function LeftMusicUI(){
     const { load, togglePlayPause, isPlaying } = useAudioPlayer();
-    const [musicIndex, setMusicIndex] = useState<number>(0);
-    const [musicCategoryIndex, setMusicCategoryIndex] = useState<number>(0);
-    type MusicCategory = "nocturnal_reveries" | "distance_love";
-    const musicCategories = [
-        "nocturnal_reveries",
-        "distance_love"
-    ];
-    const [musics, setMusics] = useState({
-        "nocturnal_reveries": [
-            {
-                name: "aria - Chillhop Radio",
-                src: "/nocturnal_reveries/aria.mp3",
-            },
-            {
-                name: "aurora - Chillhop Radio",
-                src: "/nocturnal_reveries/aurora.mp3",
-            },
-            {
-                name: "dreamscape - Chillhop Radio",
-                src: "/nocturnal_reveries/dreamscape.mp3",
-            },
-            {
-                name: "dusk - Chillhop Radio",
-                src: "/nocturnal_reveries/dusk.mp3",
-            },
-            {
-                name: "i'm alone out here - Chillhop Radio",
-                src: "/nocturnal_reveries/im_alone_out_here.mp3",
-            },
-        ],
-        "distance_love": [
-            {
-                name: "bloom - Love Radio",
-                src: "/distance_love/bloom.mp3",
-            },
-            {
-                name: "come closer - Love Radio",
-                src: "/distance_love/come_closer.mp3",
-            },
-            {
-                name: "faraway - Love Radio",
-                src: "/distance_love/faraway.mp3",
-            },
-            {
-                name: "good morning love - Love Radio",
-                src: "/distance_love/good_morning_love.mp3",
-            },
-            {
-                name: "it's ok - Love Radio",
-                src: "/distance_love/its_ok.mp3",
-            },
-            {
-                name: "looking at the moon - Love Radio",
-                src: "/distance_love/looking_at_the_moon.mp3",
-            },
-            {
-                name: "miss you - Love Radio",
-                src: "/distance_love/miss_you.mp3",
-            },
-            {
-                name: "soul searching - Love Radio",
-                src: "/distance_love/soul_searching.mp3",
-            },
-            {
-                name: "station to station - Love Radio",
-                src: "/distance_love/station_to_station.mp3",
-            },
-            {
-                name: "your eyes - Love Radio",
-                src: "/distance_love/your_eyes.mp3",
-            },
-        ]
-    });
+//    const [musicIndex, setMusicIndex] = useState<number>(0);
+//    const [musicCategoryIndex, setMusicCategoryIndex] = useState<number>(0);
+    const [ musics, setMusics ] = useState(musicsObj);
     const [ musicName, setMusicName ] = useState('');
+    const dispatch = useDispatch();
+    const musicIndex = useSelector((state: { musicController: { musicIndex: number } }) => state.musicController.musicIndex);
+    const musicCategoryIndex = useSelector((state: { musicController: { musicCategoryIndex: number } }) => state.musicController.musicCategoryIndex);
 
 
     const handleStart = (mCategoryIndex?:number, mIndex?: number) => {
@@ -98,7 +34,8 @@ export function LeftMusicUI(){
             _mIndex = musicIndex + 1
         } else {
             _mIndex = 0
-            setMusicIndex(0);
+            dispatch(setMusicIndex(0));
+//            setMusicIndex(0);
         }
         setMusicIndex(_mIndex);
         handleStart(undefined, _mIndex);
@@ -112,17 +49,17 @@ export function LeftMusicUI(){
 
     const onNextCategory = () =>{
         if (musicCategoryIndex === musicCategories.length - 1) {
-            setMusicCategoryIndex(0);
+            dispatch(setMusicCategoryIndex(0));
         } else {
-            setMusicCategoryIndex(musicCategoryIndex + 1);
+            dispatch(setMusicCategoryIndex(musicCategoryIndex + 1));
         }
     }
 
     const onPreviousCategory = () =>{
         if (musicCategoryIndex === 0) {
-            setMusicCategoryIndex(musicCategories.length - 1);
+            dispatch(setMusicCategoryIndex(musicCategories.length - 1));
         } else {
-            setMusicCategoryIndex(musicCategoryIndex - 1);
+            dispatch(setMusicCategoryIndex(musicCategoryIndex - 1));
         }
     }
 

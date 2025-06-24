@@ -46,7 +46,9 @@
 img {
   object-fit: contain;
   position: relative !important;
-  width: auto !important;
+/*
+width: auto !important;
+*/
 }
 
 :root {
