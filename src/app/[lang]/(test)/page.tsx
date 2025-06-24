@@ -68,7 +68,7 @@ function HighlightComponent(){
         ハイライト
       </h2>
       <Link className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
-        <Image src="/lifeline_featureGraphics.png" alt="Highlight" className="h-full object-cover" />
+        <Image src="/lifeline_featureGraphics.png" fill alt="Highlight" className="h-full object-cover" />
       </Link>
     </>
   );
