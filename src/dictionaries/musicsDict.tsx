@@ -1,76 +1,104 @@
-export type MusicCategory = "nocturnal_reveries" | "distance_love" | "chill_beat";
+export type MusicCategory = "chillhop_radio" | "love_radio" | "chill_beat";
 
 export const musicCategories = [
-    "nocturnal_reveries",
-    "distance_love",
+    "chillhop_radio",
+    "love_radio",
     "chill_beat"
 ];
 
 export type musicsObjType = typeof musicsObj;
+export type musicBgObjType = typeof musicBgObj;
+
+export const musicBgObj = {
+    "chillhop_radio":[
+        "/gif/chillhop_radio/cat_night.gif",
+        "/gif/chillhop_radio/pc_game_rain.gif",
+        "/gif/chillhop_radio/pc_night_work.gif",
+        "/gif/chillhop_radio/study_girl.gif",
+        "/gif/chillhop_radio/study_with_cat.gif",
+        "/gif/chillhop_radio/windy_room_cat.gif",
+    ],
+    "love_radio":[
+        "/gif/love_radio/bike_couple.gif",
+        "/gif/love_radio/buildings_rain.gif",
+        "/gif/love_radio/couple_game_room.gif",
+        "/gif/love_radio/guiter_sleep_night.gif",
+        "/gif/love_radio/hituji_station.gif",
+        "/gif/love_radio/PixeLɑnd.gif",
+    ],
+    "chill_beat":[
+        "/gif/chill_beat/coffe_break.gif",
+        "/gif/chill_beat/convini_sleep_2man.gif",
+        "/gif/chill_beat/restaurant_puyopuyo.gif",
+        "/gif/chill_beat/small_cafe.gif",
+        "/gif/chill_beat/station_soba.gif",
+        "/gif/chill_beat/tired_gyudon.gif",
+    ]
+}
 
 export const musicsObj = {
-    "nocturnal_reveries": [
+    "chillhop_radio": [
         {
             name: "aria - Chillhop Radio",
-            src: "/nocturnal_reveries/aria.mp3",
+            src: "/chillhop_radio/aria.mp3",
         },
         {
             name: "aurora - Chillhop Radio",
-            src: "/nocturnal_reveries/aurora.mp3",
+            src: "/chillhop_radio/aurora.mp3",
         },
         {
             name: "dreamscape - Chillhop Radio",
-            src: "/nocturnal_reveries/dreamscape.mp3",
+            src: "/chillhop_radio/dreamscape.mp3",
         },
         {
             name: "dusk - Chillhop Radio",
-            src: "/nocturnal_reveries/dusk.mp3",
+            src: "/chillhop_radio/dusk.mp3",
         },
         {
             name: "i'm alone out here - Chillhop Radio",
-            src: "/nocturnal_reveries/im_alone_out_here.mp3",
+            src: "/chillhop_radio/im_alone_out_here.mp3",
         },
     ],
-    "distance_love": [
+    "love_radio": [
         {
             name: "bloom - Love Radio",
-            src: "/distance_love/bloom.mp3",
+            src: "/love_radio/bloom.mp3",
         },
         {
             name: "come closer - Love Radio",
-            src: "/distance_love/come_closer.mp3",
+            src: "/love_radio/come_closer.mp3",
         },
         {
             name: "faraway - Love Radio",
-            src: "/distance_love/faraway.mp3",
+            src: "/love_radio/faraway.mp3",
         },
         {
             name: "good morning love - Love Radio",
-            src: "/distance_love/good_morning_love.mp3",
+            src: "/love_radio/good_morning_love.mp3",
         },
         {
             name: "it's ok - Love Radio",
-            src: "/distance_love/its_ok.mp3",
+            src: "/love_radio/its_ok.mp3",
         },
         {
             name: "looking at the moon - Love Radio",
-            src: "/distance_love/looking_at_the_moon.mp3",
+            src: "/love_radio/looking_at_the_moon.mp3",
         },
         {
             name: "miss you - Love Radio",
-            src: "/distance_love/miss_you.mp3",
+            src: "/love_radio/miss_you.mp3",
         },
         {
             name: "soul searching - Love Radio",
-            src: "/distance_love/soul_searching.mp3",
+            src: "/love_radio/soul_searching.mp3",
         },
         {
             name: "station to station - Love Radio",
-            src: "/distance_love/station_to_station.mp3",
+            src: "/love_radio/station_to_station.mp3",
         },
         {
             name: "your eyes - Love Radio",
-            src: "/distance_love/your_eyes.mp3",
+            src: "/love_radio/your_eyes.mp3",
         },
     ],
     "chill_beat": [

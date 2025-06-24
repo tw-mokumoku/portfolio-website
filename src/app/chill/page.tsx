@@ -4,15 +4,12 @@ import { TypeAnimation } from "react-type-animation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { LeftMusicUI } from "@/components/music";
-import { Provider } from 'react-redux';
+import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store } from '@/services/store';
+import { shuffleMusicBg } from "@/services/musicSlice";
 
 export default function Page() {
     const [startChill, setStartChill] = useState(true);
-
-    useEffect(()=>{
-
-    }, [startChill]);
 
     return (
         <Provider store={store}>
@@ -23,17 +20,7 @@ export default function Page() {
                 <></>
             }
             <div className="relative box-sizing: content-box">
-                <div
-                    style={{ position: "absolute", width: "100vw", height: "100vh", top: "0px", left: "0px" }}
-                >
-                    <Image
-//                        src="/doraemon.gif"
-                        src="/cyber_city.gif"
-                        alt=""
-                        fill
-                        style={{width: "100%", height: "100%", objectFit: "cover", zIndex: "0", overflow: "clip", overflowClipMargin: "content-box"}}
-                    />
-                </div>
+                <MusicBackground />
                 <div id="crt-lines"/>
                 <div id="darken" />
                 <div id="vignette" />
@@ -48,6 +35,36 @@ export default function Page() {
         </div>
         </Provider>
     )
+}
+
+function MusicBackground(){
+    const dispatch = useDispatch();
+    const {
+        musicBgSrc
+    } = useSelector((state: {
+        musicController: {
+            musicBgSrc: string
+        }
+    }) => state.musicController);
+
+    useEffect(()=>{
+        dispatch(shuffleMusicBg());
+        // eslint-disable-next-line
+    }, []);
+
+    return (
+        <div
+            style={{ position: "absolute", width: "100vw", height: "100vh", top: "0px", left: "0px" }}
+        >
+            <Image
+                key={musicBgSrc}
+                src={musicBgSrc}
+                alt=""
+                fill
+                style={{width: "100%", height: "100%", objectFit: "cover", zIndex: "0", overflow: "clip", overflowClipMargin: "content-box"}}
+            />
+        </div>
+    );
 }
 
 function StartScreen(){
@@ -88,7 +105,7 @@ function MainScreen(){
                 <div id="top-ui" className="w-full z-6 relative">
                     <div></div>
                     <div>
-                        <Image fill src="/fullscreen.svg" alt="fullscreen" id="shadow" className="pointer w-5 h-5 mb-3 me-3"
+                        <Image fill src="/fullscreen.svg" alt="fullscreen" id="shadow" className="pointer w-3 h-3 mb-3 me-3"
                             onClick={() => {
                                 setIsFullScreen(!isFullScreen);
                                 if(isFullScreen) document.exitFullscreen();

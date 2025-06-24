@@ -5,24 +5,26 @@ import { useAudioPlayer } from "react-use-audio-player"
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setNextMusicCategoryIndex, setNextMusicIndex, setPreviousMusicCategoryIndex, shuffleMusics } from "@/services/musicSlice";
-
+import VolumeSlider from '@/components/VolumeSlider';
 
 export function LeftMusicUI(){
-    const { load, togglePlayPause, isPlaying } = useAudioPlayer();
+    const { load, togglePlayPause, isPlaying, volume, setVolume } = useAudioPlayer();
     const dispatch = useDispatch();
     const {
         musicCategoryIndex,
         musicName,
-        musicSrc
+        musicSrc,
     } = useSelector((state: {
         musicController: {
             musicCategoryIndex: number,
             musicName: string,
-            musicSrc: string
+            musicSrc: string,
         }
     }) => state.musicController);
 
     const startMusic = () =>{
+        console.log("【Music Base】musicName: ", musicName);
+        console.log("【Music Base】musicSrc: ", musicSrc);
         load(musicSrc, {
             initialVolume: 0.75,
             autoplay: true,
@@ -30,14 +32,17 @@ export function LeftMusicUI(){
         });
     }
 
+    useEffect(()=>{
+        startMusic();
+        // eslint-disable-next-line
+    }, [musicName]);
+
     const onEndMusic = () => {
         dispatch(setNextMusicIndex());
-        startMusic();
     }
 
     const shuffleMusic = () => {
         dispatch(shuffleMusics());
-        startMusic();
     }
 
     useEffect(()=>{
@@ -50,7 +55,6 @@ export function LeftMusicUI(){
         // eslint-disable-next-line
     }, []);
 
-
     return (
         <>
             <div className="flex">
@@ -61,7 +65,8 @@ export function LeftMusicUI(){
                 }
                 <Image src='/shuffle.svg' alt="shuffle" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={shuffleMusic} />
                 <Image src='/previous.svg' alt="previous" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={() => dispatch(setPreviousMusicCategoryIndex())} />
-                <Image src='/forward.svg' alt="forward" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={() => dispatch(setNextMusicCategoryIndex())} />
+                <Image src='/forward.svg' alt="forward" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-4" onClick={() => dispatch(setNextMusicCategoryIndex())} />
+                <VolumeSlider volume={volume} setVolume={setVolume} />
             </div>
             <div className="flex">
                 { isPlaying ?
@@ -69,20 +74,34 @@ export function LeftMusicUI(){
                     :
                     <Image src="/beatsMute.svg" alt="beatsMute" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" />
                 }
-                <MusicName sentence={musicName} />
+                <MusicName />
             </div>
         </>
     );
 }
 
-function MusicName({sentence}:{sentence: string}){
+function MusicName(){
+    const {
+        musicName,
+        musicSrc,
+    } = useSelector((state: {
+        musicController: {
+            musicName: string,
+            musicSrc: string,
+        }
+    }) => state.musicController);
+    useEffect(()=>{
+        console.log("【TypingAnimation】musicName: ", musicName);
+        console.log("【TypingAnimation】musicSrc: ", musicSrc);
+        // eslint-disable-next-line
+    }, [musicName]);
     return (
         <TypeAnimation
-            key={sentence}
+            key={musicName}
             cursor={false}
             sequence={[
                 (el) => el?.classList.remove('type'),
-                sentence
+                musicName
             ]}
             wrapper="span"
             speed={50}

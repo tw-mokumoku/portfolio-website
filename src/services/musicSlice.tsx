@@ -1,20 +1,26 @@
 'use client'
 import { createSlice } from '@reduxjs/toolkit';
-import { musicsObjType, musicsObj, musicCategories, MusicCategory } from '@/dictionaries/musicsDict';
+import { musicsObjType, musicsObj, musicCategories, MusicCategory, musicBgObj, musicBgObjType } from '@/dictionaries/musicsDict';
 import _ from 'lodash';
 
 const _getMusicObj = (innerMusicObj: musicsObjType, _mIndex: number, _mCategoryIndex: number) =>{
-    return innerMusicObj[musicCategories[_mCategoryIndex] as MusicCategory][_mIndex]
+    return innerMusicObj[musicCategories[_mCategoryIndex] as MusicCategory][_mIndex];
+}
+const _getMusicBgObj = (innerMusicBgObj: musicBgObjType, _mBgIndex: number, _mCategoryIndex: number) =>{
+    return innerMusicBgObj[musicCategories[_mCategoryIndex] as MusicCategory][_mBgIndex];
 }
 
 export const musicController = createSlice({
     name: 'background',
     initialState: {
         musicIndex: 0,
+        musicBgIndex: 0,
         musicCategoryIndex: 0,
         musicName: 'aria - Chillhop Radio',
-        musicSrc: '/nocturnal_reveries/aria.mp3',
-        innerMusicObj: musicsObj
+        musicSrc: '/chillhop_radio/aria.mp3',
+        musicBgSrc: '/gif/chillhop_radio/cat_night.gif',
+        innerMusicObj: musicsObj,
+        innerMusicBgObj: musicBgObj
     },
     reducers: {
         setMusicIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}, action: { payload: number }) => {
@@ -46,14 +52,19 @@ export const musicController = createSlice({
             state.musicName = obj.name;
             state.musicSrc = obj.src;
         },
-        setMusicCategoryIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}, action: { payload: number }) => {
+        setMusicCategoryIndex: (state: {musicBgSrc: string, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType, musicName: string, musicSrc: string, musicIndex: number, musicBgIndex: number, musicCategoryIndex: number}, action: { payload: number }) => {
             state.musicCategoryIndex = action.payload;
 
             const obj = _getMusicObj(state.innerMusicObj, state.musicIndex, state.musicCategoryIndex);
             state.musicName = obj.name;
             state.musicSrc = obj.src;
+
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
+            state.musicBgSrc = _musicBgSrc;
+
         },
-        setNextMusicCategoryIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
+        setNextMusicCategoryIndex: (state: {musicBgSrc: string, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType, musicName: string, musicSrc: string, musicIndex: number, musicBgIndex: number, musicCategoryIndex: number}) =>{
             if(state.musicCategoryIndex === musicCategories.length - 1){
                 state.musicCategoryIndex = 0;
             } else {
@@ -63,8 +74,12 @@ export const musicController = createSlice({
             const obj = _getMusicObj(state.innerMusicObj, state.musicIndex, state.musicCategoryIndex);
             state.musicName = obj.name;
             state.musicSrc = obj.src;
+
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
+            state.musicBgSrc = _musicBgSrc;
         },
-        setPreviousMusicCategoryIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
+        setPreviousMusicCategoryIndex: (state: {musicBgSrc: string, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType, musicName: string, musicSrc: string, musicIndex: number, musicBgIndex: number, musicCategoryIndex: number}) =>{
             if(state.musicCategoryIndex === 0){
                 state.musicCategoryIndex = musicCategories.length - 1;
             } else {
@@ -74,6 +89,10 @@ export const musicController = createSlice({
             const obj = _getMusicObj(state.innerMusicObj, state.musicIndex, state.musicCategoryIndex);
             state.musicName = obj.name;
             state.musicSrc = obj.src;
+
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
+            state.musicBgSrc = _musicBgSrc;
         },
         shuffleMusics: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
             state.innerMusicObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicsObj[musicCategories[state.musicCategoryIndex] as MusicCategory])
@@ -81,6 +100,11 @@ export const musicController = createSlice({
             const obj = _getMusicObj(state.innerMusicObj, state.musicIndex, state.musicCategoryIndex);
             state.musicName = obj.name;
             state.musicSrc = obj.src;
+        },
+        shuffleMusicBg: (state: {musicBgSrc: string, innerMusicBgObj: musicBgObjType, musicBgIndex: number, musicCategoryIndex: number}) =>{
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
+            state.musicBgSrc = _musicBgSrc;
         }
     }
 });
@@ -92,7 +116,8 @@ export const {
     setMusicCategoryIndex,
     setNextMusicCategoryIndex,
     setPreviousMusicCategoryIndex,
-    shuffleMusics
+    shuffleMusics,
+    shuffleMusicBg
 } = musicController.actions;
 
 export default musicController.reducer;
