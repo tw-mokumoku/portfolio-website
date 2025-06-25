@@ -141,8 +141,8 @@ function MainScreen(){
                                     <div className="w-25 h-25 p-2" style={{ backgroundColor: "transparent", borderWidth: "1px", borderColor:"gray" }} id="shadow">
                                         <Image fill alt="hoodCat" src="/hoodCat.png" id="shadow"/>
                                     </div>
+                                    <p id="shadow" className="text-xl text-center mt-1">mk-mokumoku</p>
                                 </Link>
-                                <p id="shadow" className="text-xl text-center mt-1">mk-mokumoku</p>
                                 <div className="text-xl mt-1 flex">
                                      <p id="red-shadow" className="mr-3">↑ / ↓</p><p id="shadow">change volume</p>
                                 </div>
