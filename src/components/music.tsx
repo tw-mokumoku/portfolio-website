@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { useAudioPlayer } from "react-use-audio-player"
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { setNextMusicCategoryIndex, setNextMusicIndex, setPreviousMusicCategoryIndex, shuffleMusics } from "@/services/musicSlice";
+import { setNextMusicCategoryIndex, setNextMusicIndex, setPreviousMusicCategoryIndex, shuffleMusicBg, shuffleMusics } from "@/services/musicSlice";
 import VolumeSlider from '@/components/VolumeSlider';
+import {useKey} from 'react-use';
+import _ from 'lodash';
 
 export function LeftMusicUI(){
     const { load, togglePlayPause, isPlaying, volume, setVolume } = useAudioPlayer();
@@ -23,14 +25,19 @@ export function LeftMusicUI(){
     }) => state.musicController);
 
     const startMusic = () =>{
-        console.log("【Music Base】musicName: ", musicName);
-        console.log("【Music Base】musicSrc: ", musicSrc);
         load(musicSrc, {
             initialVolume: 0.75,
             autoplay: true,
             onend: onEndMusic
         });
     }
+    useKey('ArrowUp', () => setVolume(_.clamp(volume + 0.05, 0, 1)), undefined, [volume]);
+    useKey('ArrowDown', () => setVolume(_.clamp(volume - 0.05, 0, 1)), undefined, [volume]);
+    useKey('ArrowLeft', () => dispatch(setPreviousMusicCategoryIndex()));
+    useKey('ArrowRight', () => dispatch(setNextMusicCategoryIndex()));
+    useKey(' ', togglePlayPause);
+    useKey('m', () => setVolume(0));
+    useKey('b', () => dispatch(shuffleMusicBg()));
 
     useEffect(()=>{
         startMusic();
@@ -83,18 +90,11 @@ export function LeftMusicUI(){
 function MusicName(){
     const {
         musicName,
-        musicSrc,
     } = useSelector((state: {
         musicController: {
             musicName: string,
-            musicSrc: string,
         }
     }) => state.musicController);
-    useEffect(()=>{
-        console.log("【TypingAnimation】musicName: ", musicName);
-        console.log("【TypingAnimation】musicSrc: ", musicSrc);
-        // eslint-disable-next-line
-    }, [musicName]);
     return (
         <TypeAnimation
             key={musicName}

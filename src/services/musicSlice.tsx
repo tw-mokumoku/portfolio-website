@@ -20,7 +20,7 @@ export const musicController = createSlice({
         musicSrc: '/chillhop_radio/aria.mp3',
         musicBgSrc: '/gif/chillhop_radio/cat_night.gif',
         innerMusicObj: musicsObj,
-        innerMusicBgObj: musicBgObj
+        innerMusicBgObj: musicBgObj,
     },
     reducers: {
         setMusicIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}, action: { payload: number }) => {

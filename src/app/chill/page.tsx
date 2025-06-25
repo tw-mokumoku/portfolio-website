@@ -7,6 +7,9 @@ import { LeftMusicUI } from "@/components/music";
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store } from '@/services/store';
 import { shuffleMusicBg } from "@/services/musicSlice";
+import FadeInDiv from "@/components/animation/FadeInDiv";
+import Link from "next/link";
+import {useKey} from 'react-use';
 
 export default function Page() {
     const [startChill, setStartChill] = useState(true);
@@ -19,12 +22,7 @@ export default function Page() {
                 :
                 <></>
             }
-            <div className="relative box-sizing: content-box">
-                <MusicBackground />
-                <div id="crt-lines"/>
-                <div id="darken" />
-                <div id="vignette" />
-            </div>
+            <ScreenEffects />
             {
                 startChill
                 ?
@@ -36,6 +34,25 @@ export default function Page() {
         </Provider>
     )
 }
+
+function ScreenEffects(){
+    const [isLowPower, setIsLowPower] = useState(true);
+    const [crtLines, setCrtLines] = useState(<div id="crt-lines"/>);
+    useKey('l', () => setIsLowPower(!isLowPower), undefined, [isLowPower]);
+    useEffect(()=>{
+        setCrtLines(isLowPower ? <div id="crt-lines"/> : <></>)
+    }, [isLowPower]);
+
+    return (
+        <div className="relative box-sizing: content-box">
+            <MusicBackground />
+            {crtLines}
+            <div id="darken" />
+            <div id="vignette" />
+        </div>
+    );
+}
+
 
 function MusicBackground(){
     const dispatch = useDispatch();
@@ -90,6 +107,7 @@ function StartScreen(){
 
 function MainScreen(){
     const [isFullScreen, setIsFullScreen] = useState(false);
+    const [showAbout, setShowAbout] = useState(true);
     
     useEffect(()=>{
         function onFullscreenChange() {
@@ -105,13 +123,49 @@ function MainScreen(){
                 <div id="top-ui" className="w-full z-6 relative">
                     <div></div>
                     <div>
-                        <Image fill src="/fullscreen.svg" alt="fullscreen" id="shadow" className="pointer w-3 h-3 mb-3 me-3"
-                            onClick={() => {
-                                setIsFullScreen(!isFullScreen);
-                                if(isFullScreen) document.exitFullscreen();
-                                else document.body.requestFullscreen(); 
-                            }}
-                        />
+                        <div className="flex flex-row-reverse">
+                            <Image width={25} height={25} src="/crown.svg" alt="crown" id="shadow" className="pointer mb-3 me-3 -mt-1"
+                                onClick={()=>setShowAbout(!showAbout)}
+                            />
+                            <Image width={25} height={25} src="/fullscreen.svg" alt="fullscreen" id="shadow" className="pointer mb-3 me-3"
+                                onClick={() => {
+                                    setIsFullScreen(!isFullScreen);
+                                    if(isFullScreen) document.exitFullscreen();
+                                    else document.body.requestFullscreen(); 
+                                }}
+                            />
+                        </div>
+                        <FadeInDiv show={showAbout} className="mt-2">
+                            <div className="flex flex-col items-end text-xl">
+                                <Link href="/">
+                                    <div className="w-25 h-25 p-2" style={{ backgroundColor: "transparent", borderWidth: "1px", borderColor:"gray" }} id="shadow">
+                                        <Image fill alt="hoodCat" src="/hoodCat.png" id="shadow"/>
+                                    </div>
+                                </Link>
+                                <p id="shadow" className="text-xl text-center mt-1">mk-mokumoku</p>
+                                <div className="text-xl mt-1 flex">
+                                     <p id="red-shadow" className="mr-3">↑ / ↓</p><p id="shadow">change volume</p>
+                                </div>
+                                <div className="text-xl mt-1 flex">
+                                     <p id="red-shadow" className="mr-3">← / →</p><p id="shadow">change category</p>
+                                </div>
+                                <div className="text-xl mt-1 flex">
+                                     <p id="red-shadow" className="mr-3">spacebar</p><p id="shadow">play/pause</p>
+                                </div>
+                                <div className="text-xl mt-1 flex">
+                                     <p id="red-shadow" className="mr-3">M</p><p id="shadow">mute music on/off</p>
+                                </div>
+                                <div className="text-xl mt-1 flex">
+                                     <p id="red-shadow" className="mr-3">B</p><p id="shadow">change background image</p>
+                                </div>
+                                <div className="text-xl mt-1 flex">
+                                     <p id="red-shadow" className="mr-3">L</p><p id="shadow">low-power mode on/off</p>
+                                </div>
+                                <Link href="/">
+                                    <p id="shadow" className="text-xl mt-1 underline">click here to know about me</p>
+                                </Link>
+                            </div>
+                        </FadeInDiv>
                     </div>
                 </div>
                 <div id="bottom-ui" className="w-full z-6 relative">
