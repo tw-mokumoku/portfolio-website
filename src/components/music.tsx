@@ -26,13 +26,13 @@ export function LeftMusicUI(){
 
     const startMusic = () =>{
         load(musicSrc, {
-            initialVolume: 0.75,
+            initialVolume: volume,
             autoplay: true,
             onend: onEndMusic
         });
     }
-    useKey('ArrowUp', () => setVolume(_.clamp(volume + 0.05, 0, 1)), undefined, [volume]);
-    useKey('ArrowDown', () => setVolume(_.clamp(volume - 0.05, 0, 1)), undefined, [volume]);
+    useKey('ArrowUp', () => setVolume(_.clamp(volume + 0.02, 0, 1)), undefined, [volume]);
+    useKey('ArrowDown', () => setVolume(_.clamp(volume - 0.02, 0, 1)), undefined, [volume]);
     useKey('ArrowLeft', () => dispatch(setPreviousMusicCategoryIndex()));
     useKey('ArrowRight', () => dispatch(setNextMusicCategoryIndex()));
     useKey(' ', togglePlayPause);
@@ -59,6 +59,7 @@ export function LeftMusicUI(){
 
     useEffect(() => {
         shuffleMusic();
+        setVolume(0.75);
         // eslint-disable-next-line
     }, []);
 
