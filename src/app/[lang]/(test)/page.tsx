@@ -8,6 +8,7 @@ import { dict, LangPromise } from "@/dictionaries/dictionaries";
 import Link from "next/link";
 import { SecretConversion } from "@/components/secretConversion";
 import Image from "next/image";
+import { Footer } from "@/components/footer";
 
 // 静的エクスポート用のgenerateStaticParams関数
 export async function generateStaticParams() {
@@ -57,6 +58,7 @@ export default async function Page({params}:{params:LangPromise}) {
         <SentenceComponent5 workSection={page.root.workSection} />
         <JobContextMenu workSection={page.root.workSection}/>
       </div>
+      <Footer />
     </>
   );
 }
