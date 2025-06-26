@@ -58,7 +58,7 @@ export default async function Page({params}:{params:LangPromise}) {
         <SentenceComponent5 workSection={page.root.workSection} />
         <JobContextMenu workSection={page.root.workSection}/>
       </div>
-      <Footer />
+      <Footer footer={page.footer} />
     </>
   );
 }

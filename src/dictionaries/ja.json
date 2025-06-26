@@ -1,4 +1,21 @@
 {
+    "footer": {
+        "nav": {
+            "overviewSection": {
+            "title": "概要",
+            "home": "ホーム",
+            "greeting": "ご挨拶",
+            "skills": "スキル",
+            "experience": "職歴"
+            },
+            "worksSection": {
+            "title": "制作物",
+            "chillMusic": "チル - ミュージック",
+            "lifelineApp": "Lifeline - 集中習慣で「できる」を増やす",
+            "discordBulletinBoard": "Discordサーバー掲示板"
+            }
+        }
+    },
     "header":{
         "left":{
             "name": "mk-mokumoku"

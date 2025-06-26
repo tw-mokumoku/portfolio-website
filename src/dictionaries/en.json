@@ -1,4 +1,21 @@
 {
+    "footer": {
+        "nav": {
+        "overviewSection": {
+            "title": "Overview",
+            "home": "Home",
+            "greeting": "Greeting",
+            "skills": "Skills",
+            "experience": "Work Experience"
+        },
+        "worksSection": {
+            "title": "Works",
+            "chillMusic": "Chill - Music",
+            "lifelineApp": "Lifeline - Boost 'Can-do' with Focus Habits",
+            "discordBulletinBoard": "Discord Server Bulletin Board"
+        }
+        }
+    },
     "header":{
         "left":{
             "name": "mk-mokumoku"

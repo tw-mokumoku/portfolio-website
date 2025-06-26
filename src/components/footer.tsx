@@ -1,6 +1,7 @@
+import { IFooter } from "@/interface/footer";
 import Link from "next/link";
 
-export function Footer() {
+export function Footer({footer}:{footer:IFooter}) {
     return (
       <div 
           className='relative h-[250px]'
@@ -8,37 +9,37 @@ export function Footer() {
       >
           <div className='relative h-[calc(100vh+250px)] -top-[100vh]'>
               <div className='h-[250px] sticky top-[calc(100vh-250px)]' style={{ backgroundColor: "#45444f" }}>
-                <Content />
+                <Content footer={footer} />
               </div>
           </div>
       </div>
     );
 }
-export default function Content() {
+export default function Content({footer}:{footer:IFooter}) {
   return (
     <div className='bg-[#4E4E5A] py-8 px-12 h-full w-full flex flex-col justify-between'>
-        <Nav />
+        <Nav footer={footer} />
         <div className='flex flex-row-reverse'>
             <p>© 2025 Takushi Watanabe</p>
         </div>
     </div>
   )
 }
-const Nav = () => {
+const Nav = ({footer}:{footer:IFooter}) => {
     return (
       <div className='flex shrink-0 gap-20'>
         <div className='flex flex-col gap-2'>
-          <h3 className='mb-2 uppercase text-[#ffffff80]'>概要</h3>
-          <Link href="/">ホーム</Link>
-          <Link href="/#anchor_greet">ご挨拶</Link>
-          <Link href="/#anchor_skill">スキル</Link>
-          <Link href="/#anchor_job">職歴</Link>
+          <h3 className='mb-2 uppercase text-[#ffffff80]'>{footer.nav.overviewSection.title}</h3>
+          <Link href="/">{footer.nav.overviewSection.home}</Link>
+          <Link href="/#anchor_greet">{footer.nav.overviewSection.greeting}</Link>
+          <Link href="/#anchor_skill">{footer.nav.overviewSection.skills}</Link>
+          <Link href="/#anchor_job">{footer.nav.overviewSection.experience}</Link>
         </div>
         <div className='flex flex-col gap-2'>
-          <h3 className='mb-2 uppercase text-[#ffffff80]'>制作物</h3>
-          <Link href="/chill">チル - ミュージック</Link>
-          <Link href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">Lifeline - 集中習慣で「できる」を増やす</Link>
-          <Link href="https://github.com/tw-mokumoku/portfolio1">Discordサーバー掲示板</Link>
+          <h3 className='mb-2 uppercase text-[#ffffff80]'>{footer.nav.worksSection.title}</h3>
+          <Link href="/chill">{footer.nav.worksSection.chillMusic}</Link>
+          <Link href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">{footer.nav.worksSection.lifelineApp}</Link>
+          <Link href="https://github.com/tw-mokumoku/portfolio1">{footer.nav.worksSection.discordBulletinBoard}</Link>
         </div>
         <div className='flex flex-col gap-2'>
           <h3 className='mb-2 uppercase text-[#ffffff80]'>SNS</h3>
