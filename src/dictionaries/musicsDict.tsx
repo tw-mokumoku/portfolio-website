@@ -1,10 +1,31 @@
 export type MusicCategory = "chillhop_radio" | "love_radio" | "chill_beat";
 
 export const musicCategories = [
-    "chillhop_radio",
-    "love_radio",
-    "chill_beat"
+    {
+        id : "chillhop_radio",
+        raw: "Chillhop Radio",
+    },
+    {
+        id : "love_radio",
+        raw: "Love Radio",
+    },
+    {
+        id : "chill_beat",
+        raw: "Chill Beat",
+    },
 ];
+
+export const musicIndex = {
+    "chillhop_radio": {
+        id: 0
+    },
+    "love_radio": {
+        id: 1
+    },
+    "chill_beat": {
+        id: 2
+    },
+};
 
 export type musicsObjType = typeof musicsObj;
 export type musicBgObjType = typeof musicBgObj;

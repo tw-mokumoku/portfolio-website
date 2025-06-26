@@ -5,6 +5,7 @@ import { useAudioPlayer } from "react-use-audio-player"
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { setNextMusicCategoryIndex, setNextMusicIndex, setPreviousMusicCategoryIndex, shuffleMusicBg, shuffleMusics } from "@/services/musicSlice";
+import { toggleShowPanel } from "@/services/musicCategorySlice";
 import VolumeSlider from '@/components/VolumeSlider';
 import {useKey} from 'react-use';
 import _ from 'lodash';
@@ -64,7 +65,7 @@ export function LeftMusicUI(){
     }, []);
 
     return (
-        <>
+        <div className="z-0">
             <div className="flex">
                 { isPlaying ?
                     <Image src='/stop.svg' alt="stop" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={togglePlayPause} />
@@ -84,7 +85,7 @@ export function LeftMusicUI(){
                 }
                 <MusicName />
             </div>
-        </>
+        </div>
     );
 }
 
@@ -96,17 +97,21 @@ function MusicName(){
             musicName: string,
         }
     }) => state.musicController);
+    const dispatch = useDispatch();
+
     return (
-        <TypeAnimation
-            key={musicName}
-            cursor={false}
-            sequence={[
-                (el) => el?.classList.remove('type'),
-                musicName
-            ]}
-            wrapper="span"
-            speed={50}
-            className='typee'
-        />
+        <div onClick={() => dispatch(toggleShowPanel())} className="cursor-pointer">
+            <TypeAnimation
+                key={musicName}
+                cursor={false}
+                sequence={[
+                    (el) => el?.classList.remove('type'),
+                    musicName
+                ]}
+                wrapper="span"
+                speed={50}
+                className='typee'
+            />
+        </div>
     );
 }

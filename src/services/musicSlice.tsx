@@ -4,10 +4,10 @@ import { musicsObjType, musicsObj, musicCategories, MusicCategory, musicBgObj, m
 import _ from 'lodash';
 
 const _getMusicObj = (innerMusicObj: musicsObjType, _mIndex: number, _mCategoryIndex: number) =>{
-    return innerMusicObj[musicCategories[_mCategoryIndex] as MusicCategory][_mIndex];
+    return innerMusicObj[musicCategories[_mCategoryIndex].id as MusicCategory][_mIndex];
 }
 const _getMusicBgObj = (innerMusicBgObj: musicBgObjType, _mBgIndex: number, _mCategoryIndex: number) =>{
-    return innerMusicBgObj[musicCategories[_mCategoryIndex] as MusicCategory][_mBgIndex];
+    return innerMusicBgObj[musicCategories[_mCategoryIndex].id as MusicCategory][_mBgIndex];
 }
 
 export const musicController = createSlice({
@@ -31,7 +31,7 @@ export const musicController = createSlice({
             state.musicSrc = obj.src;
         },
         setNextMusicIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
-            if(state.musicIndex === musicsObj[musicCategories[state.musicCategoryIndex] as MusicCategory].length - 1){
+            if(state.musicIndex === musicsObj[musicCategories[state.musicCategoryIndex].id as MusicCategory].length - 1){
                 state.musicIndex = 0;
             } else {
                 state.musicIndex++;
@@ -43,7 +43,7 @@ export const musicController = createSlice({
         },
         setPreviousMusicIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
             if(state.musicIndex === 0){
-                state.musicIndex = musicsObj[musicCategories[state.musicCategoryIndex] as MusicCategory].length - 1;
+                state.musicIndex = musicsObj[musicCategories[state.musicCategoryIndex].id as MusicCategory].length - 1;
             } else {
                 state.musicIndex--;
             }
@@ -59,7 +59,7 @@ export const musicController = createSlice({
             state.musicName = obj.name;
             state.musicSrc = obj.src;
 
-            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory]);
             const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
             state.musicBgSrc = _musicBgSrc;
 
@@ -75,7 +75,7 @@ export const musicController = createSlice({
             state.musicName = obj.name;
             state.musicSrc = obj.src;
 
-            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory]);
             const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
             state.musicBgSrc = _musicBgSrc;
         },
@@ -90,19 +90,19 @@ export const musicController = createSlice({
             state.musicName = obj.name;
             state.musicSrc = obj.src;
 
-            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory]);
             const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
             state.musicBgSrc = _musicBgSrc;
         },
         shuffleMusics: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
-            state.innerMusicObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicsObj[musicCategories[state.musicCategoryIndex] as MusicCategory])
+            state.innerMusicObj[musicCategories[state.musicCategoryIndex].id as MusicCategory] = _.shuffle(musicsObj[musicCategories[state.musicCategoryIndex].id as MusicCategory])
 
             const obj = _getMusicObj(state.innerMusicObj, state.musicIndex, state.musicCategoryIndex);
             state.musicName = obj.name;
             state.musicSrc = obj.src;
         },
         shuffleMusicBg: (state: {musicBgSrc: string, innerMusicBgObj: musicBgObjType, musicBgIndex: number, musicCategoryIndex: number}) =>{
-            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex] as MusicCategory]);
+            state.innerMusicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory] = _.shuffle(musicBgObj[musicCategories[state.musicCategoryIndex].id as MusicCategory]);
             const _musicBgSrc = _getMusicBgObj(state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
             state.musicBgSrc = _musicBgSrc;
         }

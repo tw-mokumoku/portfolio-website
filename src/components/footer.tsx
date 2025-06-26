@@ -54,11 +54,4 @@ const Nav = () => {
         </div>
       </div>
     )
-  }
-const Section1 = () => {
-  return (
-    <div>
-      <Nav />
-    </div>
-  )
 }
