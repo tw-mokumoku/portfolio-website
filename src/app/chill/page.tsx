@@ -239,6 +239,9 @@ function Profile({showAbout}:{showAbout:boolean}){
                 </div>
                 <p id="shadow" className="text-xl text-center mt-1">mk-mokumoku</p>
             </Link>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setOpenCategoryMenuHovering(true)} onMouseLeave={() => setOpenCategoryMenuHovering(false)} onClick={() => dispatch(toggleShowPanel())}>
+                 <div id={openCategoryMenuHovering ? "shadow" : "red-shadow"} className="mr-3">click here</div><p id="shadow">to open menu</p>
+            </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setUpHovering(true)} onMouseLeave={() => setUpHovering(false)} onClick={() => dispatch(increaseVolume())} onMouseDown={() => setVolumeUp(true)} onMouseUp={() => setVolumeUp(false)}>
                  <div id={upHovering ? "shadow" : "red-shadow"} className="mr-3">↑</div><p id="shadow">volume up</p>
             </div>
@@ -262,9 +265,6 @@ function Profile({showAbout}:{showAbout:boolean}){
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setLHovering(true)} onMouseLeave={() => setLHovering(false)} onClick={() => dispatch(toggleCrtLines())}>
                  <p id={lHovering ? "shadow" : "red-shadow"} className="mr-3">L</p><p id="shadow">low-power mode on/off</p>
-            </div>
-            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setOpenCategoryMenuHovering(true)} onMouseLeave={() => setOpenCategoryMenuHovering(false)} onClick={() => dispatch(toggleShowPanel())}>
-                 <div id={openCategoryMenuHovering ? "shadow" : "red-shadow"} className="mr-3">click here</div><p id="shadow">to open category menu</p>
             </div>
             <Link href="/">
                 <p id="shadow" className="text-xl mt-1 underline">click here to know about me</p>
