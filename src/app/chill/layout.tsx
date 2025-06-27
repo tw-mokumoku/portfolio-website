@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Enjoy free Lofi Music ideal for studying, working, or simply chilling out. Let our calming lo-fi hip hop enrich your daily life. Experience unique music beyond YouTube today.",
   keywords: [ 'Lofi music', 'BGM', 'チル', '音楽' ],
   openGraph:{
-    images: '/hoodCat.png'
+    images: '/music/chill_ogp.gif'
   }
 };
 
