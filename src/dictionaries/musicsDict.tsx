@@ -1,7 +1,32 @@
-export type MusicCategory = "chillhop_radio" | "love_radio" | "chill_beat";
-export type Genre = "chill" | "kawaii";
+// musicObj
+export type musicsObjType = chillMusicsObjType;
+export type chillMusicsObjType = typeof chillMusicsObj;
+// musicBgObj
+export type musicBgObjType = chillMusicBgObjType
+export type chillMusicBgObjType = typeof chillMusicBgObj;
+// MusicCategory
+export type MusicCategory = chillMusicCategory;
+export type chillMusicCategory = "chillhop_radio" | "love_radio" | "chill_beat";
+// musicCategoriesType
+export type musicCategoriesType = chillMusicCategoriesType;
+export type chillMusicCategoriesType = typeof chillMusicCategories;
+//
+export type musicIndexObjType = chillMusicIndexObjType;
+export type chillMusicIndexObjType = typeof chillMusicIndexObj;
 
-export const musicCategories = [
+export const chillMusicIndexObj = {
+    "chillhop_radio": {
+        id: 0
+    },
+    "love_radio": {
+        id: 1
+    },
+    "chill_beat": {
+        id: 2
+    },
+};
+
+export const chillMusicCategories = [
     {
         id : "chillhop_radio",
         raw: "Chillhop Radio",
@@ -16,22 +41,8 @@ export const musicCategories = [
     },
 ];
 
-export const musicIndex = {
-    "chillhop_radio": {
-        id: 0
-    },
-    "love_radio": {
-        id: 1
-    },
-    "chill_beat": {
-        id: 2
-    },
-};
 
-export type musicsObjType = typeof musicsObj;
-export type musicBgObjType = typeof musicBgObj;
-
-export const musicBgObj = {
+export const chillMusicBgObj = {
     "chillhop_radio":[
         "/music/chill/gif/chillhop_radio/cat_night.gif",
         "/music/chill/gif/chillhop_radio/pc_game_rain.gif",
@@ -59,7 +70,7 @@ export const musicBgObj = {
     ]
 }
 
-export const musicsObj = {
+export const chillMusicsObj = {
     "chillhop_radio": [
         {
             name: "aria - Chillhop Radio",
