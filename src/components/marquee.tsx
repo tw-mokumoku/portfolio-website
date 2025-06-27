@@ -24,7 +24,7 @@ export function TechLogoMarquee(){
         >
           <div className="h-13 mx-4 relative">
             <Image
-            src="/expo_logo.png"
+            src="/root/tech_logos/marquee/expo_logo.png"
             alt="Expo Logo"
             fill
             sizes="10vw"
@@ -33,7 +33,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-13 mx-4 relative">
             <Image
-            src="/react_native_logo.png"
+            src="/root/tech_logos/marquee/react_native_logo.png"
             alt="React Native Logo"
             fill
             sizes="10vw"
@@ -42,7 +42,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-15 mx-4 relative">
             <Image
-            src="/react_logo.svg"
+            src="/root/tech_logos/marquee/react_logo.svg"
             alt="React Logo"
             fill
             sizes="10vw"
@@ -51,7 +51,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-22 mx-4 relative">
             <Image
-            src="/next_logo.svg"
+            src="/root/tech_logos/marquee/next_logo.svg"
             alt="Next Logo"
             fill
             sizes="10vw"
@@ -60,7 +60,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-10 mx-4 relative">
             <Image
-            src="/git_logo.svg"
+            src="/root/tech_logos/marquee/git_logo.svg"
             alt="Git Logo"
             fill
             sizes="10vw"
@@ -69,7 +69,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-23 mx-4 relative">
             <Image
-            src="/vercel_logo.svg"
+            src="/root/tech_logos/marquee/vercel_logo.svg"
             alt="Vercel Logo"
             fill
             sizes="10vw"
@@ -78,7 +78,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-5 mx-4 relative">
             <Image
-            src="/tailwind_logo.svg"
+            src="/root/tech_logos/marquee/tailwind_logo.svg"
             alt="Tailwindcss Logo"
             fill
             sizes="10vw"
@@ -87,7 +87,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-13 mx-4 relative">
            <Image
-            src="/heroku_logo.svg"
+            src="/root/tech_logos/marquee/heroku_logo.svg"
             alt="Heroku Logo"
             fill
             sizes="10vw"
@@ -96,7 +96,7 @@ export function TechLogoMarquee(){
           </div>
           <div className="h-12 mx-4 relative">
            <Image
-            src="/neon_logo.png"
+            src="/root/tech_logos/marquee/neon_logo.png"
             alt="Neon Logo"
             fill
             sizes="10vw"

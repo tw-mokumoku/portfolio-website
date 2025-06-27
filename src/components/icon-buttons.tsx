@@ -10,7 +10,7 @@ export function TechIconButtons(){
         <Button variant="outline" size="icon">
           <Link href="https://qiita.com/mk-mokumoku" className="relative">
             <Image
-              src="/qiita_logo.png"
+              src="/root/tech_logos/icon_button/qiita_logo.png"
               alt="Qiita Logo"
               fill
               sizes="10vw"

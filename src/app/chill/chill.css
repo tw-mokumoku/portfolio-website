@@ -18,11 +18,11 @@
     animation-timing-function: cubic-bezier(0.2, -0.1, 0, 1);
     overflow: hidden;
     font-family: "VT323", monospace;
-    cursor: url(/default.svg), default !important;
+    cursor: url(/music/ui/default.svg), default !important;
 }
 
 button, select, .pointer{
-    cursor: url(/pointer.svg), pointer !important;
+    cursor: url(/music/ui/pointer.svg), pointer !important;
 }
 
 #ui-container {
@@ -60,7 +60,7 @@ span {
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/lines.jpg);
+    background: url(/music/background/lines.jpg);
     z-index: 10;
     background-size: 7px auto;
     mix-blend-mode: overlay;
@@ -87,7 +87,7 @@ span {
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    background: url(/vignette.png);
+    background: url(/music/background/vignette.png);
     background-size: 100% 100%;
     mix-blend-mode: overlay;
     pointer-events: none;

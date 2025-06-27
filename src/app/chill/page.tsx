@@ -145,13 +145,13 @@ function RightTopMenu({
     return (
         <div>
             <div className="flex flex-row-reverse">
-                <Image width={25} height={25} src="/crown.svg" alt="crown" id="shadow" className="pointer mb-3 me-3 -mt-1"
+                <Image width={25} height={25} src="/music/ui/crown.svg" alt="crown" id="shadow" className="pointer mb-3 me-3 -mt-1"
                     onClick={()=>setShowAbout(!showAbout)}
                 />
-                <Link href='https://github.com/tw-mokumoku'><Image width={22} height={22} src="/github_icon.svg" alt="crown" id="shadow" className="pointer mb-3 me-3" style={{ marginTop: 1 }}/></Link>
-                <Link href='https://x.com/mk_mokumoku'><Image width={25} height={25} src="/x.svg" alt="crown" id="shadow" className="pointer mb-3 me-3"/></Link>
-                <Link href='https://discord.com/users/1305870412227547212'><Image width={25} height={25} src="/discord_icon.svg" alt="crown" id="shadow" className="pointer mb-3 me-3"/></Link>
-                <Image width={25} height={25} src="/fullscreen.svg" alt="fullscreen" id="shadow" className="pointer mb-3 me-3"
+                <Link href='https://github.com/tw-mokumoku'><Image width={22} height={22} src="/music/ui/github_icon.svg" alt="crown" id="shadow" className="pointer mb-3 me-3" style={{ marginTop: 1 }}/></Link>
+                <Link href='https://x.com/mk_mokumoku'><Image width={25} height={25} src="/music/ui/x.svg" alt="crown" id="shadow" className="pointer mb-3 me-3"/></Link>
+                <Link href='https://discord.com/users/1305870412227547212'><Image width={25} height={25} src="/music/ui/discord_icon.svg" alt="crown" id="shadow" className="pointer mb-3 me-3"/></Link>
+                <Image width={25} height={25} src="/music/background/fullscreen.svg" alt="fullscreen" id="shadow" className="pointer mb-3 me-3"
                     onClick={() => {
                         setIsFullScreen(!isFullScreen);
                         if(isFullScreen) document.exitFullscreen();
