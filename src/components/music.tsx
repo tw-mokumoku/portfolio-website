@@ -18,7 +18,6 @@ import {
 import { toggleShowPanel } from "@/services/musicCategorySlice";
 import VolumeSlider from '@/components/VolumeSlider';
 import {useKey} from 'react-use';
-import _ from 'lodash';
 
 export function LeftMusicUI(){
     const { load, play, pause, isPlaying, volume, setVolume, mute, unmute } = useAudioPlayer();
@@ -51,10 +50,12 @@ export function LeftMusicUI(){
 
     useEffect(()=>{
         setVolume(sliceVolume);
+        // eslint-disable-next-line
     }, [sliceVolume]);
     useEffect(()=>{
         if(musicIsMuted) mute();
         else unmute();
+        // eslint-disable-next-line
     }, [musicIsMuted])
 
     useKey('ArrowUp', () => dispatch(increaseVolume()));
@@ -68,6 +69,7 @@ export function LeftMusicUI(){
     useEffect(()=>{
         if(musicIsPlaying) play();
         else pause(); 
+        // eslint-disable-next-line
     }, [musicIsPlaying]);
 
     useEffect(()=>{

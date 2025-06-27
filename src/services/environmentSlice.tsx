@@ -1,6 +1,5 @@
 'use client'
 import { createSlice } from '@reduxjs/toolkit';
-import _ from 'lodash';
 
 export const environmentController = createSlice({
     name: 'environment',

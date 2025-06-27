@@ -217,6 +217,7 @@ function Profile({showAbout}:{showAbout:boolean}){
             }, 100);
             return () => clearInterval(interval);
         }
+    // eslint-disable-next-line
     }, [volumeUp]);
 
     useEffect(()=>{
@@ -226,6 +227,7 @@ function Profile({showAbout}:{showAbout:boolean}){
             }, 100);
             return () => clearInterval(interval);
         }
+    // eslint-disable-next-line
     }, [volumeDown]);
 
     return (
