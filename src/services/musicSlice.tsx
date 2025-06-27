@@ -10,6 +10,7 @@ const _getMusicBgObj = (innerMusicBgObj: musicBgObjType, _mBgIndex: number, _mCa
     return innerMusicBgObj[musicCategories[_mCategoryIndex].id as MusicCategory][_mBgIndex];
 }
 
+
 export const musicController = createSlice({
     name: 'background',
     initialState: {
@@ -21,8 +22,26 @@ export const musicController = createSlice({
         musicBgSrc: '/music/chill/gif/chillhop_radio/cat_night.gif',
         innerMusicObj: musicsObj,
         innerMusicBgObj: musicBgObj,
+        musicIsPlaying: true,
+        volume: 0.75,
+        musicIsMuted: false
     },
     reducers: {
+        toggleMusicIsMuted: (state: { musicIsMuted: boolean }) => {
+            state.musicIsMuted = !state.musicIsMuted;
+        },
+        toggleMusicIsPlaying: (state: { musicIsPlaying: boolean }) => {
+            state.musicIsPlaying = !state.musicIsPlaying;
+        },
+        setVolume: (state: {volume: number}, action: { payload: number }) => {
+            state.volume = action.payload;
+        },
+        increaseVolume: (state: { volume: number }) => {
+            state.volume = _.clamp(state.volume + 0.02, 0, 1);
+        },
+        decreaseVolume: (state: { volume: number }) => {
+            state.volume = _.clamp(state.volume - 0.02, 0, 1);
+        },
         setMusicIndex: (state: {innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}, action: { payload: number }) => {
             state.musicIndex = action.payload;
 
@@ -117,7 +136,12 @@ export const {
     setNextMusicCategoryIndex,
     setPreviousMusicCategoryIndex,
     shuffleMusics,
-    shuffleMusicBg
+    shuffleMusicBg,
+    increaseVolume,
+    decreaseVolume,
+    setVolume,
+    toggleMusicIsPlaying,
+    toggleMusicIsMuted
 } = musicController.actions;
 
 export default musicController.reducer;

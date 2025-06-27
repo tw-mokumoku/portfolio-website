@@ -6,18 +6,20 @@ import Image from "next/image";
 import { LeftMusicUI } from "@/components/music";
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store } from '@/services/store';
-import { shuffleMusicBg } from "@/services/musicSlice";
+import { setNextMusicCategoryIndex, setPreviousMusicCategoryIndex, shuffleMusicBg, increaseVolume, decreaseVolume, toggleMusicIsMuted, toggleMusicIsPlaying } from "@/services/musicSlice";
 import FadeInDiv from "@/components/animation/FadeInDiv";
 import Link from "next/link";
 import {useKey} from 'react-use';
 import { MusicCategoryPanel } from "@/components/musicCategory";
+import { toggleCrtLines } from "@/services/environmentSlice";
+import { toggleShowPanel } from "@/services/musicCategorySlice";
 
 export default function Page() {
     const [startChill, setStartChill] = useState(true);
 
     return (
         <Provider store={store}>
-        <div id="container" className="cursor-pointer">
+        <div id="container" className="cursor-pointer select-none">
             {startChill ?
                 <div id="pressable-screen" className="pointer" onClick={() => setStartChill(false)} />
                 :
@@ -38,20 +40,42 @@ export default function Page() {
 }
 
 function ScreenEffects(){
-    const [isLowPower, setIsLowPower] = useState(true);
+    const dispatch = useDispatch();
     const [crtLines, setCrtLines] = useState(<div id="crt-lines" className="z-9999"/>);
-    useKey('l', () => setIsLowPower(!isLowPower), undefined, [isLowPower]);
+    const {
+        showCrtLines
+    } = useSelector((state: {
+        environmentController: {
+            showCrtLines: boolean
+        }
+    }) => state.environmentController);
+    const {
+        musicIsMuted
+    } = useSelector((state: {
+        musicController: {
+            musicIsMuted: boolean
+        }
+    }) => state.musicController);
+
+    useKey('l', () => dispatch(toggleCrtLines()));
     useEffect(()=>{
-        setCrtLines(isLowPower ? <div id="crt-lines" className="z-9999"/> : <></>)
-    }, [isLowPower]);
+        setCrtLines(showCrtLines ? <div id="crt-lines" className="z-9999"/> : <></>)
+    }, [showCrtLines]);
 
     return (
-        <div className="relative box-sizing: content-box">
-            <MusicBackground />
-            {crtLines}
-            <div id="darken" className="z-1" />
-            <div id="vignette" />
-        </div>
+        <>
+            <div className="relative box-sizing: content-box">
+                <MusicBackground />
+                {crtLines}
+                <div id="darken" className="z-1" />
+                <div id="vignette" />
+            </div>
+            { musicIsMuted ? 
+                <p className="absolute h-full w-full text-5xl pointer flex justify-center items-center" id="shadow">SOUND MUTED...</p>
+                :
+                <></>
+            }
+        </>
     );
 }
 
@@ -165,6 +189,7 @@ function RightTopMenu({
 }
 
 function Profile({showAbout}:{showAbout:boolean}){
+    const dispatch = useDispatch();
     const {
         showPanel
     } = useSelector((state: {
@@ -172,6 +197,36 @@ function Profile({showAbout}:{showAbout:boolean}){
             showPanel: boolean
         }
     }) => state.musicCategoryController);
+
+    const [upHovering, setUpHovering] = useState(false);
+    const [downHovering, setDownHovering] = useState(false);
+    const [nextHovering, setNextHovering] = useState(false);
+    const [previousHovering, setPreviousHovering] = useState(false);
+    const [openCategoryMenuHovering, setOpenCategoryMenuHovering] = useState(false);
+    const [spacebarHovering, setSpacebarHovering] = useState(false);
+    const [mHovering, setMHovering] = useState(false);
+    const [bHovering, setBHovering] = useState(false);
+    const [lHovering, setLHovering] = useState(false);
+    const [volumeUp, setVolumeUp] = useState(false);
+    const [volumeDown, setVolumeDown] = useState(false);
+
+    useEffect(()=>{
+        if(volumeUp){
+            const interval = setInterval(() => {
+                dispatch(increaseVolume());
+            }, 100);
+            return () => clearInterval(interval);
+        }
+    }, [volumeUp]);
+
+    useEffect(()=>{
+        if(volumeDown){
+            const interval = setInterval(() => {
+                dispatch(decreaseVolume());
+            }, 100);
+            return () => clearInterval(interval);
+        }
+    }, [volumeDown]);
 
     return (
         <FadeInDiv show={showAbout && !showPanel} className="mt-2 absolute right-0 overflow-scroll [&::-webkit-scrollbar]:hidden pe-3 max-h-[50vh]">
@@ -182,23 +237,32 @@ function Profile({showAbout}:{showAbout:boolean}){
                 </div>
                 <p id="shadow" className="text-xl text-center mt-1">mk-mokumoku</p>
             </Link>
-            <div className="text-xl mt-1 flex">
-                 <p id="red-shadow" className="mr-3">↑ / ↓</p><p id="shadow">change volume</p>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setUpHovering(true)} onMouseLeave={() => setUpHovering(false)} onClick={() => dispatch(increaseVolume())} onMouseDown={() => setVolumeUp(true)} onMouseUp={() => setVolumeUp(false)}>
+                 <div id={upHovering ? "shadow" : "red-shadow"} className="mr-3">↑</div><p id="shadow">volume up</p>
             </div>
-            <div className="text-xl mt-1 flex">
-                 <p id="red-shadow" className="mr-3">← / →</p><p id="shadow">change category</p>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setDownHovering(true)} onMouseLeave={() => setDownHovering(false)} onClick={() => dispatch(decreaseVolume())} onMouseDown={() => setVolumeDown(true)} onMouseUp={() => setVolumeDown(false)}>
+                 <div id={downHovering ? "shadow" : "red-shadow"} className="mr-3">↓</div><p id="shadow">volume down</p>
             </div>
-            <div className="text-xl mt-1 flex">
-                 <p id="red-shadow" className="mr-3">spacebar</p><p id="shadow">play/pause</p>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setNextHovering(true)} onMouseLeave={() => setNextHovering(false)} onClick={() => dispatch(setNextMusicCategoryIndex())}>
+                 <div id={nextHovering ? "shadow" : "red-shadow"} className="mr-3">→</div><p id="shadow">next category</p>
             </div>
-            <div className="text-xl mt-1 flex">
-                 <p id="red-shadow" className="mr-3">M</p><p id="shadow">mute music on/off</p>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setPreviousHovering(true)} onMouseLeave={() => setPreviousHovering(false)} onClick={() => dispatch(setPreviousMusicCategoryIndex())}>
+                 <div id={previousHovering ? "shadow" : "red-shadow"} className="mr-3">←</div><p id="shadow">previous category</p>
             </div>
-            <div className="text-xl mt-1 flex">
-                 <p id="red-shadow" className="mr-3">B</p><p id="shadow">change background image</p>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setSpacebarHovering(true)} onMouseLeave={() => setSpacebarHovering(false)} onClick={() => dispatch(toggleMusicIsPlaying())}>
+                 <p id={spacebarHovering ? "shadow" : "red-shadow"} className="mr-3">spacebar</p><p id="shadow">play/pause</p>
             </div>
-            <div className="text-xl mt-1 flex">
-                 <p id="red-shadow" className="mr-3">L</p><p id="shadow">low-power mode on/off</p>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setMHovering(true)} onMouseLeave={() => setMHovering(false)} onClick={() => dispatch(toggleMusicIsMuted())}>
+                 <p id={mHovering ? "shadow" : "red-shadow"} className="mr-3">M</p><p id="shadow">mute sound on/off</p>
+            </div>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setBHovering(true)} onMouseLeave={() => setBHovering(false)} onClick={() => dispatch(shuffleMusicBg())}>
+                 <p id={bHovering ? "shadow" : "red-shadow"} className="mr-3">B</p><p id="shadow">change background image</p>
+            </div>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setLHovering(true)} onMouseLeave={() => setLHovering(false)} onClick={() => dispatch(toggleCrtLines())}>
+                 <p id={lHovering ? "shadow" : "red-shadow"} className="mr-3">L</p><p id="shadow">low-power mode on/off</p>
+            </div>
+            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setOpenCategoryMenuHovering(true)} onMouseLeave={() => setOpenCategoryMenuHovering(false)} onClick={() => dispatch(toggleShowPanel())}>
+                 <div id={openCategoryMenuHovering ? "shadow" : "red-shadow"} className="mr-3">click here</div><p id="shadow">to open category menu</p>
             </div>
             <Link href="/">
                 <p id="shadow" className="text-xl mt-1 underline">click here to know about me</p>
