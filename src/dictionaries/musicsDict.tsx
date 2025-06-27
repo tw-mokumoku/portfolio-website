@@ -1,4 +1,5 @@
 export type MusicCategory = "chillhop_radio" | "love_radio" | "chill_beat";
+export type Genre = "chill" | "kawaii";
 
 export const musicCategories = [
     {
