@@ -9,8 +9,12 @@ const vt323 = VT323({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  title: "Mokumoku-WebPortfolio",
-  description: "このサイトはtw-mokumokuのWebポートフォリオです",
+  title: "Lofi Music BGM - Perfect for Focus & Relaxation | MK Chill",
+  description: "Enjoy free Lofi Music ideal for studying, working, or simply chilling out. Let our calming lo-fi hip hop enrich your daily life. Experience unique music beyond YouTube today.",
+  keywords: [ 'Lofi music', 'BGM', 'チル', '音楽' ],
+  openGraph:{
+    images: '/hoodCat.png'
+  }
 };
 
 export default function RootLayout({
@@ -19,20 +23,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${vt323.variable} antialiased`}
-        suppressHydrationWarning
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-            >
-            {children}
-          </ThemeProvider>
-      </body>
-    </html>
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${vt323.variable} antialiased`}
+          suppressHydrationWarning
+          >
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+              >
+              {children}
+            </ThemeProvider>
+        </body>
+      </html>
+    </>
   );
 }

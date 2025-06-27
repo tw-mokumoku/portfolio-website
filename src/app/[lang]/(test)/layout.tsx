@@ -15,8 +15,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mokumoku-WebPortfolio",
-  description: "このサイトはtw-mokumokuのWebポートフォリオです",
+  title: "mk-mokumokuのポートフォリオ - Web開発とクリエイティブプロジェクト",
+  description: "Web開発、インタラクティブデザイン、そして生産性向上ツールなどのユニークなプロジェクトを含む、mk-mokumokuの多様なポートフォリオをご覧ください。私のスキルがどのようにアイデアを形にするかをご覧ください。",
+  keywords: [
+    'mk-mokumoku',
+    'ポートフォリオ',
+    'Web開発',
+    'Next.js',
+    'React',
+    'インタラクティブデザイン',
+    'クリエイティブプロジェクト',
+    'プログラミング',
+    'ソフトウェア開発'
+  ],
+  openGraph:{
+    images: '/hoodCat.png'
+  }
 };
 
 export default function RootLayout({
