@@ -1,10 +1,11 @@
 'use client'
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { musicBgObjType, chillMusicCategories, musicIndexObjType, chillMusicBgObj, chillMusicIndexObj, chillMusicCategory, kawaiiMusicCategories, kawaiiMusicIndexObj, kawaiiMusicBgObj, kawaiiMusicCategory, MusicCategory } from "@/dictionaries/musicsDict";
+import { musicBgObjType, chillMusicCategories, musicIndexObjType, chillMusicBgObj, chillMusicIndexObj, chillMusicCategory, kawaiiMusicCategories, kawaiiMusicIndexObj, kawaiiMusicBgObj, kawaiiMusicCategory } from "@/dictionaries/musicsDict";
 import { setMusicCategoryIndex, switchToChill, switchToKawaii } from '@/services/musicSlice';
 import { toggleShowPanel } from '@/services/musicCategorySlice';
 import { useEffect, useState } from "react";
+import { switchCommonCSSToChill, switchCommonCSSToKawaii } from "@/services/commonCssSlice";
 
 // 型ガード関数
 const isChillMusicIndexObj = (obj: musicIndexObjType): obj is typeof chillMusicIndexObj => {
@@ -34,13 +35,16 @@ export function MusicCategoryPanel(){
     }) => state.musicCategoryController);
     const [mood, setMood] = useState("chill");
 
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
+
     const handleMoodChange = (newMood: string) => {
         setMood(newMood);
-        if (newMood === "chill") {
-            dispatch(switchToChill());
-        } else if (newMood === "kawaii") {
-            dispatch(switchToKawaii());
-        }
     };
 
     return (
@@ -61,7 +65,7 @@ export function MusicCategoryPanel(){
                             <div className="w-60 h-35">
                                 <Image src="/music/chill/gif/chill_category.gif" fill alt="chill" style={{ overflow: "clip", overflowClipMargin: "content-box", objectFit: "cover" }} />
                             </div>
-                            <p id="shadow">Chill</p>
+                            <p className={`${defaultTextEffect}`}>Chill</p>
                         </div>
                         <div className="flex flex-col  m-5 z-2 pointer" // kawaii
                             onClick={(e) => {
@@ -72,10 +76,10 @@ export function MusicCategoryPanel(){
                             <div className="w-60 h-35">
                                 <Image src="/music/kawaii/gif/kawaii_category.gif" fill alt="kawaii" style={{ overflow: "clip", overflowClipMargin: "content-box", objectFit: "cover" }} />
                             </div>
-                            <p id="shadow">Kawaii</p>
+                            <p className={`${defaultTextEffect}`}>Kawaii</p>
                         </div>
                     </div>
-                    <div style={{ background: "rgba(255, 255, 255, 0.5)", height: "2px" }} id="shadow" className="w-full" />
+                    <div style={{ background: "rgba(255, 255, 255, 0.5)", height: "2px" }} className={`w-full ${defaultTextEffect}`} />
                     <CategoryPanels mood={mood}/>
                 </div>
             </>
@@ -110,10 +114,22 @@ function CategoryPanels({mood}:{mood:string}){
 function Panels({musicId, musicRaw, musicIndexObj, musicBgObj}:{musicId: string, musicRaw: string, musicIndexObj: musicIndexObjType, musicBgObj: musicBgObjType}){
     const dispatch = useDispatch();
 
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
+
     const handleClick = () => {
         if (isChillMusicIndexObj(musicIndexObj)) {
+            dispatch(switchToChill());
+            dispatch(switchCommonCSSToChill());
             dispatch(setMusicCategoryIndex(musicIndexObj[musicId as chillMusicCategory].id));
         } else if (isKawaiiMusicIndexObj(musicIndexObj)) {
+            dispatch(switchToKawaii());
+            dispatch(switchCommonCSSToKawaii());
             dispatch(setMusicCategoryIndex(musicIndexObj[musicId as kawaiiMusicCategory].id));
         }
     };
@@ -134,7 +150,7 @@ function Panels({musicId, musicRaw, musicIndexObj, musicBgObj}:{musicId: string,
             <div className="w-60 h-35">
                 <Image src={getBgSrc()} fill alt={musicId} style={{ overflow: "clip", overflowClipMargin: "content-box", objectFit: "cover" }} />
             </div>
-            <p id="shadow">{musicRaw}</p>
+            <p className={`${defaultTextEffect}`}>{musicRaw}</p>
         </div>
     );
 }

@@ -28,7 +28,7 @@ export function LeftMusicUI(){
         musicSrc,
         volume: sliceVolume,
         musicIsPlaying,
-        musicIsMuted
+        musicIsMuted,
     } = useSelector((state: {
         musicController: {
             musicCategoryIndex: number,
@@ -36,13 +36,22 @@ export function LeftMusicUI(){
             musicSrc: string,
             volume: number,
             musicIsPlaying: boolean,
-            musicIsMuted: boolean
+            musicIsMuted: boolean,
         }
     }) => state.musicController);
+
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
 
     const startMusic = () =>{
         load(musicSrc, {
             initialVolume: sliceVolume,
+            initialMute: musicIsMuted,
             autoplay: true,
             onend: onEndMusic
         });
@@ -99,20 +108,20 @@ export function LeftMusicUI(){
         <div className="z-0">
             <div className="flex">
                 { isPlaying ?
-                    <Image src='/music/ui/stop.svg' alt="stop" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={pause} />
+                    <Image src='/music/ui/stop.svg' alt="stop" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} onClick={pause} />
                     :
-                    <Image src='/music/ui/play.svg' alt="play" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={play} />
+                    <Image src='/music/ui/play.svg' alt="play" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} onClick={play} />
                 }
-                <Image src='/music/ui/shuffle.svg' alt="shuffle" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={shuffleMusic} />
-                <Image src='/music/ui/previous.svg' alt="previous" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" onClick={() => dispatch(setPreviousMusicCategoryIndex())} />
-                <Image src='/music/ui/forward.svg' alt="forward" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-4" onClick={() => dispatch(setNextMusicCategoryIndex())} />
+                <Image src='/music/ui/shuffle.svg' alt="shuffle" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} onClick={shuffleMusic} />
+                <Image src='/music/ui/previous.svg' alt="previous" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} onClick={() => dispatch(setPreviousMusicCategoryIndex())} />
+                <Image src='/music/ui/forward.svg' alt="forward" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-4`} onClick={() => dispatch(setNextMusicCategoryIndex())} />
                 <VolumeSlider volume={volume} setVolume={setVolume} />
             </div>
             <div className="flex">
                 { isPlaying && !musicIsMuted ?
-                    <Image src="/music/ui/beats.gif" alt="beats" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" />
+                    <Image src="/music/ui/beats.gif" alt="beats" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} />
                     :
-                    <Image src="/music/ui/beatsMute.svg" alt="beatsMute" id="shadow" width={10} height={10} className="pointer w-5 h-5 mb-3 me-3" />
+                    <Image src="/music/ui/beatsMute.svg" alt="beatsMute" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} />
                 }
                 <MusicName />
             </div>
@@ -130,6 +139,15 @@ function MusicName(){
     }) => state.musicController);
     const dispatch = useDispatch();
 
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
+
+    
     return (
         <div onClick={() => dispatch(toggleShowPanel())} className="cursor-pointer">
             <TypeAnimation
@@ -141,7 +159,7 @@ function MusicName(){
                 ]}
                 wrapper="span"
                 speed={50}
-                className='typee'
+                className={`typee ${defaultTextEffect}`}
             />
         </div>
     );

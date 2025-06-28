@@ -1,28 +1,36 @@
 'use client'
 import { createSlice } from '@reduxjs/toolkit';
-import { musicIndexObjType, chillMusicIndexObj, musicsObjType, chillMusicsObj, chillMusicCategories, MusicCategory, musicBgObjType, chillMusicBgObj, musicCategoriesType, kawaiiMusicIndexObj, kawaiiMusicCategories, kawaiiMusicBgObj, kawaiiMusicsObj } from '@/dictionaries/musicsDict';
+import { musicIndexObjType, chillMusicIndexObj, musicsObjType, chillMusicsObj, chillMusicCategories, musicBgObjType, chillMusicBgObj, musicCategoriesType, kawaiiMusicIndexObj, kawaiiMusicCategories, kawaiiMusicBgObj, kawaiiMusicsObj } from '@/dictionaries/musicsDict';
 import _ from 'lodash';
+import { switchCommonCSSToChill, switchCommonCSSToKawaii } from './commonCssSlice';
 
-const _getMusicObj = (musicCategories: musicCategoriesType, innerMusicObj: musicsObjType, _mIndex: number, _mCategoryIndex: number) =>{
+// 型定義
+interface MusicItem {
+    name: string;
+    src: string;
+}
+
+const _getMusicObj = (musicCategories: musicCategoriesType, innerMusicObj: musicsObjType, _mIndex: number, _mCategoryIndex: number): MusicItem => {
     const key = musicCategories[_mCategoryIndex].id;
     if (key in innerMusicObj) {
-        return (innerMusicObj as any)[key][_mIndex];
+        return (innerMusicObj as Record<string, MusicItem[]>)[key][_mIndex];
     }
     throw new Error(`Category key ${key} not found in innerMusicObj`);
 }
-const _getMusicBgObj = (musicCategories: musicCategoriesType, innerMusicBgObj: musicBgObjType, _mBgIndex: number, _mCategoryIndex: number) =>{
+
+const _getMusicBgObj = (musicCategories: musicCategoriesType, innerMusicBgObj: musicBgObjType, _mBgIndex: number, _mCategoryIndex: number): string => {
     const key = musicCategories[_mCategoryIndex].id;
     if (key in innerMusicBgObj) {
-        return (innerMusicBgObj as any)[key][_mBgIndex];
+        return (innerMusicBgObj as Record<string, string[]>)[key][_mBgIndex];
     }
     throw new Error(`Category key ${key} not found in innerMusicBgObj`);
 }
-
 
 export const musicController = createSlice({
     name: 'background',
     initialState: {
         // basic states
+        mood: 'chill',
         musicIndex: 0,
         musicBgIndex: 0,
         musicCategoryIndex: 0,
@@ -40,17 +48,27 @@ export const musicController = createSlice({
         musicIndexObj: chillMusicIndexObj as musicIndexObjType,
     },
     reducers: {
-        switchToChill: (state: {musicBgSrc: string, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number, musicCategories: musicCategoriesType, musicIndexObj: musicIndexObjType, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType}) =>{
+        switchToChill: (state: {mood: string, musicIndex: number, musicBgIndex: number, musicBgSrc: string, musicName: string, musicSrc: string, musicCategoryIndex: number, musicCategories: musicCategoriesType, musicIndexObj: musicIndexObjType, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType}) =>{
+            if(state.mood === 'chill') return;
+            state.mood = 'chill';
+            state.musicIndex = 0;
+            state.musicBgIndex = 0;
             state.musicCategories = chillMusicCategories;
             state.musicIndexObj = chillMusicIndexObj;
             state.innerMusicObj = chillMusicsObj;
             state.innerMusicBgObj = chillMusicBgObj;
+            switchCommonCSSToChill();
         },
-        switchToKawaii: (state: {musicCategories: musicCategoriesType, musicIndexObj: musicIndexObjType, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType}) =>{
+        switchToKawaii: (state: {mood: string, musicIndex: number, musicBgIndex: number, musicCategories: musicCategoriesType, musicIndexObj: musicIndexObjType, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType}) =>{
+            if(state.mood === 'kawaii') return;
+            state.mood = 'kawaii';
+            state.musicIndex = 0;
+            state.musicBgIndex = 0;
             state.musicCategories = kawaiiMusicCategories;
             state.musicIndexObj = kawaiiMusicIndexObj;
             state.innerMusicObj = kawaiiMusicsObj;
             state.innerMusicBgObj = kawaiiMusicBgObj;
+            switchCommonCSSToKawaii();
         },
         toggleMusicIsMuted: (state: { musicIsMuted: boolean }) => {
             state.musicIsMuted = !state.musicIsMuted;
@@ -76,7 +94,7 @@ export const musicController = createSlice({
         },
         setNextMusicIndex: (state: {musicCategories: musicCategoriesType, innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
             const key = state.musicCategories[state.musicCategoryIndex].id;
-            if(state.musicIndex === (state.innerMusicObj as any)[key].length - 1){
+            if(state.musicIndex === (state.innerMusicObj as Record<string, MusicItem[]>)[key].length - 1){
                 state.musicIndex = 0;
             } else {
                 state.musicIndex++;
@@ -89,7 +107,7 @@ export const musicController = createSlice({
         setPreviousMusicIndex: (state: {musicCategories: musicCategoriesType, innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
             const key = state.musicCategories[state.musicCategoryIndex].id;
             if(state.musicIndex === 0){
-                state.musicIndex = (state.innerMusicObj as any)[key].length - 1;
+                state.musicIndex = (state.innerMusicObj as Record<string, MusicItem[]>)[key].length - 1;
             } else {
                 state.musicIndex--;
             }
@@ -107,7 +125,7 @@ export const musicController = createSlice({
 
             const key = state.musicCategories[state.musicCategoryIndex].id;
             if (key in state.innerMusicBgObj) {
-                (state.innerMusicBgObj as any)[key] = _.shuffle((state.innerMusicBgObj as any)[key]);
+                (state.innerMusicBgObj as Record<string, string[]>)[key] = _.shuffle((state.innerMusicBgObj as Record<string, string[]>)[key]);
                 const _musicBgSrc = _getMusicBgObj(state.musicCategories, state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
                 state.musicBgSrc = _musicBgSrc;
             }
@@ -125,7 +143,7 @@ export const musicController = createSlice({
 
             const key = state.musicCategories[state.musicCategoryIndex].id;
             if (key in state.innerMusicBgObj) {
-                (state.innerMusicBgObj as any)[key] = _.shuffle((state.innerMusicBgObj as any)[key]);
+                (state.innerMusicBgObj as Record<string, string[]>)[key] = _.shuffle((state.innerMusicBgObj as Record<string, string[]>)[key]);
                 const _musicBgSrc = _getMusicBgObj(state.musicCategories, state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
                 state.musicBgSrc = _musicBgSrc;
             }
@@ -143,7 +161,7 @@ export const musicController = createSlice({
 
             const key = state.musicCategories[state.musicCategoryIndex].id;
             if (key in state.innerMusicBgObj) {
-                (state.innerMusicBgObj as any)[key] = _.shuffle((state.innerMusicBgObj as any)[key]);
+                (state.innerMusicBgObj as Record<string, string[]>)[key] = _.shuffle((state.innerMusicBgObj as Record<string, string[]>)[key]);
                 const _musicBgSrc = _getMusicBgObj(state.musicCategories, state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
                 state.musicBgSrc = _musicBgSrc;
             }
@@ -151,7 +169,7 @@ export const musicController = createSlice({
         shuffleMusics: (state: {musicCategories: musicCategoriesType, innerMusicObj: musicsObjType, musicName: string, musicSrc: string, musicIndex: number, musicCategoryIndex: number}) =>{
             const key = state.musicCategories[state.musicCategoryIndex].id;
             if (key in state.innerMusicObj) {
-                (state.innerMusicObj as any)[key] = _.shuffle((state.innerMusicObj as any)[key]);
+                (state.innerMusicObj as Record<string, MusicItem[]>)[key] = _.shuffle((state.innerMusicObj as Record<string, MusicItem[]>)[key]);
             }
             const obj = _getMusicObj(state.musicCategories, state.innerMusicObj, state.musicIndex, state.musicCategoryIndex);
             state.musicName = obj.name;
@@ -160,7 +178,7 @@ export const musicController = createSlice({
         shuffleMusicBg: (state: {musicCategories: musicCategoriesType, musicBgSrc: string, innerMusicBgObj: musicBgObjType, musicBgIndex: number, musicCategoryIndex: number}) =>{
             const key = state.musicCategories[state.musicCategoryIndex].id;
             if (key in state.innerMusicBgObj) {
-                (state.innerMusicBgObj as any)[key] = _.shuffle((state.innerMusicBgObj as any)[key]);
+                (state.innerMusicBgObj as Record<string, string[]>)[key] = _.shuffle((state.innerMusicBgObj as Record<string, string[]>)[key]);
                 const _musicBgSrc = _getMusicBgObj(state.musicCategories, state.innerMusicBgObj, state.musicBgIndex, state.musicCategoryIndex);
                 state.musicBgSrc = _musicBgSrc;
             }

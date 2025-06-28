@@ -13,30 +13,69 @@ import {useKey} from 'react-use';
 import { MusicCategoryPanel } from "@/components/musicCategory";
 import { toggleCrtLines } from "@/services/environmentSlice";
 import { toggleShowPanel } from "@/services/musicCategorySlice";
+import { switchCommonCSSToChill } from '@/services/commonCssSlice'
 
 export default function Page() {
     const [startChill, setStartChill] = useState(true);
 
     return (
         <Provider store={store}>
-        <div id="container" className="cursor-pointer select-none">
-            {startChill ?
-                <div id="pressable-screen" className="pointer" onClick={() => setStartChill(false)} />
-                :
-                <></>
-            }
-            <ScreenEffects />
-            {
-                startChill
-                ?
-                <StartScreen />
-                :
-                <MainScreen />
-            }
-            <MusicCategoryPanel />
-        </div>
+            <InitialProcesses />
+            <div id="container" className="cursor-pointer select-none">
+                {startChill ?
+                    <div id="pressable-screen" className="pointer" onClick={() => setStartChill(false)} />
+                    :
+                    <></>
+                }
+                <ScreenEffects />
+                {
+                    startChill
+                    ?
+                    <StartScreen />
+                    :
+                    <MainScreen />
+                }
+                <MusicCategoryPanel />
+            </div>
         </Provider>
     )
+}
+
+function InitialProcesses(){
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(switchCommonCSSToChill());
+        // eslint-disable-next-line
+    }, []);
+    const {
+        mood,
+        musicIndex,
+        musicBgIndex,
+        musicIsPlaying,
+        musicName,
+        musicSrc,
+        musicBgSrc,
+    } = useSelector((state: {
+        musicController: {
+            mood: string,
+            musicIndex: number,
+            musicBgIndex: number,
+            musicIsPlaying: boolean,
+            musicName: string,
+            musicSrc: string,
+            musicBgSrc: string,
+        }
+    }) => state.musicController);
+    
+    useEffect(()=>console.log("mood Changed -> ", mood), [mood]);
+    useEffect(()=>console.log("musicIndex Changed -> ", musicIndex), [musicIndex]);
+    useEffect(()=>console.log("musicBgIndex Changed -> ", musicBgIndex), [musicBgIndex]);
+    useEffect(()=>console.log("musicIsPlaying Changed -> ", musicIsPlaying), [musicIsPlaying]);
+    useEffect(()=>console.log("musicName Changed -> ", musicName), [musicName]);
+    useEffect(()=>console.log("musicSrc Changed -> ", musicSrc), [musicSrc]);
+    useEffect(()=>console.log("musicBgSrc Changed -> ", musicBgSrc), [musicBgSrc]);
+
+    return <></>;
 }
 
 function ScreenEffects(){
@@ -50,12 +89,22 @@ function ScreenEffects(){
         }
     }) => state.environmentController);
     const {
-        musicIsMuted
+        musicIsMuted,
+        mood
     } = useSelector((state: {
         musicController: {
-            musicIsMuted: boolean
+            musicIsMuted: boolean,
+            mood: string
         }
     }) => state.musicController);
+
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
 
     useKey('l', () => dispatch(toggleCrtLines()));
     useEffect(()=>{
@@ -66,12 +115,20 @@ function ScreenEffects(){
         <>
             <div className="relative box-sizing: content-box">
                 <MusicBackground />
-                {crtLines}
-                <div id="darken" className="z-1" />
-                <div id="vignette" />
+                { mood === 'chill' ?
+                    <>
+                        {crtLines}
+                        <div id="darken" className="z-1" />
+                        <div id="vignette" />
+                    </>
+                    :
+                    <>
+                        <div id="darken" className="z-1" style={{ opacity: 0.3 }} />
+                    </>
+                    }
             </div>
             { musicIsMuted ? 
-                <p className="absolute h-full w-full text-5xl pointer flex justify-center items-center" id="shadow">SOUND MUTED...</p>
+                <p className={`absolute h-full w-full text-5xl pointer flex justify-center items-center ${defaultTextEffect}`}>SOUND MUTED...</p>
                 :
                 <></>
             }
@@ -111,21 +168,33 @@ function MusicBackground(){
 }
 
 function StartScreen(){
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
+
     return (
         <div id="ui-container">
             <div id="top-ui" className="w-full z-6 relative">
             </div>
             <div id="bottom-ui" className="w-full z-6 relative">
-                <TypeAnimation
-                cursor={false}
-                sequence={[
-                    2000,
-                    "click the screen to start",
-                ]}
-                wrapper="span"
-                speed={50}
-                className='type'
-                />
+                {defaultTextEffect ? 
+                    <TypeAnimation
+                    cursor={false}
+                    sequence={[
+                        2000,
+                        "click the screen to start",
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    className={`${defaultTextEffect} type`}
+                    />
+                    :
+                    <></>
+                }
             </div>
         </div>
     );
@@ -166,16 +235,25 @@ function RightTopMenu({
     setIsFullScreen: Dispatch<SetStateAction<boolean>>, 
     isFullScreen: boolean
 }){
+
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
+
     return (
         <div>
             <div className="flex flex-row-reverse">
-                <Image width={25} height={25} src="/music/ui/crown.svg" alt="crown" id="shadow" className="pointer mb-3 me-3 -mt-1"
+                <Image width={25} height={25} src="/music/ui/crown.svg" alt="crown" className={`${defaultTextEffect} pointer mb-3 me-3 -mt-1`}
                     onClick={()=>setShowAbout(!showAbout)}
                 />
-                <Link href='https://github.com/tw-mokumoku'><Image width={22} height={22} src="/music/ui/github_icon.svg" alt="crown" id="shadow" className="pointer mb-3 me-3" style={{ marginTop: 1 }}/></Link>
-                <Link href='https://x.com/mk_mokumoku'><Image width={25} height={25} src="/music/ui/x.svg" alt="crown" id="shadow" className="pointer mb-3 me-3"/></Link>
-                <Link href='https://discord.com/users/1305870412227547212'><Image width={25} height={25} src="/music/ui/discord_icon.svg" alt="crown" id="shadow" className="pointer mb-3 me-3"/></Link>
-                <Image width={25} height={25} src="/music/background/fullscreen.svg" alt="fullscreen" id="shadow" className="pointer mb-3 me-3"
+                <Link href='https://github.com/tw-mokumoku'><Image width={22} height={22} src="/music/ui/github_icon.svg" alt="crown" className={`${defaultTextEffect} pointer mb-3 me-3`} style={{ marginTop: 1 }}/></Link>
+                <Link href='https://x.com/mk_mokumoku'><Image width={25} height={25} src="/music/ui/x.svg" alt="crown" className={`${defaultTextEffect} pointer mb-3 me-3`}/></Link>
+                <Link href='https://discord.com/users/1305870412227547212'><Image width={25} height={25} src="/music/ui/discord_icon.svg" alt="crown" className={`${defaultTextEffect} pointer mb-3 me-3`}/></Link>
+                <Image width={25} height={25} src="/music/background/fullscreen.svg" alt="fullscreen" className={`${defaultTextEffect} pointer mb-3 me-3`}
                     onClick={() => {
                         setIsFullScreen(!isFullScreen);
                         if(isFullScreen) document.exitFullscreen();
@@ -197,6 +275,21 @@ function Profile({showAbout}:{showAbout:boolean}){
             showPanel: boolean
         }
     }) => state.musicCategoryController);
+    const {
+        mood
+    } = useSelector((state: {
+        musicController: {
+            mood: string
+        }
+    }) => state.musicController);
+
+    const {
+        defaultTextEffect
+    } = useSelector((state: {
+        commonCSSController: {
+            defaultTextEffect: string
+        }
+    }) => state.commonCSSController);
 
     const [upHovering, setUpHovering] = useState(false);
     const [downHovering, setDownHovering] = useState(false);
@@ -231,43 +324,47 @@ function Profile({showAbout}:{showAbout:boolean}){
     }, [volumeDown]);
 
     return (
-        <FadeInDiv show={showAbout && !showPanel} className="mt-2 absolute right-0 overflow-scroll [&::-webkit-scrollbar]:hidden pe-3 max-h-[50vh]">
+        <FadeInDiv show={showAbout && !showPanel} className="mt-2 absolute right-0 overflow-scroll [&::-webkit-scrollbar]:hidden pe-3 max-h-[50vh] pb-5 px-5">
         <div className="flex flex-col items-end text-xl">
             <Link href="/">
-                <div className="w-25 h-25 p-2" style={{ backgroundColor: "transparent", borderWidth: "1px", borderColor:"gray" }} id="shadow">
-                    <Image fill alt="hoodCat" src="/hoodCat.png" id="shadow"/>
+                <div className={`w-25 h-25 p-2 ${defaultTextEffect}`} style={{ backgroundColor: "transparent", borderWidth: "1px", borderColor:`${mood === 'chill' ? "gray" : "white"}` }}>
+                    <Image fill alt="hoodCat" src="/hoodCat.png" className={`${defaultTextEffect}`}/>
                 </div>
-                <p id="shadow" className="text-xl text-center mt-1">mk-mokumoku</p>
+                <p className={`text-xl text-center mt-1 ${defaultTextEffect}`}>mk-mokumoku</p>
             </Link>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setOpenCategoryMenuHovering(true)} onMouseLeave={() => setOpenCategoryMenuHovering(false)} onClick={() => dispatch(toggleShowPanel())}>
-                 <div id={openCategoryMenuHovering ? "shadow" : "red-shadow"} className="mr-3">click here</div><p id="shadow">to open menu</p>
+                 <div className={`mr-3 ${openCategoryMenuHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>click here</div><p className={`${defaultTextEffect}`}>to open menu</p>
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setUpHovering(true)} onMouseLeave={() => setUpHovering(false)} onClick={() => dispatch(increaseVolume())} onMouseDown={() => setVolumeUp(true)} onMouseUp={() => setVolumeUp(false)}>
-                 <div id={upHovering ? "shadow" : "red-shadow"} className="mr-3">↑</div><p id="shadow">volume up</p>
+                 <div className={`mr-3 ${upHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>↑</div><p className={`${defaultTextEffect}`}>volume up</p>
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setDownHovering(true)} onMouseLeave={() => setDownHovering(false)} onClick={() => dispatch(decreaseVolume())} onMouseDown={() => setVolumeDown(true)} onMouseUp={() => setVolumeDown(false)}>
-                 <div id={downHovering ? "shadow" : "red-shadow"} className="mr-3">↓</div><p id="shadow">volume down</p>
+                 <div className={`mr-3 ${downHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>↓</div><p className={`${defaultTextEffect}`}>volume down</p>
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setNextHovering(true)} onMouseLeave={() => setNextHovering(false)} onClick={() => dispatch(setNextMusicCategoryIndex())}>
-                 <div id={nextHovering ? "shadow" : "red-shadow"} className="mr-3">→</div><p id="shadow">next category</p>
+                 <div className={`mr-3 ${nextHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>→</div><p className={`${defaultTextEffect}`}>next category</p>
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setPreviousHovering(true)} onMouseLeave={() => setPreviousHovering(false)} onClick={() => dispatch(setPreviousMusicCategoryIndex())}>
-                 <div id={previousHovering ? "shadow" : "red-shadow"} className="mr-3">←</div><p id="shadow">previous category</p>
+                 <div className={`mr-3 ${previousHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>←</div><p className={`${defaultTextEffect}`}>previous category</p>
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setSpacebarHovering(true)} onMouseLeave={() => setSpacebarHovering(false)} onClick={() => dispatch(toggleMusicIsPlaying())}>
-                 <p id={spacebarHovering ? "shadow" : "red-shadow"} className="mr-3">spacebar</p><p id="shadow">play/pause</p>
+                 <p className={`mr-3 ${spacebarHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>spacebar</p><p className={`${defaultTextEffect}`}>play/pause</p>
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setMHovering(true)} onMouseLeave={() => setMHovering(false)} onClick={() => dispatch(toggleMusicIsMuted())}>
-                 <p id={mHovering ? "shadow" : "red-shadow"} className="mr-3">M</p><p id="shadow">mute sound on/off</p>
+                 <p className={`mr-3 ${mHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>M</p><p className={`${defaultTextEffect}`}>mute sound on/off</p>
             </div>
             <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setBHovering(true)} onMouseLeave={() => setBHovering(false)} onClick={() => dispatch(shuffleMusicBg())}>
-                 <p id={bHovering ? "shadow" : "red-shadow"} className="mr-3">B</p><p id="shadow">change background image</p>
+                 <p className={`mr-3 ${bHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>B</p><p className={`${defaultTextEffect}`}>change background image</p>
             </div>
-            <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setLHovering(true)} onMouseLeave={() => setLHovering(false)} onClick={() => dispatch(toggleCrtLines())}>
-                 <p id={lHovering ? "shadow" : "red-shadow"} className="mr-3">L</p><p id="shadow">low-power mode on/off</p>
-            </div>
+            { mood === 'chill' ?
+                <div className="text-xl mt-1 flex pointer" onMouseEnter={() => setLHovering(true)} onMouseLeave={() => setLHovering(false)} onClick={() => dispatch(toggleCrtLines())}>
+                    <p className={`mr-3 ${lHovering ? defaultTextEffect : mood !== "chill" ? "" : "red-shadow"}`}>L</p><p className={`${defaultTextEffect}`}>low-power mode on/off</p>
+                </div>
+                :
+                <></>
+            }
             <Link href="/">
-                <p id="shadow" className="text-xl mt-1 underline">click here to know about me</p>
+                <p className={`text-xl mt-1 underline ${defaultTextEffect}`}>click here to know about me</p>
             </Link>
         </div>
     </FadeInDiv>

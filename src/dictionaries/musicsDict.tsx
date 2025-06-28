@@ -19,7 +19,6 @@ export type musicIndexObjType = chillMusicIndexObjType | kawaiiMusicIndexObjType
 export type chillMusicIndexObjType = typeof chillMusicIndexObj;
 export type kawaiiMusicIndexObjType = typeof kawaiiMusicIndexObj;
 
-
 export const kawaiiMusicIndexObj = {
     "kawaii_edm": {
         id: 0
@@ -35,14 +34,20 @@ export const kawaiiMusicCategories = [
 
 export const kawaiiMusicBgObj = {
     "kawaii_edm": [
-        "/music/kawaii/gif/kawaii_edm/future_eve.gif"
+        "/music/kawaii/img/kawaii_edm/2girls_smile.jpg",
+        "/music/kawaii/img/kawaii_edm/3girls_smile_pic.jpg",
+        "/music/kawaii/img/kawaii_edm/4girls_sky.jpg",
+        "/music/kawaii/img/kawaii_edm/cat_blue_girl_room.jpg",
+        "/music/kawaii/img/kawaii_edm/gamecenter_4girls_playing.jpg",
+        "/music/kawaii/img/kawaii_edm/room_bed_2girls.jpg",
+        "/music/kawaii/img/kawaii_edm/sleeping_minicharactors_books.jpg",
     ]
 };
 
 export const kawaiiMusicsObj = {
     "kawaii_edm": [
         {
-            name: "曖昧サイボーグ",
+            name: "曖昧サイボーグ - Kawaii",
             src: "/music/kawaii/mp3/kawaii_edm/Aimai_Cyborg.mp3"
         },
         {

@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import musicController from '@/services/musicSlice';
 import musicCategoryController from '@/services/musicCategorySlice';
 import environmentController from '@/services/environmentSlice';
+import commonCSSController from '@/services/commonCssSlice';
 
 export const store = configureStore({
     reducer: {
         musicController: musicController,
         musicCategoryController: musicCategoryController,
-        environmentController: environmentController
+        environmentController: environmentController,
+        commonCSSController: commonCSSController
     }
 });
 

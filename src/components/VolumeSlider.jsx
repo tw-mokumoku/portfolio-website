@@ -1,11 +1,16 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 function VolumeSlider({ volume, setVolume }) {
   const ref = useRef(null);
 
   const [clicking, setClicking] = useState(false);
   const [sliderCoordinates, setSliderCoordinates] = useState({ x: 0, w: 0 });
+
+  const {
+    defaultTextEffect
+  } = useSelector((state) => state.commonCSSController);
 
   function handleMouseDown(e) {
     setClicking(true);
@@ -54,7 +59,7 @@ function VolumeSlider({ volume, setVolume }) {
           width: "auto",
           display: "inline-block",
         }}
-        className="pointer"
+        className={`pointer ${defaultTextEffect}`}
       >
         <Block volume={volume} on={volume > 0.02} />
         <Block volume={volume} on={volume > 0.1} />
@@ -84,7 +89,6 @@ const Block = ({ on, volume }) => {
         pointerEvents: "none",
         opacity: on ? 1 : 0.5,
       }}
-      id="shadow"
     />
   );
 };
