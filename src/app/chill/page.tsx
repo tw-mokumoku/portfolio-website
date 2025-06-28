@@ -55,6 +55,7 @@ function InitialProcesses(){
         musicName,
         musicSrc,
         musicBgSrc,
+        volume
     } = useSelector((state: {
         musicController: {
             mood: string,
@@ -64,6 +65,7 @@ function InitialProcesses(){
             musicName: string,
             musicSrc: string,
             musicBgSrc: string,
+            volume: number
         }
     }) => state.musicController);
     
@@ -74,6 +76,7 @@ function InitialProcesses(){
     useEffect(()=>console.log("musicName Changed -> ", musicName), [musicName]);
     useEffect(()=>console.log("musicSrc Changed -> ", musicSrc), [musicSrc]);
     useEffect(()=>console.log("musicBgSrc Changed -> ", musicBgSrc), [musicBgSrc]);
+    useEffect(()=>console.log("volume Changed -> ", volume), [volume]);
 
     return <></>;
 }

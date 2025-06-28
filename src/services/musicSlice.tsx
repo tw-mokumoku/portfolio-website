@@ -29,6 +29,7 @@ const _getMusicBgObj = (musicCategories: musicCategoriesType, innerMusicBgObj: m
 export const musicController = createSlice({
     name: 'background',
     initialState: {
+        
         // basic states
         mood: 'chill',
         musicIndex: 0,

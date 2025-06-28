@@ -1,16 +1,20 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setVolume } from "@/services/musicSlice";
 
-function VolumeSlider({ volume, setVolume }) {
+function VolumeSlider({ volume }) {
   const ref = useRef(null);
 
   const [clicking, setClicking] = useState(false);
   const [sliderCoordinates, setSliderCoordinates] = useState({ x: 0, w: 0 });
+  const dispatch = useDispatch();
 
   const {
     defaultTextEffect
   } = useSelector((state) => state.commonCSSController);
+
 
   function handleMouseDown(e) {
     setClicking(true);
@@ -29,7 +33,7 @@ function VolumeSlider({ volume, setVolume }) {
 
   function changeVolume(e) {
     const mouseX = e.clientX;
-    setVolume(
+    dispatch(setVolume(
       Math.min(
         Math.max(
           round((mouseX - sliderCoordinates.x) / sliderCoordinates.w),
@@ -37,7 +41,7 @@ function VolumeSlider({ volume, setVolume }) {
         ),
         1
       )
-    );
+    ));
   }
 
   useEffect(() => {

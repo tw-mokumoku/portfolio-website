@@ -115,7 +115,7 @@ export function LeftMusicUI(){
                 <Image src='/music/ui/shuffle.svg' alt="shuffle" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} onClick={shuffleMusic} />
                 <Image src='/music/ui/previous.svg' alt="previous" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-3`} onClick={() => dispatch(setPreviousMusicCategoryIndex())} />
                 <Image src='/music/ui/forward.svg' alt="forward" width={10} height={10} className={`${defaultTextEffect} pointer w-5 h-5 mb-3 me-4`} onClick={() => dispatch(setNextMusicCategoryIndex())} />
-                <VolumeSlider volume={volume} setVolume={setVolume} />
+                <VolumeSlider volume={volume} />
             </div>
             <div className="flex">
                 { isPlaying && !musicIsMuted ?
