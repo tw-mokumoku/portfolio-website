@@ -81,7 +81,7 @@ function InitialProcesses(){
     return <></>;
 }
 
-function ScreenEffects(){
+function ScreenEffects() {
     const dispatch = useDispatch();
     const [crtLines, setCrtLines] = useState(<div id="crt-lines" className="z-9999"/>);
     const {
@@ -128,8 +128,9 @@ function ScreenEffects(){
                     <>
                         <div id="darken" className="z-1" style={{ opacity: 0.3 }} />
                         <div id="bottom-fade"/>
+                        <LightEffect />
                     </>
-                    }
+                }
             </div>
             { musicIsMuted ? 
                 <p className={`absolute h-full w-full text-5xl pointer flex justify-center items-center ${defaultTextEffect}`}>SOUND MUTED...</p>
@@ -140,6 +141,25 @@ function ScreenEffects(){
     );
 }
 
+function LightEffect() {
+    const lightParticles = Array.from({ length: 80 }, (_, i) => (
+        <div
+            key={i}
+            className="light-particle z-1"
+            style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 15}s`,
+                animationDuration: `${12 + Math.random() * 40}s`
+            }}
+        />
+    ));
+
+    return (
+        <div className="absolute inset-0 pointer-events-none">
+            {lightParticles}
+        </div>
+    );
+}
 
 function MusicBackground(){
     const dispatch = useDispatch();
