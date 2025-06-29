@@ -127,6 +127,7 @@ function ScreenEffects(){
                     :
                     <>
                         <div id="darken" className="z-1" style={{ opacity: 0.3 }} />
+                        <div id="bottom-fade"/>
                     </>
                     }
             </div>
