@@ -7,22 +7,6 @@ import { toggleShowPanel } from '@/services/musicCategorySlice';
 import { useEffect, useState } from "react";
 import { switchCommonCSSToChill, switchCommonCSSToKawaii } from "@/services/commonCssSlice";
 
-// 型ガード関数
-const isChillMusicIndexObj = (obj: musicIndexObjType): obj is typeof chillMusicIndexObj => {
-    return 'chillhop_radio' in obj;
-};
-
-const isKawaiiMusicIndexObj = (obj: musicIndexObjType): obj is typeof kawaiiMusicIndexObj => {
-    return 'kawaii_edm' in obj;
-};
-
-const isChillMusicBgObj = (obj: musicBgObjType): obj is typeof chillMusicBgObj => {
-    return 'chillhop_radio' in obj;
-};
-
-const isKawaiiMusicBgObj = (obj: musicBgObjType): obj is typeof kawaiiMusicBgObj => {
-    return 'kawaii_edm' in obj;
-};
 
 export function MusicCategoryPanel(){
     const dispatch = useDispatch();
