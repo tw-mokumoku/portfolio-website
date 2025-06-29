@@ -83,28 +83,47 @@ export const kawaiiMusicCategories = [
 
 export const kawaiiMusicBgObj = {
     "adventure": [
-        "/music/kawaii/img/kawaii_edm/2girls_smile.jpg",
+        "/music/kawaii/img/adventure/minecraft_4girls.jpg",
+        "/music/kawaii/img/adventure/2girls_school.jpg",
+        "/music/kawaii/img/adventure/gamecenter_4girls_playing.jpg",
+        "/music/kawaii/img/adventure/teaching_pc_2girls.jpg",
     ],
     "fantacy": [
-        "/music/kawaii/img/kawaii_edm/3girls_smile_pic.jpg",
+        "/music/kawaii/img/fantacy/2girls_reading_books.jpg",
+        "/music/kawaii/img/fantacy/cute_room_ping.jpg",
+        "/music/kawaii/img/fantacy/remu_looking_back.jpg",
     ],
     "future": [
-        "/music/kawaii/img/kawaii_edm/4girls_sky.jpg",
+        "/music/kawaii/img/future/space_rabbit.jpg",
+        "/music/kawaii/img/future/pc_girl_blue.jpg",
     ],
     "happiness": [
-        "/music/kawaii/img/kawaii_edm/cat_blue_girl_room.jpg",
+        "/music/kawaii/img/happiness/mother_daughter_cooking.jpg",
+        "/music/kawaii/img/happiness/sprey_3girls.jpg",
+        "/music/kawaii/img/happiness/caffe_2girls.jpg",
     ],
     "modern": [
-        "/music/kawaii/img/kawaii_edm/gamecenter_4girls_playing.jpg",
+        "/music/kawaii/img/modern/sleeping_minicharactors_books.jpg",
+        "/music/kawaii/img/modern/boss_whitehair_office.jpg",
+        "/music/kawaii/img/modern/ramen_2girls.jpg",
     ],
     "nature": [
-        "/music/kawaii/img/kawaii_edm/room_bed_2girls.jpg",
+        "/music/kawaii/img/nature/angel_sky.jpg",
+        "/music/kawaii/img/nature/girls_with_flower.jpg",
     ],
     "romance": [
-        "/music/kawaii/img/kawaii_edm/sleeping_minicharactors_books.jpg",
+        "/music/kawaii/img/romance/looking_back_girl.jpg",
+        "/music/kawaii/img/romance/2girls_smile.jpg",
+        "/music/kawaii/img/romance/3girls_smile_pic.jpg",
+        "/music/kawaii/img/romance/afterschool_3girls.jpg",
+        "/music/kawaii/img/romance/friends_memory_3girls.jpg",
+        "/music/kawaii/img/romance/room_bed_2girls.jpg",
     ],
     "summer": [
-        "/music/kawaii/img/kawaii_edm/sleeping_minicharactors_books.jpg",
+        "/music/kawaii/img/summer/4girls_sky.jpg",
+        "/music/kawaii/img/summer/3girls_dance.jpg",
+        "/music/kawaii/img/summer/cat_blue_girl_room.jpg",
+        "/music/kawaii/img/summer/piece_pic_2girls.jpg",
     ],
 };
 
