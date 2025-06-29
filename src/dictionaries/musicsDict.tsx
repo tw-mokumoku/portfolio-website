@@ -130,23 +130,23 @@ export const kawaiiMusicBgObj = {
 export const kawaiiMusicsObj = {
     "adventure": [
         {
-            name: "Chocolate Adventure",
+            name: "Chocolate Adventure - adventure",
             src: "/music/kawaii/mp3/adventure/Chocolate_Adventure.mp3"
         },
         {
-            name: "Electric Dream",
+            name: "Electric Dream - adventure",
             src: "/music/kawaii/mp3/adventure/Electric_Dream.mp3"
         },
         {
-            name: "From Zero",
+            name: "From Zero - adventure",
             src: "/music/kawaii/mp3/adventure/From_Zero.mp3"
         },
         {
-            name: "Ryokou",
+            name: "Ryokou - adventure",
             src: "/music/kawaii/mp3/adventure/Ryokou.mp3"
         },
         {
-            name: "Sherbet Land",
+            name: "Sherbet Land - adventure",
             src: "/music/kawaii/mp3/adventure/Sherbet_Land.mp3"
         },
         {
@@ -157,215 +157,215 @@ export const kawaiiMusicsObj = {
     ],
     "fantacy": [
         {
-            name: "Connected World",
+            name: "Connected World - fantacy",
             src: "/music/kawaii/mp3/fantacy/Connected_World.mp3"
         },
         {
-            name: "Liftoff",
+            name: "Liftoff - fantacy",
             src: "/music/kawaii/mp3/fantacy/Liftoff.mp3"
         },
         {
-            name: "Pixel Galaxy",
+            name: "Pixel Galaxy - fantacy",
             src: "/music/kawaii/mp3/fantacy/Pixel_Galaxy.mp3"
         },
         {
-            name: "Starlight Wonder",
+            name: "Starlight Wonder - fantacy",
             src: "/music/kawaii/mp3/fantacy/Starlight_Wonder.mp3"
         },
         {
-            name: "シンデレラベイビー",
+            name: "シンデレラベイビー - fantacy",
             src: "/music/kawaii/mp3/fantacy/シンデレラベイビー.mp3"
         },
 
     ],
     "future": [
         {
-            name: "曖昧サイボーグ - Kawaii",
+            name: "曖昧サイボーグ - future",
             src: "/music/kawaii/mp3/future/Aimai_Cyborg.mp3"
         },
         {
-            name: "Tokyo Future Girl",
+            name: "Tokyo Future Girl - future",
             src: "/music/kawaii/mp3/future/Tokyo_Future_Girl.mp3"
         },
         {
-            name: "くいしんぼハッカー",
+            name: "くいしんぼハッカー - future",
             src: "/music/kawaii/mp3/future/くいしんぼハッカー.mp3"
         },
         {
-            name: "ダンスフロアの果実",
+            name: "ダンスフロアの果実 - future",
             src: "/music/kawaii/mp3/future/ダンスフロアの果実.mp3"
         },
         {
-            name: "ピポピポ",
+            name: "ピポピポ - future",
             src: "/music/kawaii/mp3/future/ピポピポ.mp3"
         },
         {
-            name: "ロボティックガール",
+            name: "ロボティックガール - future",
             src: "/music/kawaii/mp3/future/ロボティックガール.mp3"
         },
         {
-            name: "大江戸コントローラー",
+            name: "大江戸コントローラー - future",
             src: "/music/kawaii/mp3/future/大江戸コントローラー.mp3"
         },
     ],
     "happiness": [
         {
-            name: "Cappuccino",
+            name: "Cappuccino - happiness",
             src: "/music/kawaii/mp3/happiness/Cappuccino.mp3"
         },
         {
-            name: "Jump!",
+            name: "Jump! - happiness",
             src: "/music/kawaii/mp3/happiness/Jump!.mp3"
         },
         {
-            name: "Jumping23！",
+            name: "Jumping23！ - happiness",
             src: "/music/kawaii/mp3/happiness/Jumping23！.mp3"
         },
         {
-            name: "ハッピーくるくる",
+            name: "ハッピーくるくる - happiness",
             src: "/music/kawaii/mp3/happiness/ハッピーくるくる.mp3"
         },
         {
-            name: "ゆのみっくにお茶して",
+            name: "ゆのみっくにお茶して - happiness",
             src: "/music/kawaii/mp3/happiness/ゆのみっくにお茶して.mp3"
         },
     ],
     "modern": [
         {
-            name: "ALL DAY",
+            name: "ALL DAY - modern",
             src: "/music/kawaii/mp3/modern/ALL_DAY.mp3"
         },
         {
-            name: "breeze",
+            name: "breeze - modern",
             src: "/music/kawaii/mp3/modern/breeze.mp3"
         },
         {
-            name: "Colors",
+            name: "Colors - modern",
             src: "/music/kawaii/mp3/modern/Colors.mp3"
         },
         {
-            name: "Home Sweet Home",
+            name: "Home Sweet Home - modern",
             src: "/music/kawaii/mp3/modern/Home_Sweet_Home.mp3"
         },
         {
-            name: "HoneyComeBear",
+            name: "HoneyComeBear - modern",
             src: "/music/kawaii/mp3/modern/HoneyComeBear.mp3"
         },
         {
-            name: "hot milk",
+            name: "hot milk - modern",
             src: "/music/kawaii/mp3/modern/hot_milk.mp3"
         },
         {
-            name: "Hype",
+            name: "Hype - modern",
             src: "/music/kawaii/mp3/modern/Hype.mp3"
         },
         {
-            name: "Kaedekko",
+            name: "Kaedekko - modern",
             src: "/music/kawaii/mp3/modern/Kaedekko.mp3"
         },
         {
-            name: "KATOMORI",
+            name: "KATOMORI - modern",
             src: "/music/kawaii/mp3/modern/KATOMORI.mp3"
         },
         {
-            name: "Mihka! X The End Kodokushi",
+            name: "Mihka! X The End Kodokushi - modern",
             src: "/music/kawaii/mp3/modern/Mihka!_X_The_End_Kodokushi.mp3"
         },
         {
-            name: "Pastel",
+            name: "Pastel - modern",
             src: "/music/kawaii/mp3/modern/Pastel.mp3"
         },
         {
-            name: "Ryokucha",
+            name: "Ryokucha - modern",
             src: "/music/kawaii/mp3/modern/Ryokucha.mp3"
         },
         {
-            name: "Tripod Baby",
+            name: "Tripod Baby - modern",
             src: "/music/kawaii/mp3/modern/Tripod_Baby.mp3"
         },
         {
-            name: "インドア系ならトラックメイカー",
+            name: "インドア系ならトラックメイカー - modern",
             src: "/music/kawaii/mp3/modern/インドア系ならトラックメイカー.mp3"
         },
         {
-            name: "ジェリーフィッシュ",
+            name: "ジェリーフィッシュ - modern",
             src: "/music/kawaii/mp3/modern/ジェリーフィッシュ.mp3"
         },
         {
-            name: "チャイナアドバイス",
+            name: "チャイナアドバイス - modern",
             src: "/music/kawaii/mp3/modern/チャイナアドバイス.mp3"
         },
         {
-            name: "ヒステリックナイトガール",
+            name: "ヒステリックナイトガール - modern",
             src: "/music/kawaii/mp3/modern/ヒステリックナイトガール.mp3"
         },
 
     ],
     "nature": [
         {
-            name: "Cludspin",
+            name: "Cludspin - nature",
             src: "/music/kawaii/mp3/nature/Cloudspin.mp3"
         },
         {
-            name: "Diary Line",
+            name: "Diary Line - nature",
             src: "/music/kawaii/mp3/nature/Diary_Line.mp3"
         },
         {
-            name: "Fairy Light",
+            name: "Fairy Light - nature",
             src: "/music/kawaii/mp3/nature/Fairy_Light.mp3"
         },
         {
-            name: "Shooting star",
+            name: "Shooting star - nature",
             src: "/music/kawaii/mp3/nature/Shooting_star.mp3"
         },
         {
-            name: "Sirena",
+            name: "Sirena - nature",
             src: "/music/kawaii/mp3/nature/Sirena.mp3"
         },
         {
-            name: "Twinklestar",
+            name: "Twinklestar - nature",
             src: "/music/kawaii/mp3/nature/Twinklestar.mp3"
         },
         {
-            name: "Yozora",
+            name: "Yozora - nature",
             src: "/music/kawaii/mp3/nature/Yozora.mp3"
         },
         {
-            name: "気楽なCloudy",
+            name: "気楽なCloudy - nature",
             src: "/music/kawaii/mp3/nature/気楽なCloudy.mp3"
         },
         {
-            name: "空色デイズ",
+            name: "空色デイズ - nature",
             src: "/music/kawaii/mp3/nature/空色デイズ.mp3"
         },
 
     ],
     "romance": [
         {
-            name: "Dont you want me",
+            name: "Dont you want me - romance",
             src: "/music/kawaii/mp3/romance/Dont_you_want_me.mp3"
         },
         {
-            name: "In Your Heart",
+            name: "In Your Heart - romance",
             src: "/music/kawaii/mp3/romance/In_Your_Heart.mp3"
         },
         {
-            name: "Remember Me",
+            name: "Remember Me - romance",
             src: "/music/kawaii/mp3/romance/Remember_Me.mp3"
         },
         {
-            name: "Renai Circulation",
+            name: "Renai Circulation - romance",
             src: "/music/kawaii/mp3/romance/Renai_Circulation.mp3"
         },
 
     ],
     "summer": [
         {
-            name: "Journey",
+            name: "Journey - summer",
             src: "/music/kawaii/mp3/summer/Journey.mp3"
         },
         {
-            name: "Summer Dream",
+            name: "Summer Dream - summer",
             src: "/music/kawaii/mp3/summer/Summer_Dream.mp3"
         },
     ],
