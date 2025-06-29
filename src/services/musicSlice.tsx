@@ -59,6 +59,7 @@ export const musicController = createSlice({
             state.innerMusicObj = chillMusicsObj;
             state.innerMusicBgObj = chillMusicBgObj;
             switchCommonCSSToChill();
+            window.history.replaceState(null, '', '/chill');
         },
         switchToKawaii: (state: {mood: string, musicIndex: number, musicBgIndex: number, musicCategories: musicCategoriesType, musicIndexObj: musicIndexObjType, innerMusicObj: musicsObjType, innerMusicBgObj: musicBgObjType}) =>{
             if(state.mood === 'kawaii') return;
@@ -70,6 +71,7 @@ export const musicController = createSlice({
             state.innerMusicObj = kawaiiMusicsObj;
             state.innerMusicBgObj = kawaiiMusicBgObj;
             switchCommonCSSToKawaii();
+            window.history.replaceState(null, '', '/kawaii');
         },
         toggleMusicIsMuted: (state: { musicIsMuted: boolean }) => {
             state.musicIsMuted = !state.musicIsMuted;

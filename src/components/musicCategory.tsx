@@ -128,7 +128,6 @@ function Panels({musicId, musicRaw, musicIndexObj, musicBgObj, mood}:{musicId: s
         return "";
     };
 
-//    <div className="flex flex-col m-5 z-2 pointer"
     return (
         <div className="flex flex-col z-2 pointer"
             onClick={handleClick}

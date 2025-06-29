@@ -33,6 +33,7 @@ export function middleware(request:NextRequest) {
        pathname.endsWith(".webp") ||
        pathname.endsWith(".mp3") ||
        pathname.endsWith("chill") ||
+       pathname.endsWith("kawaii") ||
        pathname.endsWith("privacy")
     ) {
         return NextResponse.next();
