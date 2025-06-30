@@ -52,8 +52,8 @@ export function ScreenEffects() {
 
     useKey('l', () => dispatch(toggleCrtLines()));
     useEffect(()=>{
-        setCrtLines(showCrtLines ? <div id="crt-lines" className="z-9999"/> : <></>)
-    }, [showCrtLines]);
+        if(mood === 'chill') setCrtLines(showCrtLines ? <div id="crt-lines" className="z-9999"/> : <></>);
+    }, [showCrtLines, mood]);
 
     return (
         <>
