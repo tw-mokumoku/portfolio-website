@@ -58,7 +58,7 @@ export function ScreenEffects() {
                 { mood === 'chill' ?
                     <>
                         { showCrtLines ?
-                            <div id="crt-lines" className="z-9999"/>
+                            <div id={mood} className="z-9999 crt-lines"/>
                             :
                             <></>
                         }

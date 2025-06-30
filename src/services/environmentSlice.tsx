@@ -9,7 +9,7 @@ export const environmentController = createSlice({
     reducers: {
         toggleCrtLines: (state: { showCrtLines: boolean }) => {
             state.showCrtLines = !state.showCrtLines;
-        }
+        },
     }
 });
 

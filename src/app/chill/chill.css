@@ -138,7 +138,7 @@ span {
     -webkit-font-smoothing: antialiased;
 }
 
-#crt-lines {
+.crt-lines {
     position: absolute;
     top: 0;
     left: 0;
