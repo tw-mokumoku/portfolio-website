@@ -24,7 +24,6 @@ export function InitialProcesses(){
 
 export function ScreenEffects() {
     const dispatch = useDispatch();
-    const [crtLines, setCrtLines] = useState(<div id="crt-lines" className="z-9999"/>);
     const {
         showCrtLines
     } = useSelector((state: {
@@ -51,9 +50,6 @@ export function ScreenEffects() {
     }) => state.commonCSSController);
 
     useKey('l', () => dispatch(toggleCrtLines()));
-    useEffect(()=>{
-        if(mood === 'chill') setCrtLines(showCrtLines ? <div id="crt-lines" className="z-9999"/> : <></>);
-    }, [showCrtLines, mood]);
 
     return (
         <>
@@ -61,7 +57,11 @@ export function ScreenEffects() {
                 <MusicBackground />
                 { mood === 'chill' ?
                     <>
-                        {crtLines}
+                        { showCrtLines ?
+                            <div id="crt-lines" className="z-9999"/>
+                            :
+                            <></>
+                        }
                         <div id="darken" className="z-1" />
                         <div id="vignette" />
                     </>
