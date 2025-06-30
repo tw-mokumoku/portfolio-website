@@ -46,7 +46,7 @@ export function MusicCategoryPanel(){
                                 handleMoodChange("chill");
                             }}
                         >
-                            <div className="w-60 h-35">
+                            <div className="w-30 h-17 sm:w-60 sm:h-35">
                                 <Image src="/music/chill/gif/chill_category.gif" fill alt="chill" style={{ overflow: "clip", overflowClipMargin: "content-box", objectFit: "cover" }} />
                             </div>
                             <p className={`${defaultTextEffect} text-xl`}>Chill</p>
@@ -57,7 +57,7 @@ export function MusicCategoryPanel(){
                                 handleMoodChange("kawaii");
                             }}
                         >
-                            <div className="w-60 h-35">
+                            <div className="w-30 h-17 sm:w-60 sm:h-35">
                                 <Image src="/music/kawaii/gif/kawaii_category.gif" fill alt="kawaii" style={{ overflow: "clip", overflowClipMargin: "content-box", objectFit: "cover" }} />
                             </div>
                             <p className={`${defaultTextEffect} text-xl`}>Kawaii</p>
@@ -132,7 +132,7 @@ function Panels({musicId, musicRaw, musicIndexObj, musicBgObj, mood}:{musicId: s
         <div className="flex flex-col z-2 pointer"
             onClick={handleClick}
         >
-            <div className="w-60 h-35">
+            <div className="w-30 h-17 sm:w-60 sm:h-35">
                 <Image src={getBgSrc()} fill alt={musicId} style={{ overflow: "clip", overflowClipMargin: "content-box", objectFit: "cover" }} />
             </div>
             <p className={`${defaultTextEffect} text-xl`}>{musicRaw}</p>
