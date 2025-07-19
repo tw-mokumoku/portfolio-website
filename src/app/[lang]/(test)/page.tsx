@@ -97,16 +97,6 @@ async function SentenceComponent1({openingSection}:{openingSection:IOpeningSecti
   );  
 }
 
-/*
-async function SentenceComponent1({params}:{params:LangPromise}){
-  return (
-    <h2 className="text-white align-center text-xs sm:text-base mb-10 select-none ">
-    {(await dict(params)).root.openingSection.greet}
-    </h2>
-  );  
-}
-*/
-
 function SentenceComponent2(){
   return (
     <h1 className="text-white text-5xl sm:text-6xl xs:text-8xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight md:text-7xl lg:text-8xl select-none">
@@ -120,11 +110,7 @@ function SentenceComponent2(){
 }
 
 async function SentenceComponent3({openingSection}:{openingSection:IOpeningSection}){
-  return (
-    <p className="text-xs md:text-xs  text-center text-gray-400 tracking-widest  font-semibold mt-16">
-      {openingSection.scrollCheck}
-    </p>
-  );
+  return <p className="text-xs md:text-xs  text-center text-gray-400 tracking-widest  font-semibold mt-16">{openingSection.scrollCheck}</p>
 }
 
 async function SentenceComponent6({introSection}:{introSection:IIntroSection}){
