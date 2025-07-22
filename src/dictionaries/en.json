@@ -82,6 +82,13 @@
                 "thanksINTEREST": "Thank you for your interest in my work history. Please see below for my latest professional experience listed in reverse chronological order."
             },
             "fullTime": {
+                "kokoroINFO": {
+                    "name": "KokoroSYNC Inc.",
+                    "period": "Currently Employed",
+                    "employmentTYPE": "Full-time Employee",
+                    "moreINFO1": "Currently employed as a full-time employee at KokoroSYNC Inc.",
+                    "moreINFO2": "My primary responsibilities include the development of front-end websites and web applications."
+                },
                 "unionINFO":{
                     "name": "Computer Union - Computer-related labor union",
                     "period": "Currently affiliated",

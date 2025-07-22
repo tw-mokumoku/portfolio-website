@@ -40,13 +40,9 @@ export default async function Page({params}:{params:LangPromise}) {
         <SentenceComponent6 introSection={page.root.introSection} />
       </div>
 
-      {/* ハイライトセクション - プロジェクトのハイライトを表示 */}
-      { lang === 'ja' ?
-        <div className="h-screen flex items-center justify-center flex-col mt-15 sm:mt-20">
-        <HighlightComponent />
+      <div className="h-screen flex items-center justify-center flex-col mt-15 sm:mt-20">
+        <HighlightComponent lang={lang} />
       </div>
-      :<></>
-      }
 
       {/* スキルセクション - スキルカードと説明を表示 */}
       <div id="anchor_skill" className="flex items-center justify-center flex-col pt-35 -mt-50 sm:mt-0">
@@ -69,12 +65,19 @@ const vt323 = VT323({
   subsets: ["latin"],
 });  
 
-function HighlightComponent(){
+function HighlightComponent({lang}:{lang:string}){
   return (
     <>
-      <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
-        ハイライト
-      </h2>
+      {/* ハイライトセクション - プロジェクトのハイライトを表示 */}
+      { lang === 'ja' ?
+        <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
+          ハイライト
+        </h2>
+      :
+        <h2 className="mb-30 text-gray-100 text-2xl md:text-4xl xs:text-6xl font-extrabold leading-none sm:whitespace-nowrap tracking-tight select-none">
+          Highlight
+        </h2>
+      }
       <Link className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2 relative" href="/chill">
         <Image src="/music/chill/gif/chillhop_radio/mario_room.gif" fill alt="Highlight" className="h-full object-cover" />
         <div className={`absolute h-full w-full flex flex-col items-center justify-center ${vt323.variable} antialiased rounded-sm`} style={{ top: 0, left: 0, backgroundColor: "rgba(0, 0, 0, 0.5)"}}>
@@ -82,9 +85,12 @@ function HighlightComponent(){
           <p className="text-2xl mt-5" style={{ fontFamily: "var(--font-vt323)", filter: "drop-shadow(0px 0px 2px hsl(120, 100%, 80%)) drop-shadow(0px 0px 8px green)" }} >集中とリラックスに🎧 あなたの日常を彩るLo-fi Music</p>
         </div>
       </Link>
+      { lang === 'ja' ?
       <Link className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2 mt-10" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
         <Image src="/lifeline_featureGraphics.png" fill alt="Highlight" className="h-full object-cover" />
       </Link>
+      :<></>
+      }
     </>
   );
 }

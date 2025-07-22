@@ -39,6 +39,7 @@ import { IWorkSection } from "../interface/sectionDict";
 import { IContextMenu, IDialog, IFormat } from "../interface/workSectionDict";
 
 export function JobContextMenu({workSection}:{workSection: IWorkSection}){
+    const [isJob0Open, setIsJob0Open] = useState(false);
     const [isJob1Open, setIsJob1Open] = useState(false);
     const [isJob2Open, setIsJob2Open] = useState(false);
     const [isJob3Open, setIsJob3Open] = useState(false);
@@ -48,6 +49,7 @@ export function JobContextMenu({workSection}:{workSection: IWorkSection}){
 
     const DFormat:IFormat = workSection.format;
     // 正社員
+    const DKokoroInFO = workSection.fullTime.kokoroINFO;
     const DUnionINFO = workSection.fullTime.unionINFO;
     const DStairINC = workSection.fullTime.stairINC;
     const DPriorityCONSULT = workSection.fullTime.priorityCONSULT;
@@ -63,6 +65,19 @@ export function JobContextMenu({workSection}:{workSection: IWorkSection}){
         <>
         <div className="hidden sm:block">
             {/*****     ダイアログ     *****/}
+            <DialogWrapper
+            title={DKokoroInFO.name}
+            open={isJob0Open}
+            onOpenChange={setIsJob0Open}
+            >
+                <br />
+                {DFormat.affiliationTIME}：{DKokoroInFO.period}<br />
+                {DFormat.employmentTYPE}：{DKokoroInFO.employmentTYPE}<br />
+                <br />
+                〇{DFormat.moreINFO}<br />
+                {DKokoroInFO.moreINFO1}<br />
+                {DKokoroInFO.moreINFO2}
+            </DialogWrapper>
             <DialogWrapper
             title={DUnionINFO.name}
             open={isJob1Open}
@@ -184,6 +199,11 @@ export function JobContextMenu({workSection}:{workSection: IWorkSection}){
                     <ContextMenuSub>
                         <ContextMenuSubTrigger inset>{DFormat.fullTIME}</ContextMenuSubTrigger>
                         <ContextMenuSubContent className="w-94">
+                            <ContextMenuItem className="h-full w-full" onClick={()=>setIsJob0Open(true)}>
+                                {DKokoroInFO.name}
+                                <ContextMenuShortcut>⌘G</ContextMenuShortcut>
+                            </ContextMenuItem>
+
                             <ContextMenuItem className="h-full w-full" onClick={()=>setIsJob1Open(true)}>
                                 {DUnionINFO.name}
                                 <ContextMenuShortcut>⌘D</ContextMenuShortcut>

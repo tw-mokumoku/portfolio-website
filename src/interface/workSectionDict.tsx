@@ -24,6 +24,13 @@ export interface IDialog{
     "thanksINTEREST": string
 }
 export interface IFullTime{
+    "kokoroINFO": {
+        "name": string,
+        "period": string,
+        "employmentTYPE": string,
+        "moreINFO1": string,
+        "moreINFO2": string
+    },
     "unionINFO":{
         "name": string,
         "period": string,
