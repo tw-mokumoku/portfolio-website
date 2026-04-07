@@ -78,11 +78,66 @@ function HighlightComponent({lang}:{lang:string}){
           Highlight
         </h2>
       }
-      <Link className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2 relative" href="/chill">
-        <Image src="/music/chill/gif/chillhop_radio/mario_room.gif" fill alt="Highlight" className="h-full object-cover" />
-        <div className={`absolute h-full w-full flex flex-col items-center justify-center ${vt323.variable} antialiased rounded-sm`} style={{ top: 0, left: 0, backgroundColor: "rgba(0, 0, 0, 0.5)"}}>
-          <p className="text-6xl" style={{ fontFamily: "var(--font-vt323)", filter: "drop-shadow(0px 0px 2px hsl(120, 100%, 80%)) drop-shadow(0px 0px 8px green)" }} >MK Chill</p>
-          <p className="text-2xl mt-5" style={{ fontFamily: "var(--font-vt323)", filter: "drop-shadow(0px 0px 2px hsl(120, 100%, 80%)) drop-shadow(0px 0px 8px green)" }} >集中とリラックスに🎧 あなたの日常を彩るLo-fi Music</p>
+      <Link className="relative block w-9/12 max-w-full aspect-video lg:w-200 outline rounded-sm p-2" href="/chill">
+        <Image src="/music/chill/gif/chillhop_radio/mario_room.gif" fill alt="Highlight" className="object-cover" sizes="(max-width: 1024px) 90vw, 50rem" />
+        <div
+          className={`absolute inset-0 flex flex-col items-center justify-center gap-2 px-3 py-4 sm:gap-3 sm:px-5 md:gap-4 ${vt323.variable} antialiased rounded-sm`}
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+        >
+          <p
+            className="max-w-[95%] text-center text-3xl leading-tight xs:text-4xl sm:text-5xl md:text-6xl"
+            style={{
+              fontFamily: "var(--font-vt323)",
+              filter: "drop-shadow(0px 0px 2px hsl(120, 100%, 80%)) drop-shadow(0px 0px 8px green)",
+            }}
+          >
+            MK Chill
+          </p>
+          <p
+            className="max-w-[min(95%,42rem)] px-1 text-center text-xs leading-snug sm:text-sm md:text-base lg:text-xl xl:text-2xl"
+            style={{
+              fontFamily: "var(--font-vt323)",
+              filter: "drop-shadow(0px 0px 2px hsl(120, 100%, 80%)) drop-shadow(0px 0px 8px green)",
+            }}
+          >
+            集中とリラックスに🎧 あなたの日常を彩るLo-fi Music
+          </p>
+        </div>
+      </Link>
+      <Link
+        className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2 relative mt-10 min-h-[200px] block"
+        href="https://wiki.mk-mokumoku.fyi"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div
+          className={`absolute inset-0 flex flex-col items-center justify-center rounded-sm ${vt323.variable} antialiased`}
+          style={{
+            background: "linear-gradient(135deg, hsl(260 35% 18%) 0%, hsl(220 40% 14%) 50%, hsl(280 30% 16%) 100%)",
+          }}
+        >
+          <p
+            className="text-4xl sm:text-5xl md:text-6xl text-center px-2"
+            style={{
+              fontFamily: "var(--font-vt323)",
+              filter:
+                "drop-shadow(0px 0px 2px hsl(260 100% 85%)) drop-shadow(0px 0px 8px hsl(270 70% 45%))",
+            }}
+          >
+            wiki.mk-mokumoku.fyi
+          </p>
+          <p
+            className="text-lg sm:text-xl md:text-2xl mt-4 px-4 text-center max-w-[95%]"
+            style={{
+              fontFamily: "var(--font-vt323)",
+              filter:
+                "drop-shadow(0px 0px 2px hsl(260 100% 85%)) drop-shadow(0px 0px 8px hsl(270 70% 45%))",
+            }}
+          >
+            {lang === "ja"
+              ? "AI ノート"
+              : "AI notes"}
+          </p>
         </div>
       </Link>
       { lang === 'ja' ?
