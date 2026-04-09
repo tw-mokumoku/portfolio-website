@@ -84,38 +84,38 @@
             "fullTime": {
                 "kokoroINFO": {
                     "name": "KokoroSYNC Inc.",
-                    "period": "Currently Employed",
-                    "employmentTYPE": "Full-time Employee",
-                    "moreINFO1": "Currently employed as a full-time employee at KokoroSYNC Inc.",
-                    "moreINFO2": "My primary responsibilities include the development of front-end websites and web applications."
+                    "period": "August 2025 – end of February 2026 (resigned)",
+                    "employmentTYPE": "Full-time employee (former)",
+                    "moreINFO1": "Left the company at the end of February 2026. While employed at a foreign-affiliated web development company, I worked on online casino services, shared backend platforms, general and R18 game/novel platforms, landing pages, and more. Stack includes Nuxt, Vue, React, Spring Boot, MyBatis, Docker, ECS, CI/CD, and Nginx—covering requirements, DB/API design, front-end implementation, containerization, ECS migration, and pipelines. Front-end track record includes 142 PRs opened, 131 merged (≥92% merge rate), and 323 commits. Independently designed and implemented core features such as SNS-style posts and user history/favorites.",
+                    "moreINFO2": "On the backend: layered architecture (Controller/Service/Repository/Mapper), MyBatis, REST API design and review, migration from single EC2 to ECS, deploy automation shell scripts, and Nginx config automation. Led infrastructure improvements end-to-end as a full-stack engineer."
                 },
                 "unionINFO":{
-                    "name": "Computer Union - Computer-related labor union",
-                    "period": "Currently affiliated",
-                    "employmentTYPE": "Contract employee/temporary staff (dependent on the project)",
-                    "moreINFO1": "I have recently joined the Computer Union, a union operated primarily by engineers.",
-                    "moreINFO2": "Through the union, I undertake projects and work at client companies under labor supply or temporary staffing agreements.",
-                    "moreINFO3": "Currently in discussions with the union's sales representative to secure projects."
+                    "name": "Sole proprietor (freelance)",
+                    "period": "June 2023 – February 2025",
+                    "employmentTYPE": "Sole proprietor",
+                    "moreINFO1": "Services: contracted web development, IT consulting, and technical mentoring. Built IT infrastructure and digitized voter rolls for a campaign office (Excel VBA), maintained and extended existing sites (PHP/jQuery/WordPress, etc.), delivered rich UIs with Three.js, Blender, and GSAP, and mentored two non-engineers to the point where they could build and deploy web apps on their own within six months.",
+                    "moreINFO2": "Also handled technical communication in English, monorepo workflows, CI/CD tuning, and other work tailored to each engagement.",
+                    "moreINFO3": "Also delivered deployments and infrastructure work using AWS and Vercel where the project required it."
                 },
                 "stairINC":{
-                    "name": "STAIR, Inc.",
-                    "period": "Less than 1 month (March 2025 - March 2025)",
-                    "jobDETAILS1": "Street sales",
-                    "jobDETAILS2": "Telemarketing (cold calling)",
-                    "jobDETAILS3": "Existing client communication tasks",
-                    "moreINFO1": "As a real estate salesperson for investment properties, I sold studio apartments near train stations targeting single-person households."
+                    "name": "Computer Union – IT workers’ labor union",
+                    "period": "Currently affiliated",
+                    "jobDETAILS1": "Taking on projects via the union and working at client sites under labor supply or staffing agreements",
+                    "jobDETAILS2": "Membership in an engineer-led union",
+                    "jobDETAILS3": "Coordinating with sales toward new engagements",
+                    "moreINFO1": "Working under labor supply or temporary staffing contracts at client sites as arranged through the union."
                 },
                 "priorityCONSULT":{
                     "name": "Priority Consulting Co., Ltd.",
                     "period": "1 and a half years (January 2022 - May 2023)",
                     "clientSITE": "Ministry of Defense, Bureau of Equipment Planning, Information Systems Division",
-                    "jobDETAILS1": "System operation and management",
-                    "jobDETAILS2": "Service desk",
-                    "jobDETAILS3": "Incident management",
-                    "jobDETAILS4": "Security monitoring tasks",
-                    "moreINFO1": "As a tier-2 support engineer for IT-related inquiries from Ministry of Defense personnel, I resolved undocumented and unresolved issues.",
-                    "moreINFO2": "Handled over 1000 incidents during my tenure.",
-                    "moreINFO3": "Committed to understanding system and server configurations and resolving the root causes of incidents such as failures and security risks."
+                    "jobDETAILS1": "Operations automation with PowerShell; scripts to streamline user management and Group Policy application",
+                    "jobDETAILS2": "VMware Horizon VDI operations, shared-directory permissions, VMware pooling and virtual environment management",
+                    "jobDETAILS3": "WSUS security updates; UI and content updates for an internal information-sharing platform",
+                    "jobDETAILS4": "Windows platform fundamentals, permission design, scripting automation, and virtual infrastructure operations",
+                    "moreINFO1": "Operations and development support for MoD internal systems: development focused on automation and efficiency, plus infrastructure operations management.",
+                    "moreINFO2": "Built automation scripts and experience with tools such as SmartSESAME and SkyseaClientView in the environment.",
+                    "moreINFO3": "Built a foundation in Windows platform design, access control design, scripting automation, and virtual platform operations."
                 }
             },
             "partTime": {

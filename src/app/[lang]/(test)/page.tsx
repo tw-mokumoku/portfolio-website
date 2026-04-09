@@ -117,7 +117,7 @@ function HighlightComponent({lang}:{lang:string}){
           }}
         >
           <p
-            className="text-4xl sm:text-5xl md:text-6xl text-center px-2"
+            className="max-w-[95%] break-all text-center text-lg leading-tight sm:text-3xl md:text-4xl"
             style={{
               fontFamily: "var(--font-vt323)",
               filter:
@@ -127,7 +127,7 @@ function HighlightComponent({lang}:{lang:string}){
             wiki.mk-mokumoku.fyi
           </p>
           <p
-            className="text-lg sm:text-xl md:text-2xl mt-4 px-4 text-center max-w-[95%]"
+            className="max-w-[min(95%,36rem)] px-2 text-center text-sm leading-snug sm:text-base md:text-lg"
             style={{
               fontFamily: "var(--font-vt323)",
               filter:
@@ -135,14 +135,14 @@ function HighlightComponent({lang}:{lang:string}){
             }}
           >
             {lang === "ja"
-              ? "AI ノート"
-              : "AI notes"}
+              ? "学んだこと・知識が詰まったノート（Wiki）"
+              : "Notes & knowledge I collect (like a personal wiki)"}
           </p>
         </div>
       </Link>
       { lang === 'ja' ?
-      <Link className="w-9/12 lg:w-200 justify-center items-center outline rounded-sm p-2 mt-10" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
-        <Image src="/lifeline_featureGraphics.png" fill alt="Highlight" className="h-full object-cover" />
+      <Link className="relative mt-10 block aspect-video w-9/12 max-w-full outline rounded-sm p-0 lg:w-200" href="https://qiita.com/mk-mokumoku/items/0695081d892a8e175995">
+        <Image src="/lifeline_featureGraphics.png" fill alt="Lifeline" className="object-cover" sizes="(max-width: 1024px) 90vw, 50rem" />
       </Link>
       :<></>
       }
