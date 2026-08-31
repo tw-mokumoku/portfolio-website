@@ -24,11 +24,7 @@ const getLocale = (request: NextRequest): string => {
 export function middleware(request:NextRequest) {
     const { pathname } = request.nextUrl;
     
-    // 画像ファイル系は処理をしない
-    /*
-    <Link>を使用していると、prefetchが行われるため、リストページなどでは大量にmiddlewareが実行される。
-    そのため、大量のmiddleware実行を回避するために以下のコードを追記。
-    */
+    // Skip static assets and public HTML pages
    if (
        pathname.endsWith(".svg") ||
        pathname.endsWith(".ico") ||
@@ -37,6 +33,7 @@ export function middleware(request:NextRequest) {
        pathname.endsWith(".png") ||
        pathname.endsWith(".gif") ||
        pathname.endsWith(".webp") ||
+       pathname.endsWith(".html") ||
        pathname.endsWith(".mp3") ||
        pathname.endsWith("chill") ||
        pathname.endsWith("kawaii") ||
@@ -45,25 +42,18 @@ export function middleware(request:NextRequest) {
         return NextResponse.next();
     }
     
-  // Check if there is any supported locale in the pathname
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   ) 
   if (pathnameHasLocale) return;
  
-  // Redirect if there is no locale
   const locale = getLocale(request)
   request.nextUrl.pathname = `/${locale}${pathname}`
-  // e.g. incoming request is /products
-  // The new URL is now /en-US/products
   return NextResponse.redirect(request.nextUrl)
 }
  
 export const config = {
   matcher: [
-    // Skip all internal paths (_next)
     '/((?!_next).*)',
-    // Optional: only run on root (/) URL
-    // '/'
   ],
 }
