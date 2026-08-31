@@ -1,19 +1,25 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from 'next/server'
 import { match } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator'
- 
 
 // supported locales in app
 const locales = ['en', 'ja'];
 // default locale in app
 const defaultLocale = 'ja';
 
-const getLocale = (request:NextRequest):string => {
-    const headers = {'accept-language': request.headers.get('accept-language') ?? undefined};
-    const languages = new Negotiator({headers}).languages();
-    return match(languages, locales, defaultLocale) // -> 'en-US'
-}
+// Parse Accept-Language without negotiator (Node-only; breaks Vercel Edge middleware).
+const parseAcceptLanguage = (header: string | null): string[] => {
+    if (!header) return [];
+    return header
+        .split(',')
+        .map((part) => part.split(';')[0]?.trim())
+        .filter(Boolean) as string[];
+};
+
+const getLocale = (request: NextRequest): string => {
+    const languages = parseAcceptLanguage(request.headers.get('accept-language'));
+    return match(languages, locales, defaultLocale);
+};
 
 export function middleware(request:NextRequest) {
     const { pathname } = request.nextUrl;
