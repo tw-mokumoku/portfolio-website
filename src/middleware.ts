@@ -47,8 +47,15 @@ const shouldSkipLocale = (pathname: string): boolean => {
   );
 };
 
+const gonePaths = new Set(["/deadline-runway.html"]);
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Removed public pages — do not let [lang] swallow the path.
+  if (gonePaths.has(pathname)) {
+    return new NextResponse("Not Found", { status: 404 });
+  }
 
   // Skip locale redirect for assets, API, and path apps outside [lang].
   if (shouldSkipLocale(pathname)) {

@@ -43,12 +43,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-img {
+/* Scoped: old skill/marquee pages relied on this. Lounge avoids fill+broken absolute. */
+img:not([data-space-safe]) {
   object-fit: contain;
-  position: relative !important;
-/*
-width: auto !important;
-*/
 }
 
 :root {
@@ -129,6 +126,12 @@ width: auto !important;
   }
 }
 
-html{
+html {
   scroll-behavior: smooth;
+}
+
+body.space-body {
+  margin: 0;
+  background: #05080e;
+  overflow: hidden;
 }
