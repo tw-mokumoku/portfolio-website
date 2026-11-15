@@ -50,6 +50,16 @@ export type SpaceDict = {
   connect: {
     links: { label: string; href: string; note?: string }[];
   };
+  audio: {
+    enter: string;
+    enterHint: string;
+    musicOn: string;
+    musicOff: string;
+    sfxOn: string;
+    sfxOff: string;
+    playlist: string;
+    close: string;
+  };
 };
 
 export const spaceJa: SpaceDict = {
@@ -249,6 +259,16 @@ export const spaceJa: SpaceDict = {
       { label: "ご意見箱", href: "/goikenbako" },
     ],
   },
+  audio: {
+    enter: "はいる",
+    enterHint: "タップで音楽が流れはじめます",
+    musicOn: "Music",
+    musicOff: "Music off",
+    sfxOn: "SFX",
+    sfxOff: "SFX off",
+    playlist: "Playlist",
+    close: "閉じる",
+  },
 };
 
 export const spaceEn: SpaceDict = {
@@ -447,6 +467,16 @@ export const spaceEn: SpaceDict = {
       },
       { label: "Opinion box", href: "/goikenbako" },
     ],
+  },
+  audio: {
+    enter: "Enter",
+    enterHint: "Tap to start the playlist",
+    musicOn: "Music",
+    musicOff: "Music off",
+    sfxOn: "SFX",
+    sfxOff: "SFX off",
+    playlist: "Playlist",
+    close: "Close",
   },
 };
 
