@@ -115,7 +115,6 @@
 }
 
 .space-top-rail,
-.space-bottom-rail,
 .space-left-dock,
 .space-stage {
   position: absolute;
@@ -194,7 +193,7 @@
 
 .space-left-dock {
   top: var(--rail-y);
-  bottom: var(--rail-y);
+  bottom: 0;
   left: 0;
   width: var(--dock-w);
   display: flex;
@@ -291,42 +290,9 @@
   background: rgba(180, 60, 60, 0.18);
 }
 
-.space-bottom-rail {
-  left: var(--dock-w);
-  right: 0;
-  bottom: 0;
-  height: var(--rail-y);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 1px solid var(--space-line);
-  background: linear-gradient(
-    to top,
-    rgba(10, 6, 8, 0.82),
-    rgba(10, 6, 8, 0.12)
-  );
-  backdrop-filter: blur(12px);
-}
-
-.space-bottom-mark {
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 999px;
-  overflow: hidden;
-  opacity: 0.72;
-  border: 1px solid rgba(255, 180, 170, 0.2);
-}
-
-.space-bottom-cat {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 .space-stage {
   top: var(--rail-y);
-  bottom: var(--rail-y);
+  bottom: 0;
   left: var(--dock-w);
   right: 0;
   display: flex;
@@ -343,6 +309,8 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .space-reel::-webkit-scrollbar {
@@ -352,8 +320,12 @@
 }
 
 .space-slide {
+  flex: 0 0 auto;
+  width: 100%;
+  /* Exact pixel height is set by ResizeObserver; CSS fallback: */
   height: 100%;
-  min-height: 100%;
+  max-height: 100%;
+  overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   display: flex;
@@ -426,23 +398,14 @@
 .space-player {
   position: absolute;
   right: 1rem;
-  bottom: calc(var(--rail-y) + 0.8rem);
+  bottom: 1rem;
   width: min(22rem, calc(100vw - 5.5rem));
   z-index: 30;
   border-radius: 1rem;
   border: 1px solid rgba(255, 180, 170, 0.18);
-  background: rgba(10, 6, 8, 0.88);
+  background: rgba(10, 6, 8, 0.92);
   backdrop-filter: blur(16px);
   padding: 0.7rem;
-  transform: translateY(120%);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.35s ease, opacity 0.35s ease;
-}
-
-.space-player.is-open {
-  transform: translateY(0);
-  opacity: 1;
   pointer-events: auto;
 }
 
@@ -456,18 +419,20 @@
   color: rgba(255, 200, 190, 0.9);
 }
 
-.space-spotify-host,
-.space-spotify-host iframe {
+.space-spotify-frame {
   width: 100%;
-  min-height: 152px;
+  height: 152px;
   border: 0;
   border-radius: 0.7rem;
-  overflow: hidden;
+  display: block;
+  background: #000;
 }
 
 /* Presence — artistic composition, no boxed panel */
 .space-presence {
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: clamp(1rem, 3vw, 2.5rem);

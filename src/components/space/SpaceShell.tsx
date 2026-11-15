@@ -12,35 +12,9 @@ import {
 } from "react";
 import { SpaceDict, SpacePanelId } from "@/dictionaries/space";
 import { cn } from "@/lib/utils";
-import {
-  MK_SPOTIFY_EMBED,
-  MK_SPOTIFY_URI,
-  playSfx,
-  unlockAudio,
-} from "./spaceAudio";
+import { MK_SPOTIFY_EMBED, playSfx, unlockAudio } from "./spaceAudio";
 
 type SlideId = SpacePanelId | `work-${string}`;
-
-type SpotifyEmbedController = {
-  play: () => void;
-  pause: () => void;
-  loadUri: (uri: string) => void;
-};
-
-type SpotifyIFrameApi = {
-  createController: (
-    element: HTMLElement,
-    options: { uri: string; width?: string; height?: string },
-    callback: (controller: SpotifyEmbedController) => void
-  ) => void;
-};
-
-declare global {
-  interface Window {
-    onSpotifyIframeApiReady?: (api: SpotifyIFrameApi) => void;
-    __spotifyIframeApi?: SpotifyIFrameApi;
-  }
-}
 
 const CORE_ORDER: SpacePanelId[] = [
   "presence",
@@ -60,9 +34,9 @@ export function SpaceShell({
 }) {
   const otherLang = lang === "ja" ? "en" : "ja";
   const reelRef = useRef<HTMLDivElement>(null);
-  const spotifyHostRef = useRef<HTMLDivElement>(null);
-  const spotifyCtrl = useRef<SpotifyEmbedController | null>(null);
   const lastHoverAt = useRef(0);
+  const activeRef = useRef<SlideId>("presence");
+  const sfxRef = useRef(true);
 
   const slides = useMemo(() => {
     const list: { id: SlideId; nav: SpacePanelId; label: string }[] = [
@@ -81,10 +55,9 @@ export function SpaceShell({
   }, [dict]);
 
   const [active, setActive] = useState<SlideId>("presence");
-  const [entered, setEntered] = useState(false);
-  const [musicOn, setMusicOn] = useState(true);
   const [sfxOn, setSfxOn] = useState(true);
   const [playerOpen, setPlayerOpen] = useState(false);
+  sfxRef.current = sfxOn;
 
   useEffect(() => {
     const html = document.documentElement;
@@ -99,58 +72,30 @@ export function SpaceShell({
     };
   }, []);
 
+  // Keep each slide exactly one reel viewport tall (prevents height feedback growth).
   useEffect(() => {
-    const existing = document.querySelector(
-      'script[data-spotify-iframe-api="1"]'
-    );
-    if (existing) return;
-    const script = document.createElement("script");
-    script.src = "https://open.spotify.com/embed/iframe-api/v1";
-    script.async = true;
-    script.dataset.spotifyIframeApi = "1";
-    document.body.appendChild(script);
-  }, []);
+    const root = reelRef.current;
+    if (!root) return;
 
-  useEffect(() => {
-    let cancelled = false;
-    let bound = false;
-
-    const bind = (api: SpotifyIFrameApi) => {
-      const host = spotifyHostRef.current;
-      if (!host || cancelled || bound || spotifyCtrl.current) return;
-      bound = true;
-      api.createController(
-        host,
-        { uri: MK_SPOTIFY_URI, width: "100%", height: "152" },
-        (controller) => {
-          if (cancelled) return;
-          spotifyCtrl.current = controller;
-        }
-      );
+    const syncSlideHeights = () => {
+      const h = root.clientHeight;
+      if (h <= 0) return;
+      root.querySelectorAll<HTMLElement>("[data-slide-id]").forEach((el) => {
+        el.style.height = `${h}px`;
+        el.style.minHeight = `${h}px`;
+        el.style.maxHeight = `${h}px`;
+      });
     };
 
-    if (window.__spotifyIframeApi) {
-      bind(window.__spotifyIframeApi);
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    const prev = window.onSpotifyIframeApiReady;
-    window.onSpotifyIframeApiReady = (api) => {
-      window.__spotifyIframeApi = api;
-      prev?.(api);
-      bind(api);
-    };
-
+    syncSlideHeights();
+    const ro = new ResizeObserver(syncSlideHeights);
+    ro.observe(root);
+    window.addEventListener("resize", syncSlideHeights);
     return () => {
-      cancelled = true;
+      ro.disconnect();
+      window.removeEventListener("resize", syncSlideHeights);
     };
-  }, []);
-
-  const activeRef = useRef<SlideId>("presence");
-  const sfxRef = useRef({ sfxOn, entered });
-  sfxRef.current = { sfxOn, entered };
+  }, [slides]);
 
   useEffect(() => {
     const root = reelRef.current;
@@ -165,11 +110,13 @@ export function SpaceShell({
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (!visible) return;
-        const id = visible.target.getAttribute("data-slide-id") as SlideId | null;
+        const id = visible.target.getAttribute(
+          "data-slide-id"
+        ) as SlideId | null;
         if (!id || id === activeRef.current) return;
         activeRef.current = id;
         setActive(id);
-        playSfx("snap", sfxRef.current.sfxOn && sfxRef.current.entered);
+        playSfx("snap", sfxRef.current);
       },
       { root, threshold: [0.6] }
     );
@@ -192,41 +139,23 @@ export function SpaceShell({
     [scrollTo, slides]
   );
 
-  const enter = useCallback(async () => {
-    await unlockAudio();
-    setEntered(true);
-    playSfx("click", true);
-    if (musicOn) {
-      try {
-        spotifyCtrl.current?.play();
-      } catch {
-        // Browser may still block; visitor can use the player.
-      }
-    }
-  }, [musicOn]);
-
   const onInteractiveHover = useCallback(() => {
-    if (!entered || !sfxOn) return;
+    if (!sfxOn) return;
     const now = performance.now();
     if (now - lastHoverAt.current < 90) return;
     lastHoverAt.current = now;
+    void unlockAudio();
     playSfx("hover", true);
-  }, [entered, sfxOn]);
+  }, [sfxOn]);
 
   const onInteractiveClick = useCallback(() => {
-    if (!entered || !sfxOn) return;
+    if (!sfxOn) return;
+    void unlockAudio();
     playSfx("click", true);
-  }, [entered, sfxOn]);
+  }, [sfxOn]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (!entered) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          void enter();
-        }
-        return;
-      }
       const i = slides.findIndex((s) => s.id === active);
       if (e.key === "ArrowDown" || e.key === "PageDown") {
         e.preventDefault();
@@ -241,13 +170,7 @@ export function SpaceShell({
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, enter, entered, scrollTo, slides]);
-
-  useEffect(() => {
-    if (!entered || !spotifyCtrl.current) return;
-    if (musicOn) spotifyCtrl.current.play();
-    else spotifyCtrl.current.pause();
-  }, [musicOn, entered]);
+  }, [active, scrollTo, slides]);
 
   const activeNav =
     slides.find((s) => s.id === active)?.nav ?? ("presence" as SpacePanelId);
@@ -262,29 +185,6 @@ export function SpaceShell({
         <div className="space-vignette" />
         <div className="space-film" />
       </div>
-
-      {!entered ? (
-        <button
-          type="button"
-          className="space-enter"
-          onClick={() => void enter()}
-          aria-label={dict.audio.enter}
-        >
-          <span className="space-enter-mark">
-            <Image
-              src="/hoodCat.png"
-              alt=""
-              width={72}
-              height={72}
-              className="space-enter-cat"
-              priority
-            />
-          </span>
-          <span className="space-enter-brand">{dict.brand}</span>
-          <span className="space-enter-cta">{dict.audio.enter}</span>
-          <span className="space-enter-hint">{dict.audio.enterHint}</span>
-        </button>
-      ) : null}
 
       <header className="space-top-rail">
         <Link
@@ -312,18 +212,6 @@ export function SpaceShell({
         </Link>
         <div className="space-top-spacer" />
         <div className="space-audio-controls">
-          <button
-            type="button"
-            className={cn("space-chip", musicOn && "is-on")}
-            onClick={() => {
-              onInteractiveClick();
-              setMusicOn((v) => !v);
-            }}
-            onMouseEnter={onInteractiveHover}
-            aria-pressed={musicOn}
-          >
-            {musicOn ? dict.audio.musicOn : dict.audio.musicOff}
-          </button>
           <button
             type="button"
             className={cn("space-chip", sfxOn && "is-on")}
@@ -432,48 +320,32 @@ export function SpaceShell({
         </div>
       </main>
 
-      <aside
-        className={cn("space-player", playerOpen && "is-open")}
-        aria-hidden={!playerOpen}
-      >
-        <div className="space-player-head">
-          <span>{dict.audio.playlist}</span>
-          <button
-            type="button"
-            className="space-chip"
-            onClick={() => {
-              onInteractiveClick();
-              setPlayerOpen(false);
-            }}
-          >
-            {dict.audio.close}
-          </button>
-        </div>
-        <div ref={spotifyHostRef} className="space-spotify-host" />
-        <noscript>
+      {playerOpen ? (
+        <aside className="space-player is-open" aria-label={dict.audio.playlist}>
+          <div className="space-player-head">
+            <span>{dict.audio.playlist}</span>
+            <button
+              type="button"
+              className="space-chip"
+              onClick={() => {
+                onInteractiveClick();
+                setPlayerOpen(false);
+              }}
+            >
+              {dict.audio.close}
+            </button>
+          </div>
           <iframe
             title="Spotify"
+            className="space-spotify-frame"
             src={MK_SPOTIFY_EMBED}
             width="100%"
-            height="352"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            height="152"
+            allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />
-        </noscript>
-      </aside>
-
-      <footer className="space-bottom-rail">
-        <span className="space-bottom-mark">
-          <Image
-            src="/hoodCat.png"
-            alt=""
-            width={22}
-            height={22}
-            className="space-bottom-cat"
-            data-space-safe
-          />
-        </span>
-      </footer>
+        </aside>
+      ) : null}
     </div>
   );
 }
