@@ -40,6 +40,7 @@ export type SpaceDict = {
   };
   path: {
     entries: {
+      id: string;
       org: string;
       period: string;
       role: string;
@@ -48,7 +49,8 @@ export type SpaceDict = {
     }[];
   };
   connect: {
-    links: { label: string; href: string; note?: string }[];
+    title: string;
+    links: { label: string; href: string; note?: string; mark: string }[];
   };
   audio: {
     enter: string;
@@ -192,6 +194,7 @@ export const spaceJa: SpaceDict = {
   path: {
     entries: [
       {
+        id: "sharedine",
         org: "株式会社シェアダイン",
         period: "2026.06 – 現在",
         role: "フルスタックエンジニア",
@@ -202,12 +205,14 @@ export const spaceJa: SpaceDict = {
         image: "/space/sharedine-og.jpg",
       },
       {
+        id: "densaro",
         org: "電算労コンピュータ関連労働組合",
         period: "所属中",
         role: "労働者供給・派遣",
         points: ["エンジニア主体の組合経由で現場就業"],
       },
       {
+        id: "kokoro-sync",
         org: "株式会社心SYNC",
         period: "2025.08 – 2026.02",
         role: "正社員（退職）",
@@ -217,6 +222,7 @@ export const spaceJa: SpaceDict = {
         ],
       },
       {
+        id: "freelance",
         org: "個人事業主",
         period: "2023.06 – 2025.02",
         role: "Web受託 · 指導",
@@ -227,6 +233,7 @@ export const spaceJa: SpaceDict = {
         image: "/hoodCat.png",
       },
       {
+        id: "priority",
         org: "プライオリティーコンサルティング",
         period: "2022.01 – 2023.05",
         role: "防衛省内部部局 · 基盤",
@@ -235,28 +242,48 @@ export const spaceJa: SpaceDict = {
     ],
   },
   connect: {
+    title: "繋ぐ",
     links: [
       {
         label: "GitHub",
         href: "https://github.com/tw-mokumoku",
         note: "tw-mokumoku",
+        mark: "GH",
       },
       {
         label: "Qiita",
         href: "https://qiita.com/mk-mokumoku",
         note: "mk-mokumoku",
+        mark: "Qi",
       },
       {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/%E6%B8%A1%E9%82%8A-%E7%90%A2%E8%B3%87-731b63327/",
+        mark: "in",
       },
-      { label: "X", href: "https://x.com/mk_mokumoku", note: "@mk_mokumoku" },
-      { label: "Discord", href: "https://discord.gg/BF6z7Dw9" },
+      {
+        label: "X",
+        href: "https://x.com/mk_mokumoku",
+        note: "@mk_mokumoku",
+        mark: "X",
+      },
+      {
+        label: "Discord",
+        href: "https://discord.gg/BF6z7Dw9",
+        mark: "Dc",
+      },
       {
         label: "Email",
         href: "mailto:takushi.watanabe.work@gmail.com",
+        note: "work mail",
+        mark: "@",
       },
-      { label: "ご意見箱", href: "/goikenbako" },
+      {
+        label: "ご意見箱",
+        href: "/goikenbako",
+        note: "anonymous box",
+        mark: "箱",
+      },
     ],
   },
   audio: {
@@ -401,6 +428,7 @@ export const spaceEn: SpaceDict = {
   path: {
     entries: [
       {
+        id: "sharedine",
         org: "SHAREDINE Inc.",
         period: "2026.06 – Present",
         role: "Full-stack engineer",
@@ -411,12 +439,14 @@ export const spaceEn: SpaceDict = {
         image: "/space/sharedine-og.jpg",
       },
       {
+        id: "densaro",
         org: "Densaro computer workers' union",
         period: "Current",
         role: "Worker supply / dispatch",
         points: ["On-site delivery via an engineer-run union"],
       },
       {
+        id: "kokoro-sync",
         org: "Kokoro SYNC Inc.",
         period: "2025.08 – 2026.02",
         role: "Full-time (left)",
@@ -426,6 +456,7 @@ export const spaceEn: SpaceDict = {
         ],
       },
       {
+        id: "freelance",
         org: "Freelance",
         period: "2023.06 – 2025.02",
         role: "Web · teaching",
@@ -436,6 +467,7 @@ export const spaceEn: SpaceDict = {
         image: "/hoodCat.png",
       },
       {
+        id: "priority",
         org: "Priority Consulting",
         period: "2022.01 – 2023.05",
         role: "MOD bureau · platform",
@@ -444,28 +476,48 @@ export const spaceEn: SpaceDict = {
     ],
   },
   connect: {
+    title: "Connect",
     links: [
       {
         label: "GitHub",
         href: "https://github.com/tw-mokumoku",
         note: "tw-mokumoku",
+        mark: "GH",
       },
       {
         label: "Qiita",
         href: "https://qiita.com/mk-mokumoku",
         note: "mk-mokumoku",
+        mark: "Qi",
       },
       {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/%E6%B8%A1%E9%82%8A-%E7%90%A2%E8%B3%87-731b63327/",
+        mark: "in",
       },
-      { label: "X", href: "https://x.com/mk_mokumoku", note: "@mk_mokumoku" },
-      { label: "Discord", href: "https://discord.gg/BF6z7Dw9" },
+      {
+        label: "X",
+        href: "https://x.com/mk_mokumoku",
+        note: "@mk_mokumoku",
+        mark: "X",
+      },
+      {
+        label: "Discord",
+        href: "https://discord.gg/BF6z7Dw9",
+        mark: "Dc",
+      },
       {
         label: "Email",
         href: "mailto:takushi.watanabe.work@gmail.com",
+        note: "work mail",
+        mark: "@",
       },
-      { label: "Opinion box", href: "/goikenbako" },
+      {
+        label: "Opinion box",
+        href: "/goikenbako",
+        note: "anonymous box",
+        mark: "Box",
+      },
     ],
   },
   audio: {

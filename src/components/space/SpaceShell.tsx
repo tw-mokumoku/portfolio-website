@@ -14,7 +14,7 @@ import { SpaceDict, SpacePanelId } from "@/dictionaries/space";
 import { cn } from "@/lib/utils";
 import { MK_SPOTIFY_EMBED, playSfx, unlockAudio } from "./spaceAudio";
 
-type SlideId = SpacePanelId | `work-${string}`;
+type SlideId = SpacePanelId | `work-${string}` | `path-${string}`;
 
 const CORE_ORDER: SpacePanelId[] = [
   "presence",
@@ -48,7 +48,11 @@ export function SpaceShell({
         label: item.title,
       })),
       { id: "skills", nav: "skills", label: dict.nav.skills.label },
-      { id: "path", nav: "path", label: dict.nav.path.label },
+      ...dict.path.entries.map((entry) => ({
+        id: `path-${entry.id}` as SlideId,
+        nav: "path" as const,
+        label: entry.org,
+      })),
       { id: "connect", nav: "connect", label: dict.nav.connect.label },
     ];
     return list;
@@ -306,9 +310,11 @@ export function SpaceShell({
             <SkillsStage dict={dict} />
           </Slide>
 
-          <Slide id="path">
-            <PathStage dict={dict} />
-          </Slide>
+          {dict.path.entries.map((entry) => (
+            <Slide key={entry.id} id={`path-${entry.id}`}>
+              <PathSlide entry={entry} />
+            </Slide>
+          ))}
 
           <Slide id="connect">
             <ConnectStage
@@ -513,41 +519,43 @@ function SkillsStage({ dict }: { dict: SpaceDict }) {
   );
 }
 
-function PathStage({ dict }: { dict: SpaceDict }) {
+function PathSlide({
+  entry,
+}: {
+  entry: SpaceDict["path"]["entries"][number];
+}) {
+  const mark = entry.org.replace(/[^A-Za-z0-9\u3040-\u30ff\u4e00-\u9fff]/g, "").slice(0, 2) || "道";
   return (
-    <div className="space-path">
-      <ol className="space-path-list">
-        {dict.path.entries.map((e) => (
-          <li
-            key={e.org + e.period}
-            className={cn("space-path-entry", e.image && "has-media")}
-          >
-            {e.image ? (
-              <div className="space-path-media">
-                <Image
-                  src={e.image}
-                  alt=""
-                  fill
-                  className="space-path-img"
-                  sizes="160px"
-                />
-              </div>
-            ) : null}
-            <div className="space-path-body">
-              <div className="space-path-meta">
-                <span className="space-path-org">{e.org}</span>
-                <span className="space-path-period">{e.period}</span>
-              </div>
-              <p className="space-path-role">{e.role}</p>
-              <ul>
-                {e.points.map((pt) => (
-                  <li key={pt.slice(0, 32)}>{pt}</li>
-                ))}
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ol>
+    <div className="space-path-slide">
+      <div className="space-path-slide-media">
+        {entry.image ? (
+          <Image
+            src={entry.image}
+            alt=""
+            fill
+            className="space-path-slide-img"
+            sizes="100vw"
+            unoptimized={entry.image.endsWith(".png")}
+            priority={entry.id === "sharedine"}
+          />
+        ) : (
+          <div className="space-path-slide-mono" aria-hidden>
+            <span>{mark}</span>
+          </div>
+        )}
+        <div className="space-path-slide-shade" aria-hidden />
+      </div>
+      <div className="space-path-slide-meta">
+        <span className="space-work-kicker">Path</span>
+        <span className="space-work-title">{entry.org}</span>
+        <span className="space-work-period">{entry.period}</span>
+        <span className="space-path-slide-role">{entry.role}</span>
+        <ul className="space-path-slide-points">
+          {entry.points.map((pt) => (
+            <li key={pt.slice(0, 32)}>{pt}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -563,26 +571,37 @@ function ConnectStage({
 }) {
   return (
     <div className="space-connect">
-      <ul className="space-connect-list">
-        {dict.connect.links.map((l) => (
-          <li key={l.href}>
-            <Link
-              href={l.href}
-              className="space-connect-item"
-              onMouseEnter={onHover}
-              onClick={onClick}
-              {...(l.href.startsWith("http")
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-            >
-              <span className="space-connect-label">{l.label}</span>
-              {l.note ? (
-                <span className="space-connect-note">{l.note}</span>
-              ) : null}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="space-connect-inner">
+        <p className="space-connect-title">{dict.connect.title}</p>
+        <ul className="space-connect-grid">
+          {dict.connect.links.map((l) => (
+            <li key={l.href}>
+              <Link
+                href={l.href}
+                className="space-connect-card"
+                onMouseEnter={onHover}
+                onClick={onClick}
+                {...(l.href.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                <span className="space-connect-mark" aria-hidden>
+                  {l.mark}
+                </span>
+                <span className="space-connect-copy">
+                  <span className="space-connect-label">{l.label}</span>
+                  {l.note ? (
+                    <span className="space-connect-note">{l.note}</span>
+                  ) : null}
+                </span>
+                <span className="space-connect-arrow" aria-hidden>
+                  →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
