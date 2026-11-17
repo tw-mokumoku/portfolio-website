@@ -1,58 +1,73 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Sora } from "next/font/google";
 import "@/app/globals.css";
+import "./space.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LangPromise, langFilter } from "@/dictionaries/dictionaries";
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceUi = Sora({
+  variable: "--font-space-ui",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceDisplay = Fraunces({
+  variable: "--font-space-display",
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "mk-mokumokuのポートフォリオ - Web開発とクリエイティブプロジェクト",
-  description: "Web開発、インタラクティブデザイン、そして生産性向上ツールなどのユニークなプロジェクトを含む、mk-mokumokuの多様なポートフォリオをご覧ください。私のスキルがどのようにアイデアを形にするかをご覧ください。",
-  keywords: [
-    'mk-mokumoku',
-    'ポートフォリオ',
-    'Web開発',
-    'Next.js',
-    'React',
-    'インタラクティブデザイン',
-    'クリエイティブプロジェクト',
-    'プログラミング',
-    'ソフトウェア開発'
-  ],
-  openGraph:{
-    images: '/hoodCat.png'
-  }
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: LangPromise;
+}): Promise<Metadata> {
+  const lang = langFilter((await params).lang);
+  const isJa = lang === "ja";
+  return {
+    title: "mk-mokumoku",
+    description: isJa
+      ? "mk-mokumoku のポートフォリオ"
+      : "Portfolio of mk-mokumoku",
+    keywords: [
+      "mk-mokumoku",
+      "portfolio",
+      "Next.js",
+      "Web development",
+      "ポートフォリオ",
+    ],
+    openGraph: {
+      images: "/hoodCat.png",
+      locale: isJa ? "ja_JP" : "en_US",
+    },
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   header,
+  params,
 }: Readonly<{
   children: React.ReactNode;
-  header: React.ReactNode
+  header: React.ReactNode;
+  params: LangPromise;
 }>) {
+  const lang = langFilter((await params).lang);
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${spaceUi.variable} ${spaceDisplay.variable} antialiased space-body`}
         suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
+          forcedTheme="dark"
           disableTransitionOnChange
         >
-          {header}
+          {/* Legacy parallel header slot kept empty for the lounge. */}
+          <div className="hidden" aria-hidden>
+            {header}
+          </div>
           {children}
         </ThemeProvider>
       </body>

@@ -1,11 +1,4 @@
-import Header from '@/components/header';
-import './page.css';
-import { dict, LangPromise } from '@/dictionaries/dictionaries';
-import { IPageDict } from '@/interface/pageDict';
-
-export default async function Page({params}:{params:LangPromise}) {    
-      const page:IPageDict = await dict(params);
-    return (
-        <Header header={page.header}/>
-    );
+// Lounge uses edge docks instead of the old sticky header.
+export default function Page() {
+  return null;
 }

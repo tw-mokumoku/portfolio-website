@@ -41,7 +41,6 @@ import { IContextMenu, IDialog, IFormat } from "../interface/workSectionDict";
 export function JobContextMenu({workSection}:{workSection: IWorkSection}){
     const [isJob0Open, setIsJob0Open] = useState(false);
     const [isJob1Open, setIsJob1Open] = useState(false);
-    const [isJob2Open, setIsJob2Open] = useState(false);
     const [isJob3Open, setIsJob3Open] = useState(false);
     const [isJob4Open, setIsJob4Open] = useState(false);
     const [isJob5Open, setIsJob5Open] = useState(false);
@@ -51,7 +50,6 @@ export function JobContextMenu({workSection}:{workSection: IWorkSection}){
     // 正社員
     const DKokoroInFO = workSection.fullTime.kokoroINFO;
     const DUnionINFO = workSection.fullTime.unionINFO;
-    const DStairINC = workSection.fullTime.stairINC;
     const DPriorityCONSULT = workSection.fullTime.priorityCONSULT;
     // アルバイト
     const DEdionCORP = workSection.partTime.edionCORP;
@@ -91,23 +89,6 @@ export function JobContextMenu({workSection}:{workSection: IWorkSection}){
                 {DUnionINFO.moreINFO1}<br />
                 {DUnionINFO.moreINFO2}<br />
                 {DUnionINFO.moreINFO3}
-            </DialogWrapper>
-            <DialogWrapper
-            title={DStairINC.name}
-            open={isJob2Open} 
-            onOpenChange={setIsJob2Open}
-            >
-                <br />
-                {DFormat.affiliationTIME}：{DStairINC.period}<br />
-                {DFormat.employmentTYPE}：{DFormat.fullTIME}<br />
-                <br />
-                〇{DFormat.jobDETAILS}<br />
-                ・{DStairINC.jobDETAILS1}<br />
-                ・{DStairINC.jobDETAILS2}<br />
-                ・{DStairINC.jobDETAILS3}<br />
-                <br />
-                〇{DFormat.moreINFO}<br />
-                {DStairINC.moreINFO1}
             </DialogWrapper>
             <DialogWrapper
             title={DPriorityCONSULT.name}
@@ -209,11 +190,6 @@ export function JobContextMenu({workSection}:{workSection: IWorkSection}){
                                 <ContextMenuShortcut>⌘D</ContextMenuShortcut>
                             </ContextMenuItem>
 
-                            <ContextMenuItem className="h-full w-full" onClick={()=>setIsJob2Open(true)}>
-                                {DStairINC.name}
-                                <ContextMenuShortcut>⇧⌘A</ContextMenuShortcut>
-                            </ContextMenuItem>
-
                             <ContextMenuItem className="h-full w-full" onClick={()=>setIsJob3Open(true)}>
                                 {DPriorityCONSULT.name}
                                 <ContextMenuShortcut>⌘Q</ContextMenuShortcut>
@@ -287,21 +263,6 @@ export function JobContextMenu({workSection}:{workSection: IWorkSection}){
                                 {DUnionINFO.moreINFO1}<br />
                                 {DUnionINFO.moreINFO2}<br />
                                 {DUnionINFO.moreINFO3}
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>{DStairINC.name}</AccordionTrigger>
-                            <AccordionContent>
-                                {DFormat.affiliationTIME}：{DStairINC.period}<br />
-                                {DFormat.employmentTYPE}：{DFormat.fullTIME}<br />
-                                <br />
-                                〇{DFormat.jobDETAILS}<br />
-                                ・{DStairINC.jobDETAILS1}<br />
-                                ・{DStairINC.jobDETAILS2}<br />
-                                ・{DStairINC.jobDETAILS3}<br />
-                                <br />
-                                〇{DFormat.moreINFO}<br />
-                                {DStairINC.moreINFO1}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
