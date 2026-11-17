@@ -37,6 +37,8 @@ export function SpaceShell({
   const lastHoverAt = useRef(0);
   const activeRef = useRef<SlideId>("presence");
   const sfxRef = useRef(true);
+  const programmaticScrollRef = useRef(false);
+  const programmaticTimerRef = useRef<number | null>(null);
 
   const slides = useMemo(() => {
     const list: { id: SlideId; nav: SpacePanelId; label: string }[] = [
@@ -73,6 +75,9 @@ export function SpaceShell({
     return () => {
       html.style.overflow = prevHtml;
       body.style.overflow = prevBody;
+      if (programmaticTimerRef.current != null) {
+        window.clearTimeout(programmaticTimerRef.current);
+      }
     };
   }, []);
 
@@ -120,6 +125,8 @@ export function SpaceShell({
         if (!id || id === activeRef.current) return;
         activeRef.current = id;
         setActive(id);
+        // Skip snap bursts while dock/keyboard drives smooth reel motion.
+        if (programmaticScrollRef.current) return;
         playSfx("snap", sfxRef.current);
       },
       { root, threshold: [0.6] }
@@ -132,7 +139,21 @@ export function SpaceShell({
     const root = reelRef.current;
     if (!root) return;
     const el = root.querySelector<HTMLElement>(`[data-slide-id="${id}"]`);
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!el) return;
+    // Scroll only the reel — scrollIntoView can walk ancestors and hide the HUD.
+    programmaticScrollRef.current = true;
+    if (programmaticTimerRef.current != null) {
+      window.clearTimeout(programmaticTimerRef.current);
+    }
+    const top =
+      el.getBoundingClientRect().top -
+      root.getBoundingClientRect().top +
+      root.scrollTop;
+    root.scrollTo({ top, behavior: "smooth" });
+    programmaticTimerRef.current = window.setTimeout(() => {
+      programmaticScrollRef.current = false;
+      programmaticTimerRef.current = null;
+    }, 700);
   }, []);
 
   const scrollToNav = useCallback(
@@ -489,28 +510,72 @@ function WorkSlide({
 }
 
 function SkillsStage({ dict }: { dict: SpaceDict }) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    const inner = innerRef.current;
+    if (!frame || !inner) return;
+
+    const fit = () => {
+      // zoom affects layout (unlike transform), so the board shrinks into the snap.
+      inner.style.zoom = "1";
+      const avail = frame.clientHeight;
+      const need = inner.scrollHeight;
+      if (avail <= 0 || need <= 0) return;
+      const scale = need > avail ? Math.max(0.58, avail / need) : 1;
+      inner.style.zoom = String(scale);
+    };
+
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(frame);
+    ro.observe(inner);
+    window.addEventListener("resize", fit);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", fit);
+    };
+  }, [dict.skills.groups]);
+
   return (
-    <div className="space-skills">
-      <div className="space-skills-inner">
+    <div className="space-skills" ref={frameRef}>
+      <div className="space-skills-inner" ref={innerRef}>
+        <header className="space-skills-head">
+          <span className="space-work-kicker">{dict.nav.skills.label}</span>
+          <p className="space-skills-count">
+            {dict.skills.groups.reduce((n, g) => n + g.items.length, 0)}
+          </p>
+        </header>
         {dict.skills.groups.map((g) => (
           <section key={g.title} className="space-skill-group">
             <h3>{g.title}</h3>
             <ul>
-              {g.items.map((item) => (
-                <li key={item.name} className="space-skill-chip">
-                  <span className="space-skill-icon">
-                    <Image
-                      src={item.src}
-                      alt=""
-                      width={28}
-                      height={28}
-                      className="space-skill-img"
-                      data-space-safe
-                    />
-                  </span>
-                  <span>{item.name}</span>
-                </li>
-              ))}
+              {g.items.map((item) => {
+                const mark =
+                  item.name.replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase() ||
+                  item.name.slice(0, 1);
+                return (
+                  <li key={item.name} className="space-skill-chip">
+                    <span className="space-skill-icon" aria-hidden>
+                      {item.src ? (
+                        <Image
+                          src={item.src}
+                          alt=""
+                          width={40}
+                          height={40}
+                          className="space-skill-img"
+                          data-space-safe
+                        />
+                      ) : (
+                        <span className="space-skill-mono">{mark}</span>
+                      )}
+                    </span>
+                    <span>{item.name}</span>
+                  </li>
+                );
+              })}
             </ul>
           </section>
         ))}
@@ -586,7 +651,18 @@ function ConnectStage({
                   : {})}
               >
                 <span className="space-connect-mark" aria-hidden>
-                  {l.mark}
+                  {l.icon ? (
+                    <Image
+                      src={l.icon}
+                      alt=""
+                      width={28}
+                      height={28}
+                      className="space-connect-icon"
+                      data-space-safe
+                    />
+                  ) : (
+                    l.mark
+                  )}
                 </span>
                 <span className="space-connect-copy">
                   <span className="space-connect-label">{l.label}</span>

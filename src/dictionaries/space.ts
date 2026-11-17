@@ -35,7 +35,7 @@ export type SpaceDict = {
   skills: {
     groups: {
       title: string;
-      items: { name: string; src: string }[];
+      items: { name: string; src?: string }[];
     }[];
   };
   path: {
@@ -50,7 +50,14 @@ export type SpaceDict = {
   };
   connect: {
     title: string;
-    links: { label: string; href: string; note?: string; mark: string }[];
+    links: {
+      label: string;
+      href: string;
+      note?: string;
+      mark: string;
+      /** Optional brand glyph under public/ */
+      icon?: string;
+    }[];
   };
   audio: {
     enter: string;
@@ -63,6 +70,97 @@ export type SpaceDict = {
     close: string;
   };
 };
+
+/** Full skill inventory from production SkillCards (+ Neon). Shared ja/en. */
+const SPACE_SKILL_GROUPS: SpaceDict["skills"]["groups"] = [
+  {
+    title: "Front",
+    items: [
+      { name: "Next.js", src: "/root/skill_cards/nextjs-logo.svg" },
+      { name: "React", src: "/root/skill_cards/React-logo.svg" },
+      { name: "TypeScript", src: "/root/skill_cards/typescript-logo.png" },
+      { name: "JavaScript", src: "/root/skill_cards/javascript-logo.png" },
+      { name: "HTML5", src: "/root/skill_cards/html-logo.png" },
+      { name: "CSS", src: "/root/skill_cards/css-logo.png" },
+      { name: "Tailwind CSS", src: "/root/skill_cards/tailwind-logo.png" },
+      { name: "Bootstrap", src: "/root/skill_cards/bootstrap-logo.png" },
+      { name: "Framer Motion", src: "/root/skill_cards/framermotion-logo.svg" },
+      { name: "GSAP", src: "/root/skill_cards/gsap-logo.svg" },
+      { name: "shadcn", src: "/root/skill_cards/shadcn-logo.png" },
+      { name: "Redux", src: "/root/skill_cards/redux-logo.png" },
+      { name: "Axios", src: "/root/skill_cards/axios-logo.png" },
+      { name: "i18next", src: "/root/skill_cards/i18next-logo.png" },
+      { name: "Open Graph", src: "/root/skill_cards/opengraph-logo.svg" },
+      { name: "Vue" },
+      { name: "Nuxt" },
+      { name: "Three.js" },
+      { name: "WordPress" },
+    ],
+  },
+  {
+    title: "Mobile",
+    items: [
+      { name: "Expo", src: "/root/skill_cards/eas-logo.png" },
+      { name: "EAS", src: "/root/skill_cards/eas-logo.png" },
+      { name: "React Native", src: "/root/skill_cards/React-logo.svg" },
+      { name: "React Navigation", src: "/root/skill_cards/react-navigation-logo.png" },
+      { name: "React Native Paper", src: "/root/skill_cards/react-native-paper-logo.jpg" },
+      { name: "Google Play Console", src: "/root/skill_cards/google-play-console-logo.png" },
+      { name: "RevenueCat", src: "/root/skill_cards/revenuecat-logo.png" },
+    ],
+  },
+  {
+    title: "Back / Lang",
+    items: [
+      { name: "Node.js", src: "/root/skill_cards/nodejs-logo.png" },
+      { name: "npm", src: "/root/skill_cards/npm-logo.png" },
+      { name: "Java", src: "/root/skill_cards/java-logo.svg" },
+      { name: "Python", src: "/root/skill_cards/python-logo.png" },
+      { name: "C", src: "/root/skill_cards/c-logo.png" },
+      { name: "C++", src: "/root/skill_cards/c++-logo.png" },
+      { name: "C#", src: "/root/skill_cards/csharp-logo.png" },
+      { name: ".NET", src: "/root/skill_cards/dotnet-logo.png" },
+      { name: "PostgreSQL", src: "/root/skill_cards/postgresql-logo.png" },
+      { name: "Neon", src: "/Neon-Logo-500.webp" },
+      { name: "Swagger", src: "/root/skill_cards/swagger-logo.png" },
+      { name: "Postman", src: "/root/skill_cards/postman-logo.svg" },
+      { name: "Faker", src: "/root/skill_cards/faker-logo.png" },
+      { name: "Spring Boot" },
+      { name: "MyBatis" },
+      { name: "Docker" },
+    ],
+  },
+  {
+    title: "Cloud / Infra",
+    items: [
+      { name: "AWS Lambda", src: "/root/skill_cards/lambda-logo.png" },
+      { name: "AWS API Gateway", src: "/root/skill_cards/apigateway-logo.png" },
+      { name: "AWS Route53", src: "/root/skill_cards/route53-logo.png" },
+      { name: "AWS EC2", src: "/root/skill_cards/ec2-logo.png" },
+      { name: "AWS RDS", src: "/root/skill_cards/rds-logo.svg" },
+      { name: "AWS Lightsail", src: "/root/skill_cards/lightsail-logo.png" },
+      { name: "Nginx", src: "/root/skill_cards/nginx-logo.svg" },
+      { name: "Vercel", src: "/root/skill_cards/vercel-logo.png" },
+      { name: "Heroku", src: "/root/skill_cards/heroku-logo.svg" },
+      { name: "GitHub", src: "/root/skill_cards/github-logo.webp" },
+      { name: "AWS ECS" },
+      { name: "CI/CD" },
+    ],
+  },
+  {
+    title: "Ops / Craft",
+    items: [
+      { name: "Cursor", src: "/root/skill_cards/cursor-logo.png" },
+      { name: "ESLint", src: "/root/skill_cards/eslint-logo.png" },
+      { name: "Active Directory", src: "/root/skill_cards/activedirectory-logo.svg" },
+      { name: "PowerShell", src: "/root/skill_cards/powershell-logo.png" },
+      { name: "VMware Horizon", src: "/root/skill_cards/vmwarehorizon-logo.png" },
+      { name: "TeraTerm", src: "/root/skill_cards/teraterm-logo.png" },
+      { name: "Draw.io", src: "/root/skill_cards/drawio-logo.svg" },
+      { name: "Blender" },
+    ],
+  },
+];
 
 export const spaceJa: SpaceDict = {
   brand: "mk-mokumoku",
@@ -147,49 +245,7 @@ export const spaceJa: SpaceDict = {
     ],
   },
   skills: {
-    groups: [
-      {
-        title: "Front / App",
-        items: [
-          { name: "Next.js", src: "/root/skill_cards/nextjs-logo.svg" },
-          { name: "React", src: "/root/skill_cards/React-logo.svg" },
-          { name: "TypeScript", src: "/root/skill_cards/typescript-logo.png" },
-          { name: "Tailwind", src: "/root/skill_cards/tailwind-logo.png" },
-          { name: "Expo", src: "/root/skill_cards/eas-logo.png" },
-          { name: "Motion", src: "/root/skill_cards/framermotion-logo.svg" },
-        ],
-      },
-      {
-        title: "Back / Data",
-        items: [
-          { name: "Node.js", src: "/root/skill_cards/nodejs-logo.png" },
-          { name: "Java", src: "/root/skill_cards/java-logo.svg" },
-          { name: "PostgreSQL", src: "/root/skill_cards/postgresql-logo.png" },
-          { name: "Python", src: "/root/skill_cards/python-logo.png" },
-          { name: "Neon", src: "/Neon-Logo-500.webp" },
-        ],
-      },
-      {
-        title: "Cloud / Ops",
-        items: [
-          { name: "AWS Lambda", src: "/root/skill_cards/lambda-logo.png" },
-          { name: "EC2", src: "/root/skill_cards/ec2-logo.png" },
-          { name: "RDS", src: "/root/skill_cards/rds-logo.svg" },
-          { name: "Nginx", src: "/root/skill_cards/nginx-logo.svg" },
-          { name: "Vercel", src: "/root/skill_cards/vercel-logo.png" },
-          { name: "GitHub", src: "/root/skill_cards/github-logo.webp" },
-        ],
-      },
-      {
-        title: "Craft",
-        items: [
-          { name: "Cursor", src: "/root/skill_cards/cursor-logo.png" },
-          { name: "Redux", src: "/root/skill_cards/redux-logo.png" },
-          { name: "GSAP", src: "/root/skill_cards/gsap-logo.svg" },
-          { name: "shadcn", src: "/root/skill_cards/shadcn-logo.png" },
-        ],
-      },
-    ],
+    groups: SPACE_SKILL_GROUPS,
   },
   path: {
     entries: [
@@ -205,13 +261,6 @@ export const spaceJa: SpaceDict = {
         image: "/space/sharedine-og.jpg",
       },
       {
-        id: "densaro",
-        org: "電算労コンピュータ関連労働組合",
-        period: "所属中",
-        role: "労働者供給・派遣",
-        points: ["エンジニア主体の組合経由で現場就業"],
-      },
-      {
         id: "kokoro-sync",
         org: "株式会社心SYNC",
         period: "2025.08 – 2026.02",
@@ -220,6 +269,7 @@ export const spaceJa: SpaceDict = {
           "外資系Web開発案件。Nuxt·Vue·React / Spring Boot / Docker·ECS",
           "フロント 142 PR（131 merge）",
         ],
+        image: "/space/kokorosync-logo.jpg",
       },
       {
         id: "freelance",
@@ -238,6 +288,7 @@ export const spaceJa: SpaceDict = {
         period: "2022.01 – 2023.05",
         role: "防衛省内部部局 · 基盤",
         points: ["PowerShell自動化、VMware Horizon、WSUS"],
+        image: "/space/mod-sns-card.png",
       },
     ],
   },
@@ -249,40 +300,47 @@ export const spaceJa: SpaceDict = {
         href: "https://github.com/tw-mokumoku",
         note: "tw-mokumoku",
         mark: "GH",
+        icon: "/music/ui/github_icon.svg",
       },
       {
         label: "Qiita",
         href: "https://qiita.com/mk-mokumoku",
         note: "mk-mokumoku",
         mark: "Qi",
+        icon: "/root/tech_logos/icon_button/qiita_logo.png",
       },
       {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/%E6%B8%A1%E9%82%8A-%E7%90%A2%E8%B3%87-731b63327/",
         mark: "in",
+        icon: "/space/icon-linkedin.svg",
       },
       {
         label: "X",
         href: "https://x.com/mk_mokumoku",
         note: "@mk_mokumoku",
         mark: "X",
+        icon: "/music/ui/x.svg",
       },
       {
         label: "Discord",
         href: "https://discord.gg/BF6z7Dw9",
         mark: "Dc",
+        icon: "/music/ui/discord_icon.svg",
       },
       {
         label: "Email",
         href: "mailto:takushi.watanabe.work@gmail.com",
         note: "work mail",
         mark: "@",
+        icon: "/space/icon-mail.svg",
       },
       {
         label: "ご意見箱",
         href: "/goikenbako",
         note: "anonymous box",
         mark: "箱",
+        icon: "/space/icon-box.svg",
       },
     ],
   },
@@ -381,49 +439,7 @@ export const spaceEn: SpaceDict = {
     ],
   },
   skills: {
-    groups: [
-      {
-        title: "Front / App",
-        items: [
-          { name: "Next.js", src: "/root/skill_cards/nextjs-logo.svg" },
-          { name: "React", src: "/root/skill_cards/React-logo.svg" },
-          { name: "TypeScript", src: "/root/skill_cards/typescript-logo.png" },
-          { name: "Tailwind", src: "/root/skill_cards/tailwind-logo.png" },
-          { name: "Expo", src: "/root/skill_cards/eas-logo.png" },
-          { name: "Motion", src: "/root/skill_cards/framermotion-logo.svg" },
-        ],
-      },
-      {
-        title: "Back / Data",
-        items: [
-          { name: "Node.js", src: "/root/skill_cards/nodejs-logo.png" },
-          { name: "Java", src: "/root/skill_cards/java-logo.svg" },
-          { name: "PostgreSQL", src: "/root/skill_cards/postgresql-logo.png" },
-          { name: "Python", src: "/root/skill_cards/python-logo.png" },
-          { name: "Neon", src: "/Neon-Logo-500.webp" },
-        ],
-      },
-      {
-        title: "Cloud / Ops",
-        items: [
-          { name: "AWS Lambda", src: "/root/skill_cards/lambda-logo.png" },
-          { name: "EC2", src: "/root/skill_cards/ec2-logo.png" },
-          { name: "RDS", src: "/root/skill_cards/rds-logo.svg" },
-          { name: "Nginx", src: "/root/skill_cards/nginx-logo.svg" },
-          { name: "Vercel", src: "/root/skill_cards/vercel-logo.png" },
-          { name: "GitHub", src: "/root/skill_cards/github-logo.webp" },
-        ],
-      },
-      {
-        title: "Craft",
-        items: [
-          { name: "Cursor", src: "/root/skill_cards/cursor-logo.png" },
-          { name: "Redux", src: "/root/skill_cards/redux-logo.png" },
-          { name: "GSAP", src: "/root/skill_cards/gsap-logo.svg" },
-          { name: "shadcn", src: "/root/skill_cards/shadcn-logo.png" },
-        ],
-      },
-    ],
+    groups: SPACE_SKILL_GROUPS,
   },
   path: {
     entries: [
@@ -439,13 +455,6 @@ export const spaceEn: SpaceDict = {
         image: "/space/sharedine-og.jpg",
       },
       {
-        id: "densaro",
-        org: "Densaro computer workers' union",
-        period: "Current",
-        role: "Worker supply / dispatch",
-        points: ["On-site delivery via an engineer-run union"],
-      },
-      {
         id: "kokoro-sync",
         org: "Kokoro SYNC Inc.",
         period: "2025.08 – 2026.02",
@@ -454,6 +463,7 @@ export const spaceEn: SpaceDict = {
           "Foreign-affiliated web work. Nuxt·Vue·React / Spring / Docker·ECS",
           "142 frontend PRs (131 merged)",
         ],
+        image: "/space/kokorosync-logo.jpg",
       },
       {
         id: "freelance",
@@ -472,6 +482,7 @@ export const spaceEn: SpaceDict = {
         period: "2022.01 – 2023.05",
         role: "MOD bureau · platform",
         points: ["PowerShell automation, VMware Horizon, WSUS"],
+        image: "/space/mod-sns-card.png",
       },
     ],
   },
@@ -483,40 +494,47 @@ export const spaceEn: SpaceDict = {
         href: "https://github.com/tw-mokumoku",
         note: "tw-mokumoku",
         mark: "GH",
+        icon: "/music/ui/github_icon.svg",
       },
       {
         label: "Qiita",
         href: "https://qiita.com/mk-mokumoku",
         note: "mk-mokumoku",
         mark: "Qi",
+        icon: "/root/tech_logos/icon_button/qiita_logo.png",
       },
       {
         label: "LinkedIn",
         href: "https://www.linkedin.com/in/%E6%B8%A1%E9%82%8A-%E7%90%A2%E8%B3%87-731b63327/",
         mark: "in",
+        icon: "/space/icon-linkedin.svg",
       },
       {
         label: "X",
         href: "https://x.com/mk_mokumoku",
         note: "@mk_mokumoku",
         mark: "X",
+        icon: "/music/ui/x.svg",
       },
       {
         label: "Discord",
         href: "https://discord.gg/BF6z7Dw9",
         mark: "Dc",
+        icon: "/music/ui/discord_icon.svg",
       },
       {
         label: "Email",
         href: "mailto:takushi.watanabe.work@gmail.com",
         note: "work mail",
         mark: "@",
+        icon: "/space/icon-mail.svg",
       },
       {
         label: "Opinion box",
         href: "/goikenbako",
         note: "anonymous box",
         mark: "Box",
+        icon: "/space/icon-box.svg",
       },
     ],
   },

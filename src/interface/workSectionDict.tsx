@@ -39,14 +39,6 @@ export interface IFullTime{
         "moreINFO2": string,
         "moreINFO3": string
     },
-    "stairINC":{
-        "name": string,
-        "period": string,
-        "jobDETAILS1": string,
-        "jobDETAILS2": string,
-        "jobDETAILS3": string,
-        "moreINFO1": string
-    },
     "priorityCONSULT":{
         "name": string,
         "period": string,

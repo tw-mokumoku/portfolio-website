@@ -3,6 +3,8 @@
 export type SfxKind = "hover" | "click" | "snap";
 
 let ctx: AudioContext | null = null;
+let lastSnapAt = 0;
+let unlockChain: Promise<void> | null = null;
 
 function getCtx() {
   if (typeof window === "undefined") return null;
@@ -13,14 +15,34 @@ function getCtx() {
 export async function unlockAudio() {
   const c = getCtx();
   if (!c) return;
-  if (c.state === "suspended") await c.resume();
+  if (c.state !== "suspended") return;
+  if (!unlockChain) {
+    unlockChain = c
+      .resume()
+      .catch(() => undefined)
+      .finally(() => {
+        unlockChain = null;
+      });
+  }
+  await unlockChain;
 }
 
+/** Fire-and-forget SFX. Drops while suspended so resume does not dump a queue. */
 export function playSfx(kind: SfxKind, enabled: boolean) {
   if (!enabled) return;
   const c = getCtx();
   if (!c) return;
-  if (c.state === "suspended") void c.resume();
+  if (c.state === "suspended") {
+    void unlockAudio();
+    return;
+  }
+  if (c.state !== "running") return;
+
+  if (kind === "snap") {
+    const t = performance.now();
+    if (t - lastSnapAt < 140) return;
+    lastSnapAt = t;
+  }
 
   const now = c.currentTime;
   const osc = c.createOscillator();
