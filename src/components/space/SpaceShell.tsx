@@ -519,13 +519,24 @@ function SkillsStage({ dict }: { dict: SpaceDict }) {
     if (!frame || !inner) return;
 
     const fit = () => {
-      // zoom affects layout (unlike transform), so the board shrinks into the snap.
-      inner.style.zoom = "1";
-      const avail = frame.clientHeight;
-      const need = inner.scrollHeight;
-      if (avail <= 0 || need <= 0) return;
-      const scale = need > avail ? Math.max(0.58, avail / need) : 1;
-      inner.style.zoom = String(scale);
+      // Measure unscaled, then scale+translate so the painted board centers in frame.
+      // (CSS zoom origin is top-left; plain scale without translate also drifts left.)
+      inner.style.zoom = "";
+      inner.style.transform = "none";
+      const availH = frame.clientHeight;
+      const availW = frame.clientWidth;
+      const needH = inner.scrollHeight;
+      const needW = inner.scrollWidth;
+      if (availH <= 0 || needH <= 0) return;
+      const byH = needH > availH ? availH / needH : 1;
+      const byW = needW > availW ? availW / needW : 1;
+      const scale = Math.max(0.58, Math.min(byH, byW, 1));
+      inner.style.transformOrigin = "top left";
+      const paintedW = needW * scale;
+      const paintedH = needH * scale;
+      const dx = Math.max(0, (availW - paintedW) / 2);
+      const dy = Math.max(0, (availH - paintedH) / 2);
+      inner.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
     };
 
     fit();
